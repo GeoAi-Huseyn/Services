@@ -1,0 +1,281 @@
+/*!
+*    ______ _       _   _
+*    |  ____| |     | | (_)
+*    | |__  | | __ _| |_ _  ___ ___  _ __
+*    |  __| | |/ _` | __| |/ __/ _ \| '_ \
+*    | |    | | (_| | |_| | (_| (_) | | | |
+*    |_|    |_|\__,_|\__|_|\___\___/|_| |_|
+*
+*         https://www.flaticon.com
+*/
+
+@font-face {
+   font-family: "flaticon_pipex";
+   src: url("../fonts/flaticon_pipex.woff2") format("woff2"),
+      url("../fonts/flaticon_pipex.woff") format("woff"),
+      url("../fonts/flaticon_pipex.eot") format("embedded-opentype"),
+      url("../fonts/flaticon_pipex.ttf") format("truetype"),
+      url("../fonts/flaticon_pipex.svg") format("svg");
+}
+
+i[class^="flaticon-"]:before,
+i[class*=" flaticon-"]:before {
+   font-family: flaticon_pipex !important;
+   font-style: normal;
+   font-weight: normal !important;
+   font-variant: normal;
+   text-transform: none;
+   line-height: 1;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-back:before {
+   content: "\f101";
+}
+.flaticon-back-1:before {
+   content: "\f102";
+}
+.flaticon-repairing:before {
+   content: "\f103";
+}
+.flaticon-bathroom:before {
+   content: "\f104";
+}
+.flaticon-valve:before {
+   content: "\f105";
+}
+.flaticon-bathroom-1:before {
+   content: "\f106";
+}
+.flaticon-crack:before {
+   content: "\f107";
+}
+.flaticon-garbage-disposal-sink:before {
+   content: "\f108";
+}
+.flaticon-screwdriver:before {
+   content: "\f109";
+}
+.flaticon-24-hours:before {
+   content: "\f10a";
+}
+.flaticon-plumber:before {
+   content: "\f10b";
+}
+.flaticon-plumber-1:before {
+   content: "\f10c";
+}
+.flaticon-pipe:before {
+   content: "\f10d";
+}
+.flaticon-plumbering:before {
+   content: "\f10e";
+}
+.flaticon-left-arrow:before {
+   content: "\f10f";
+}
+.flaticon-plumb:before {
+   content: "\f110";
+}
+.flaticon-leak:before {
+   content: "\f111";
+}
+.flaticon-pipe-1:before {
+   content: "\f112";
+}
+.flaticon-construction:before {
+   content: "\f113";
+}
+.flaticon-pipes:before {
+   content: "\f114";
+}
+.flaticon-plumber-2:before {
+   content: "\f115";
+}
+.flaticon-pipe-2:before {
+   content: "\f116";
+}
+.flaticon-vacuum-cleaner:before {
+   content: "\f117";
+}
+.flaticon-toilet:before {
+   content: "\f118";
+}
+.flaticon-plumbing:before {
+   content: "\f119";
+}
+.flaticon-completed-task:before {
+   content: "\f11a";
+}
+.flaticon-satisfaction:before {
+   content: "\f11b";
+}
+.flaticon-plumber-3:before {
+   content: "\f11c";
+}
+.flaticon-plug:before {
+   content: "\f11d";
+}
+.flaticon-email:before {
+   content: "\f11e";
+}
+.flaticon-location-pin:before {
+   content: "\f11f";
+}
+.flaticon-reputation-management:before {
+   content: "\f120";
+}
+.flaticon-call:before {
+   content: "\f121";
+}
+.flaticon-mail:before {
+   content: "\f122";
+}
+.flaticon-home:before {
+   content: "\f123";
+}
+.flaticon-down-chevron:before {
+   content: "\f124";
+}
+.flaticon-down-arrow:before {
+   content: "\f125";
+}
+.flaticon-facebook:before {
+   content: "\f126";
+}
+.flaticon-linkedin:before {
+   content: "\f127";
+}
+.flaticon-twitter:before {
+   content: "\f128";
+}
+.flaticon-instagram:before {
+   content: "\f129";
+}
+.flaticon-social:before {
+   content: "\f12a";
+}
+.flaticon-swirly-arrow:before {
+   content: "\f12b";
+}
+.flaticon-plumbing-1:before {
+   content: "\f12c";
+}
+.flaticon-add:before {
+   content: "\f12d";
+}
+.flaticon-user:before {
+   content: "\f12e";
+}
+.flaticon-email-1:before {
+   content: "\f12f";
+}
+.flaticon-suitcase:before {
+   content: "\f130";
+}
+.flaticon-dependable:before {
+   content: "\f131";
+}
+.flaticon-clean-up:before {
+   content: "\f132";
+}
+.flaticon-supply-chain-management:before {
+   content: "\f133";
+}
+.flaticon-perfection:before {
+   content: "\f134";
+}
+.flaticon-car-repair:before {
+   content: "\f135";
+}
+.flaticon-faucet:before {
+   content: "\f136";
+}
+.flaticon-right-arrow:before {
+   content: "\f137";
+}
+.flaticon-expertise:before {
+   content: "\f138";
+}
+.flaticon-costumer:before {
+   content: "\f139";
+}
+.flaticon-assistance:before {
+   content: "\f13a";
+}
+.flaticon-plumbing-2:before {
+   content: "\f13b";
+}
+.flaticon-menus:before {
+   content: "\f13c";
+}
+.flaticon-drop:before {
+   content: "\f13d";
+}
+.flaticon-pipe-3:before {
+   content: "\f13e";
+}
+.flaticon-calendar:before {
+   content: "\f13f";
+}
+.flaticon-blood-drop:before {
+   content: "\f140";
+}
+.flaticon-winner:before {
+   content: "\f141";
+}
+.flaticon-review:before {
+   content: "\f142";
+}
+.flaticon-tasks:before {
+   content: "\f143";
+}
+.flaticon-waterdrop:before {
+   content: "\f144";
+}
+.flaticon-idea:before {
+   content: "\f145";
+}
+.flaticon-hand:before {
+   content: "\f146";
+}
+.flaticon-24-hours-support:before {
+   content: "\f147";
+}
+.flaticon-24-hours-support-1:before {
+   content: "\f148";
+}
+.flaticon-mortgage:before {
+   content: "\f149";
+}
+.flaticon-affordable:before {
+   content: "\f14a";
+}
+.flaticon-pipe-4:before {
+   content: "\f14b";
+}
+.flaticon-pipe-wrench:before {
+   content: "\f14c";
+}
+.flaticon-high-quality:before {
+   content: "\f14d";
+}
+.flaticon-old-typical-phone:before {
+   content: "\f14e";
+}
+.flaticon-meeting:before {
+   content: "\f14f";
+}
+.flaticon-call-1:before {
+   content: "\f150";
+}
+.flaticon-calendar-1:before {
+   content: "\f151";
+}
+.flaticon-time:before {
+   content: "\f152";
+}
+.flaticon-water:before {
+   content: "\f153";
+}

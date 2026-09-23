@@ -1,0 +1,56 @@
+/* ==========================================================================
+   Brand Slider Styles (HomePulse)
+   ========================================================================== */
+.tj-brand-section {
+  padding: 60px 0;
+  background: -webkit-gradient(linear, left top, right top, from(var(--tj-color-theme-primary)), to(var(--tj-color-theme-secondary)));
+  background: linear-gradient(90deg, var(--tj-color-theme-primary) 0%, var(--tj-color-theme-secondary) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.tj-brand-slider .swiper-wrapper {
+  align-items: center;
+  display: flex;
+}
+
+.brand-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+}
+
+.brand-item a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  filter: brightness(0) invert(1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.brand-item a:hover {
+  opacity: 1;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.95)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.2));
+  transform: translateY(-3px) scale(1.08);
+}
+
+.brand-item a img {
+  max-height: 40px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .tj-brand-section {
+    padding: 32px 0;
+  }
+  .brand-item a img {
+    max-height: 32px;
+    max-width: 110px;
+  }
+}
