@@ -13,7 +13,6 @@ import {
   ShieldCheckIcon,
   CheckBadgeIcon,
   CheckIcon,
-  CertificateIcon,
   ClockIcon,
   InfoIcon,
   AlertIcon,
@@ -28,6 +27,9 @@ import {
   ThumbsUpIcon,
 } from '../components/UI/DetailIcons';
 import ApplianceIcon from '../components/Common/ApplianceIcon';
+import { submitServiceRequest, submitInquiry } from '../lib/supabase';
+import { serviceOptions, brandOptions, cityOptions } from '../data/formOptions';
+import { useSiteSettings } from '../context/SiteSettingsContext';
 import './ServiceDetail.css';
 
 // ==========================================================
@@ -106,6 +108,7 @@ const slideRightVariants = {
 
 export default function ServiceDetail() {
   const { slug } = useParams();
+  const { settings } = useSiteSettings();
 
   const service = servicesData.find(
     (s) => s.slug === slug || (s.legacySlugs && s.legacySlugs.includes(slug))
@@ -125,6 +128,7 @@ export default function ServiceDetail() {
     phone: '',
     email: '',
     address: '',
+    serviceType: service?.title || 'General Appliance Repair',
     brand: '',
     city: '',
     timePreference: 'Immediate / Emergency',
@@ -166,6 +170,7 @@ export default function ServiceDetail() {
     setFormSubmitted(false);
 
     if (service) {
+      setFormData((prev) => ({ ...prev, serviceType: service.title }));
       // 1. Dynamic Page Title
       document.title = service.metaTitle || `${service.title} in Massachusetts | Same-Day Service | HomePulse`;
 
@@ -176,7 +181,68 @@ export default function ServiceDetail() {
         metaDescTag.setAttribute('name', 'description');
         document.head.appendChild(metaDescTag);
       }
-      metaDescTag.setAttribute('content', service.metaDescription || service.heroDesc || service.desc);
+      const metaDesc = service.metaDescription || service.heroDesc || service.desc;
+      metaDescTag.setAttribute('content', metaDesc);
+
+      // 2b. Dynamic Canonical URL
+      const canonicalUrl = `https://homepulserepair.com/service/${service.slug}`;
+      let canonicalTag = document.querySelector('link[rel="canonical"]');
+      if (!canonicalTag) {
+        canonicalTag = document.createElement('link');
+        canonicalTag.setAttribute('rel', 'canonical');
+        document.head.appendChild(canonicalTag);
+      }
+      canonicalTag.setAttribute('href', canonicalUrl);
+
+      // 2c. Dynamic Open Graph Tags
+      const ogTitle = service.metaTitle || `${service.title} | HomePulse`;
+      const ogImage = service.image ? `https://homepulserepair.com${service.image}` : 'https://homepulserepair.com/homepulse_brand_horizontal.png';
+      const ogTags = {
+        'og:title': ogTitle,
+        'og:description': metaDesc,
+        'og:type': 'website',
+        'og:url': canonicalUrl,
+        'og:image': ogImage,
+        'og:image:alt': service.title,
+        'og:site_name': 'HomePulse Appliance Repair',
+        'og:locale': 'en_US'
+      };
+      Object.entries(ogTags).forEach(([prop, content]) => {
+        let tag = document.querySelector(`meta[property="${prop}"]`);
+        if (!tag) {
+          tag = document.createElement('meta');
+          tag.setAttribute('property', prop);
+          document.head.appendChild(tag);
+        }
+        tag.setAttribute('content', content);
+      });
+
+      // 2d. Dynamic Twitter Card Tags
+      const twitterTags = {
+        'twitter:card': 'summary_large_image',
+        'twitter:title': ogTitle,
+        'twitter:description': metaDesc,
+        'twitter:image': ogImage,
+        'twitter:image:alt': service.title
+      };
+      Object.entries(twitterTags).forEach(([name, content]) => {
+        let tag = document.querySelector(`meta[name="${name}"]`);
+        if (!tag) {
+          tag = document.createElement('meta');
+          tag.setAttribute('name', name);
+          document.head.appendChild(tag);
+        }
+        tag.setAttribute('content', content);
+      });
+
+      // 2e. Dynamic Keywords
+      let keywordsTag = document.querySelector('meta[name="keywords"]');
+      if (!keywordsTag) {
+        keywordsTag = document.createElement('meta');
+        keywordsTag.setAttribute('name', 'keywords');
+        document.head.appendChild(keywordsTag);
+      }
+      keywordsTag.setAttribute('content', `${service.title}, ${service.title} Massachusetts, ${service.title} Boston, same-day ${service.title.toLowerCase()}, HomePulse, appliance repair`);
 
       // 3. Dynamic Schema.org JSON-LD Injection
       const scriptId = 'homepulse-service-jsonld';
@@ -195,11 +261,14 @@ export default function ServiceDetail() {
           "serviceType": service.title,
           "name": service.title,
           "description": service.metaDescription || service.desc,
+          "image": ogImage,
+          "url": canonicalUrl,
           "provider": {
             "@type": "HomeAndConstructionBusiness",
             "name": "HomePulse Appliance Repair",
-            "telephone": service.phone || "(571) 571-1664",
+            "telephone": settings.phone || service.phone || "(571) 571-1664",
             "priceRange": "$$",
+            "url": "https://homepulserepair.com",
             "areaServed": service.serviceAreas ? service.serviceAreas.map((a) => ({ "@type": "Place", "name": a })) : []
           }
         },
@@ -211,19 +280,19 @@ export default function ServiceDetail() {
               "@type": "ListItem",
               "position": 1,
               "name": "Home",
-              "item": window.location.origin + "/"
+              "item": "https://homepulserepair.com/"
             },
             {
               "@type": "ListItem",
               "position": 2,
               "name": "Services",
-              "item": window.location.origin + "/#services"
+              "item": "https://homepulserepair.com/#services"
             },
             {
               "@type": "ListItem",
               "position": 3,
               "name": service.title,
-              "item": window.location.href
+              "item": canonicalUrl
             }
           ]
         }
@@ -293,8 +362,8 @@ export default function ServiceDetail() {
     );
   }
 
-  const phoneDisplay = service.phone || '(571) 571-1664';
-  const phoneHref = `tel:${phoneDisplay.replace(/[^0-9+]/g, '')}`;
+  const phoneDisplay = settings.phone || service.phone || '(571) 571-1664';
+  const phoneHref = `tel:+${(settings.phone_raw || phoneDisplay).replace(/[^0-9]/g, '')}`;
   const otherServices = servicesData.filter((s) => s.slug !== service.slug);
 
   // Toggle DIY checkmark
@@ -323,13 +392,33 @@ export default function ServiceDetail() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
+    try {
+      await submitServiceRequest({
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        address: formData.address,
+        serviceType: formData.serviceType || service?.title || 'General Appliance Repair',
+        brand: formData.brand || 'Not Specified',
+        city: formData.city || 'Massachusetts',
+        message: formData.message,
+      });
+      await submitInquiry({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: `${formData.serviceType || service?.title || 'Repair Request'} - ${formData.city || formData.address || 'MA'}`,
+        message: `Address: ${formData.address || 'N/A'}\nCity: ${formData.city || 'N/A'}\nBrand: ${formData.brand || 'N/A'}\nService: ${formData.serviceType || service?.title || 'N/A'}\n\nProblem Details:\n${formData.message}`,
+      });
+    } catch (err) {
+      console.error('Error submitting service request:', err);
+    } finally {
       setIsSubmitting(false);
       setFormSubmitted(true);
-    }, 600);
+    }
   };
 
   // Pre-fill booking message with selected symptom
@@ -376,7 +465,7 @@ export default function ServiceDetail() {
     },
     {
       feature: 'Local Dispatch Speed',
-      homepulse: 'Same-day arrival across all MA communities (30–60 min emergency window)',
+      homepulse: 'Same-day arrival across all MA communities (prompt emergency dispatch)',
       others: '3 to 7 business day waiting period',
     },
     {
@@ -391,7 +480,7 @@ export default function ServiceDetail() {
     },
     {
       feature: 'Technician Qualifications',
-      homepulse: 'Factory-certified specialists with luxury appliance software',
+      homepulse: 'Experienced master specialists with luxury appliance software',
       others: 'General odd-job handymen without diagnostic tools',
     },
   ];
@@ -401,7 +490,7 @@ export default function ServiceDetail() {
     {
       num: '01',
       title: 'Rapid Dispatch & Arrival',
-      desc: 'Book by phone or online. A certified master technician arrives in a fully stocked mobile diagnostic vehicle.',
+      desc: 'Book by phone or online. An experienced master technician arrives in a fully stocked mobile diagnostic vehicle.',
       icon: HeadsetIcon,
       time: 'Same-Day'
     },
@@ -436,7 +525,7 @@ export default function ServiceDetail() {
   const currentSymptomDesc =
     typeof currentSymptom === 'object'
       ? currentSymptom.desc
-      : 'Our certified master technician evaluates this issue using specialized OEM meters to pinpoint the root cause on-site.';
+      : 'Our experienced master technician evaluates this issue using specialized OEM meters to pinpoint the root cause on-site.';
 
   // Severity tags based on index
   const severityTags = [
@@ -467,9 +556,6 @@ export default function ServiceDetail() {
                   src="/homepulse_brand_horizontal_white.png"
                   alt="HomePulse Appliance Repair"
                   className="sd-brand-img"
-                  onError={(e) => {
-                    e.currentTarget.src = '/assets/images/legacy-logo.png';
-                  }}
                 />
               </Link>
             </motion.div>
@@ -592,8 +678,8 @@ export default function ServiceDetail() {
                     <span>100% Upfront Binding Pricing</span>
                   </motion.div>
                   <motion.div className="sd-pillar-item" variants={fadeUpItemVariants} whileHover={{ scale: 1.03, y: -2 }}>
-                    <CertificateIcon size={16} className="text-warning" />
-                    <span>Certified for Luxury &amp; Major Brands</span>
+                    <WrenchIcon size={16} className="text-warning" />
+                    <span>Specialized in Luxury &amp; Major Brands</span>
                   </motion.div>
                 </motion.div>
 
@@ -774,9 +860,9 @@ export default function ServiceDetail() {
             >
               <div className="sd-brand-strip-header">
                 <div className="d-flex align-items-center gap-2">
-                  <CertificateIcon size={20} className="text-primary" />
+                  <CheckBadgeIcon size={20} className="text-primary" />
                   <h3 className="sd-brand-strip-title">
-                    Factory-Certified Service for Luxury &amp; Leading {service.title.replace(' Repair', '')} Brands
+                    Master-Level Service for Luxury &amp; Leading {service.title.replace(' Repair', '')} Brands
                   </h3>
                 </div>
                 <p className="sd-brand-strip-subtitle">
@@ -911,7 +997,7 @@ export default function ServiceDetail() {
                       transition={{ delay: 0.18 }}
                     >
                       <div className="sd-insight-block-heading">
-                        <CertificateIcon size={16} className="text-warning" />
+                        <MagnifyIcon size={16} className="text-warning" />
                         <strong>What Our Master Technician Tests On-Site:</strong>
                       </div>
                       <p>
@@ -1262,7 +1348,7 @@ export default function ServiceDetail() {
                     Transparent {service.title} Pricing
                   </h2>
                   <p className="sd-section-desc mb-4">
-                    We believe in complete pricing transparency. Our certified technicians evaluate the appliance first and present a binding, flat-rate quote before any work commences.
+                    We believe in complete pricing transparency. Our expert technicians evaluate the appliance first and present a binding, flat-rate quote before any work commences.
                   </p>
 
                   <div className="sd-pricing-highlights">
@@ -1515,28 +1601,29 @@ export default function ServiceDetail() {
               </div>
             </motion.div>
 
-            <motion.div
-              className="sd-areas-cloud-modern"
-              layout
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={staggerContainerVariants}
-            >
-              {filteredAreas.map((area, idx) => (
+            <div className="sd-areas-cloud-wrapper">
+              <AnimatePresence mode="wait">
                 <motion.div
-                  className="sd-area-card-chip"
-                  key={area}
-                  layout
-                  variants={scalePopVariants}
-                  whileHover={{ y: -3, scale: 1.03 }}
+                  key={activeRegion}
+                  className="sd-areas-cloud-modern"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.18, ease: 'easeOut' }}
                 >
-                  <MapPinIcon size={13} className="text-primary" />
-                  <span className="sd-area-name">{area}</span>
-                  <span className="sd-area-live-tag">Active</span>
+                  {filteredAreas.map((area) => (
+                    <div
+                      className="sd-area-card-chip"
+                      key={area}
+                    >
+                      <MapPinIcon size={13} className="text-primary" />
+                      <span className="sd-area-name">{area}</span>
+                      <span className="sd-area-live-tag">Active</span>
+                    </div>
+                  ))}
                 </motion.div>
-              ))}
-            </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
         </section>
       )}
@@ -1559,7 +1646,7 @@ export default function ServiceDetail() {
                   Schedule {service.title} Today
                 </h3>
                 <p className="sd-console-subtitle">
-                  Need immediate help? Call our dispatch desk directly for immediate arrival scheduling, or submit the form and we will call you back within 15–30 minutes.
+                  Need immediate help? Call our dispatch desk directly for immediate arrival scheduling, or submit the form and we will call you back as soon as possible.
                 </p>
 
                 <div className="sd-console-hotline-box">
@@ -1578,7 +1665,7 @@ export default function ServiceDetail() {
                       Call {phoneDisplay}
                     </motion.a>
                     <motion.a
-                      href="https://wa.me/15715711664"
+                      href={`https://wa.me/${settings.whatsapp_number || '15715711664'}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="sd-whatsapp-btn"
@@ -1603,13 +1690,13 @@ export default function ServiceDetail() {
                   >
                     <CheckBadgeIcon size={46} className="mb-2 text-success" />
                     <h4>Thank You! We Received Your Request.</h4>
-                    <p>Our dispatch desk will call you back within 15–30 minutes to confirm your technician arrival window.</p>
+                    <p>Our dispatch desk will call you back as soon as possible to confirm your technician arrival window.</p>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleFormSubmit} className="sd-booking-form">
                     <div className="row g-3">
                       <div className="col-md-6">
-                        <label className="sd-form-label">Your Full Name *</label>
+                        <label className="sd-form-label">Full Name *</label>
                         <input
                           type="text"
                           name="name"
@@ -1633,6 +1720,47 @@ export default function ServiceDetail() {
                         />
                       </div>
                       <div className="col-md-6">
+                        <label className="sd-form-label">Email Address *</label>
+                        <input
+                          type="email"
+                          name="email"
+                          required
+                          placeholder="e.g. name@example.com"
+                          className="sd-quote-input"
+                          value={formData.email}
+                          onChange={handleFormChange}
+                        />
+                      </div>
+                      <div className="col-md-6">
+                        <label className="sd-form-label">Street Address *</label>
+                        <input
+                          type="text"
+                          name="address"
+                          required
+                          placeholder="e.g. 124 Main Street"
+                          className="sd-quote-input"
+                          value={formData.address}
+                          onChange={handleFormChange}
+                        />
+                      </div>
+                      <div className="col-md-6">
+                        <label className="sd-form-label">Service / Appliance *</label>
+                        <select
+                          name="serviceType"
+                          required
+                          className="sd-quote-select"
+                          value={formData.serviceType}
+                          onChange={handleFormChange}
+                        >
+                          <option value="">Select Service / Appliance *</option>
+                          {serviceOptions.map((opt, idx) => (
+                            <option key={idx} value={opt}>
+                              {opt}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="col-md-6">
                         <label className="sd-form-label">Appliance Brand</label>
                         <select
                           name="brand"
@@ -1641,45 +1769,28 @@ export default function ServiceDetail() {
                           onChange={handleFormChange}
                         >
                           <option value="">Select Brand (if known)</option>
-                          <option value="Sub-Zero">Sub-Zero</option>
-                          <option value="Wolf">Wolf</option>
-                          <option value="Viking">Viking</option>
-                          <option value="Thermador">Thermador</option>
-                          <option value="Miele">Miele</option>
-                          <option value="Bosch">Bosch</option>
-                          <option value="Gaggenau">Gaggenau</option>
-                          <option value="KitchenAid">KitchenAid</option>
-                          <option value="GE Profile">GE Profile / Monogram</option>
-                          <option value="LG">LG</option>
-                          <option value="Samsung">Samsung</option>
-                          <option value="Whirlpool">Whirlpool</option>
-                          <option value="Other">Other / Not Sure</option>
+                          {brandOptions.map((opt, idx) => (
+                            <option key={idx} value={opt}>
+                              {opt}
+                            </option>
+                          ))}
                         </select>
                       </div>
-                      <div className="col-md-6">
-                        <label className="sd-form-label">Your City or County</label>
+                      <div className="col-12">
+                        <label className="sd-form-label">City in Massachusetts *</label>
                         <select
                           name="city"
+                          required
                           className="sd-quote-select"
                           value={formData.city}
                           onChange={handleFormChange}
                         >
-                          <option value="">Select Your City / Town in MA</option>
-                          <option value="Boston, MA">Boston, MA</option>
-                          <option value="Cambridge, MA">Cambridge, MA</option>
-                          <option value="Worcester, MA">Worcester, MA</option>
-                          <option value="Springfield, MA">Springfield, MA</option>
-                          <option value="Lowell, MA">Lowell, MA</option>
-                          <option value="Newton, MA">Newton, MA</option>
-                          <option value="Quincy, MA">Quincy, MA</option>
-                          <option value="Somerville, MA">Somerville, MA</option>
-                          <option value="Brookline, MA">Brookline, MA</option>
-                          <option value="Waltham, MA">Waltham, MA</option>
-                          <option value="Framingham, MA">Framingham, MA</option>
-                          <option value="Salem, MA">Salem, MA</option>
-                          <option value="Plymouth, MA">Plymouth, MA</option>
-                          <option value="Lynn, MA">Lynn, MA</option>
-                          <option value="Other MA City">Other Massachusetts City / Town</option>
+                          <option value="">Select City / Town in MA *</option>
+                          {cityOptions.map((opt, idx) => (
+                            <option key={idx} value={opt}>
+                              {opt}
+                            </option>
+                          ))}
                         </select>
                       </div>
                       <div className="col-12">
@@ -1734,7 +1845,7 @@ export default function ServiceDetail() {
             <h2 className="sd-section-title">Other Appliance Repairs We Provide</h2>
             <div className="sd-accent-line mx-auto"></div>
             <p className="sd-section-desc mx-auto">
-              We service all residential kitchen and laundry appliances with the same factory-certified expertise:
+              We service all residential kitchen and laundry appliances with the same master technician expertise:
             </p>
           </motion.div>
 

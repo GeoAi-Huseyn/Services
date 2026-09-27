@@ -1,30 +1,42 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { subscribeNewsletter } from '../../lib/supabase';
+import { useSiteSettings } from '../../context/SiteSettingsContext';
 
 const footerServices = [
-  'Refrigerator Repair',
-  'Freezer Repair',
-  'Washer Repair',
-  'Dryer Repair',
-  'Dishwasher Repair',
-  'Oven & Stove Repair',
-  'Microwave Repair',
-  'Wine Cooler Repair',
-  'Range Hood Repair',
+  { name: 'Refrigerator Repair', slug: 'refrigerator-repair' },
+  { name: 'Freezer Repair', slug: 'freezer-repair' },
+  { name: 'Washer Repair', slug: 'washer-repair' },
+  { name: 'Dryer Repair', slug: 'dryer-repair' },
+  { name: 'Dishwasher Repair', slug: 'dishwasher-repair' },
+  { name: 'Oven & Stove Repair', slug: 'oven-range-repair' },
+  { name: 'Microwave Repair', slug: 'microwave-repair' },
+  { name: 'Wine Cooler Repair', slug: 'wine-cooler-repair' },
+  { name: 'Range Hood Repair', slug: 'range-hood-repair' },
 ];
 
 export default function Footer() {
+  const { settings } = useSiteSettings();
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSent, setNewsletterSent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleNewsletter = (e) => {
+  const handleNewsletter = async (e) => {
     e.preventDefault();
     if (newsletterEmail) {
-      setNewsletterSent(true);
-      setTimeout(() => {
-        setNewsletterEmail('');
-        setNewsletterSent(false);
-      }, 3000);
+      setIsSubmitting(true);
+      try {
+        await subscribeNewsletter(newsletterEmail.trim());
+      } catch (err) {
+        console.error('Error subscribing to newsletter:', err);
+      } finally {
+        setIsSubmitting(false);
+        setNewsletterSent(true);
+        setTimeout(() => {
+          setNewsletterEmail('');
+          setNewsletterSent(false);
+        }, 3500);
+      }
     }
   };
 
@@ -42,7 +54,9 @@ export default function Footer() {
                   <div className="contact-text">
                     <span>Email</span>
                     <div className="text">
-                      <a className="link" href="mailto:info@homepulse.com">info@homepulse.com</a>
+                      <a className="link" href={`mailto:${settings.email || 'info@homepulse.com'}`}>
+                        {settings.email || 'info@homepulse.com'}
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -54,7 +68,9 @@ export default function Footer() {
                   <div className="contact-text">
                     <span>Phone</span>
                     <div className="text">
-                      <a className="link" href="tel:+18005550199">(800) 555-0199</a>
+                      <a className="link" href={`tel:+${settings.phone_raw || '18005550199'}`}>
+                        {settings.phone || '(800) 555-0199'}
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -65,7 +81,9 @@ export default function Footer() {
                   </div>
                   <div className="contact-text">
                     <span>Address</span>
-                    <div className="text">100 State Street, Suite 400, Boston, MA 02109</div>
+                    <div className="text">
+                      {settings.address || '100 State Street, Suite 400'}, {settings.city_state || 'Boston, MA 02109'}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -102,10 +120,10 @@ export default function Footer() {
                 </div>
                 <div className="footer-share">
                   <ul>
-                    <li><a href="https://www.facebook.com" target="_blank" rel="noreferrer"><i className="fa-brands fa-facebook"></i></a></li>
-                    <li><a href="https://www.instagram.com" target="_blank" rel="noreferrer"><i className="fa-brands fa-instagram"></i></a></li>
-                    <li><a href="https://www.twitter.com" target="_blank" rel="noreferrer"><i className="fa-brands fa-twitter"></i></a></li>
-                    <li><a href="https://www.linkedin.com" target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin"></i></a></li>
+                    <li><a href={settings.facebook_url || "https://www.facebook.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-facebook"></i></a></li>
+                    <li><a href={settings.instagram_url || "https://www.instagram.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-instagram"></i></a></li>
+                    <li><a href={settings.twitter_url || "https://www.twitter.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-twitter"></i></a></li>
+                    <li><a href={settings.linkedin_url || "https://www.linkedin.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin"></i></a></li>
                   </ul>
                 </div>
               </div>
@@ -141,10 +159,10 @@ export default function Footer() {
                 <ul>
                   {footerServices.map((service, idx) => (
                     <li key={idx}>
-                      <a href="#services">
+                      <Link to={`/service/${service.slug}`}>
                         <span><i className="fa-regular fa-angle-right"></i></span>
-                        {service}
-                      </a>
+                        {service.name}
+                      </Link>
                     </li>
                   ))}
                 </ul>

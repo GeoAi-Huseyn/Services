@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="#78BE20">
+  <!-- Sharp Green Lattice / Crest Symbol (#) as shown in brand marquee -->
+  <!-- Top Horizontal Bar (angled slightly upward with diagonal cut ends) -->
+  <polygon points="12,41 24,28 92,20 80,33"/>
+  <!-- Bottom Horizontal Bar -->
+  <polygon points="8,71 20,58 88,50 76,63"/>
+  <!-- Left Slanted Vertical Bar (slanted right with diagonal cut ends) -->
+  <polygon points="26,92 38,8 51,8 39,92"/>
+  <!-- Right Slanted Vertical Bar -->
+  <polygon points="56,92 68,8 81,8 69,92"/>
+</svg>

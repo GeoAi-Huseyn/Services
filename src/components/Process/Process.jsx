@@ -10,7 +10,7 @@ const processSteps = [
   {
     step: '02',
     title: 'Genuine OEM Parts',
-    desc: 'We install factory-certified, guaranteed replacement parts tailored to your appliance brand.',
+    desc: 'We install genuine factory OEM, guaranteed replacement parts tailored to your appliance brand.',
     icon: 'fa-solid fa-gears',
   },
   {
@@ -29,7 +29,7 @@ const processSteps = [
 
 export default function Process() {
   return (
-    <section className="tj-process-section" id="surec-2">
+    <section className="tj-process-section" id="process">
       <div className="container">
         <div className="row">
           <div className="col-12">

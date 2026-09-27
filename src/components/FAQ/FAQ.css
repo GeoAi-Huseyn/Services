@@ -1,0 +1,134 @@
+/* ==========================================================================
+   FAQ Section Styles (HomePulse)
+   ========================================================================== */
+
+/* Accordion Item Wrapper */
+.faq-accordion-item {
+  overflow: hidden;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Accordion Toggle Button */
+.faq-accordion-item .faq-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.faq-accordion-item .faq-title .faq-question-text {
+  font-weight: 600;
+}
+
+/* Chevron icon - rotates when open */
+.faq-chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12px;
+  flex-shrink: 0;
+  font-size: 14px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.faq-accordion-item.active .faq-chevron {
+  transform: rotate(180deg);
+}
+
+/* Accordion answer body */
+.faq-accordion-body {
+  display: block;
+  padding: 16px 22px;
+  line-height: 1.65;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.faq-accordion-body p {
+  margin: 0;
+}
+
+/* Form success state */
+.form-success-message {
+  padding: 20px;
+  background: #28a745;
+  color: #fff;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.form-success-message i {
+  margin-right: 8px;
+}
+
+/* Form inputs & dropdowns */
+.contact-form-one form .form-input {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+/* Fallback for native select if ever used */
+.contact-form-one form .form-input select {
+  width: 100%;
+  padding: 20px 24px 10px 0;
+  border: none;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.4);
+  background: transparent;
+  color: #ffffff;
+  font-family: var(--tj-ff-heading);
+  font-size: 16px;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+  transition: border-color 0.25s ease;
+}
+
+.contact-form-one form .form-input select:focus {
+  border-bottom-color: #ffffff;
+}
+
+.contact-form-one form .form-input select option {
+  background-color: #0b2559;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Fixed Section Height & Layout Stabilization (Non-Dynamic Dimensions)
+   ========================================================================== */
+.tj-faq-section {
+  min-height: 860px;
+  box-sizing: border-box;
+}
+
+.tj-faq-section .accordion.tj-faq {
+  min-height: 350px;
+}
+
+.tj-faq-section .contact-form-one {
+  min-height: 590px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tj-faq-section .contact-form-one .form-success-message {
+  margin: auto 0;
+}
+
+@media (max-width: 991px) {
+  .tj-faq-section {
+    min-height: auto;
+  }
+  .tj-faq-section .accordion.tj-faq {
+    min-height: 330px;
+  }
+}
+
+

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSiteSettings } from '../context/SiteSettingsContext';
 import { projectsData } from '../data/projectsData';
 import {
   HomeIcon,
@@ -16,6 +17,7 @@ import {
   ClockIcon,
   GridIcon,
 } from '../components/UI/DetailIcons';
+import SEOHead, { buildBreadcrumbSchema, buildWebPageSchema } from '../components/SEO/SEOHead';
 import './ProjectsPage.css';
 
 const smoothSpring = {
@@ -33,6 +35,7 @@ const filterCategories = [
 ];
 
 export default function ProjectsPage() {
+  const { settings } = useSiteSettings();
   const [activeCategory, setActiveCategory] = useState('all');
 
   useEffect(() => {
@@ -43,8 +46,27 @@ export default function ProjectsPage() {
     ? projectsData
     : projectsData.filter((p) => p.category === activeCategory);
 
+  const seoJsonLd = useMemo(() => [
+    buildWebPageSchema(
+      'Recent Repair Projects — HomePulse Appliance Repair Portfolio',
+      'Browse our completed appliance repair projects featuring refrigerators, washers, dryers, dishwashers, ovens, and more across Massachusetts.',
+      '/projects'
+    ),
+    buildBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Recent Work', url: '/projects' }
+    ])
+  ], []);
+
   return (
     <div className="pj-page-wrapper">
+      <SEOHead
+        title="Recent Repair Projects | HomePulse Appliance Repair Portfolio"
+        description="Browse our completed appliance repair projects: Sub-Zero, Miele, Bosch, Wolf & more. See real before-and-after results from certified HomePulse technicians in Massachusetts."
+        canonical="/projects"
+        keywords="appliance repair projects, repair portfolio, Sub-Zero repair, Miele repair, Bosch repair, Wolf repair, Massachusetts appliance service"
+        jsonLd={seoJsonLd}
+      />
       {/* Top Navigation Brand Bar */}
       <div className="pj-top-bar">
         <div className="container">
@@ -61,13 +83,13 @@ export default function ProjectsPage() {
                 <ArrowLeftIcon size={14} />
                 <span>Back to Home</span>
               </Link>
-              <a href="tel:+18005550199" className="pj-phone-pill d-none d-sm-inline-flex">
+              <a href={`tel:+${settings.phone_raw || '18005550199'}`} className="pj-phone-pill d-none d-sm-inline-flex">
                 <div className="pj-phone-icon-wrap">
                   <PhoneIcon size={14} />
                 </div>
                 <div className="pj-phone-txt">
                   <small>Dispatch Hotline</small>
-                  <strong>(800) 555-0199</strong>
+                  <strong>{settings.phone || '(800) 555-0199'}</strong>
                 </div>
               </a>
             </div>
@@ -292,10 +314,10 @@ export default function ProjectsPage() {
             <div className="col-md-3 col-6">
               <div className="pj-feature-box">
                 <div className="feature-icon">
-                  <i className="fa-solid fa-certificate"></i>
+                  <i className="fa-solid fa-user-gear"></i>
                 </div>
-                <h4>Licensed Master Techs</h4>
-                <p>Rigorously certified, background-checked pros.</p>
+                <h4>Experienced Master Techs</h4>
+                <p>Vetted, highly skilled and background-checked pros.</p>
               </div>
             </div>
             <div className="col-md-3 col-6">
@@ -336,11 +358,11 @@ export default function ProjectsPage() {
               </div>
               <div className="col-lg-4 text-lg-end text-center mt-lg-0 mt-4">
                 <div className="d-flex flex-column flex-sm-row justify-content-lg-end justify-content-center gap-3">
-                  <a href="tel:+18005550199" className="pj-cta-phone-btn">
+                  <a href={`tel:+${settings.phone_raw || '18005550199'}`} className="pj-cta-phone-btn">
                     <PhoneIcon size={16} />
-                    <span>Call (800) 555-0199</span>
+                    <span>Call {settings.phone || '(800) 555-0199'}</span>
                   </a>
-                  <a href="https://wa.me/18005550199" target="_blank" rel="noreferrer" className="pj-cta-wa-btn">
+                  <a href={`https://wa.me/${settings.whatsapp_number || '18005550199'}`} target="_blank" rel="noreferrer" className="pj-cta-wa-btn">
                     <WhatsAppIcon size={18} />
                     <span>WhatsApp Chat</span>
                   </a>

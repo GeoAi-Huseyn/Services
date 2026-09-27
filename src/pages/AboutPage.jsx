@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useSiteSettings } from '../context/SiteSettingsContext';
 import {
   HomeIcon,
   ChevronRightIcon,
@@ -20,6 +21,7 @@ import {
   StepsIcon,
   ClipboardCheckIcon,
 } from '../components/UI/DetailIcons';
+import SEOHead, { buildBreadcrumbSchema, buildWebPageSchema } from '../components/SEO/SEOHead';
 import './AboutPage.css';
 
 // Physics Spring Motion Configs
@@ -67,6 +69,8 @@ const scaleInVariants = {
 };
 
 export default function AboutPage() {
+  const { settings } = useSiteSettings();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -75,26 +79,26 @@ export default function AboutPage() {
     {
       id: 1,
       icon: <WrenchIcon size={26} />,
-      number: '25,000+',
-      title: 'Repairs Completed',
+      number: 'Careful Work',
+      title: 'Meticulous & Tidy Repairs',
     },
     {
       id: 2,
       icon: <MedalIcon size={26} />,
-      number: '98.9%',
-      title: 'Customer Satisfaction',
+      number: 'Many Years',
+      title: 'Of Dedicated Experience',
     },
     {
       id: 3,
       icon: <CertificateIcon size={26} />,
-      number: '50+',
-      title: 'Certified Technicians',
+      number: 'Qualified Team',
+      title: 'Experienced Master Techs',
     },
     {
       id: 4,
       icon: <ClockIcon size={26} />,
-      number: 'Same-Day',
-      title: 'Rapid Response',
+      number: 'Dependable',
+      title: 'Prompt Scheduling & Care',
     },
   ];
 
@@ -102,26 +106,26 @@ export default function AboutPage() {
     {
       id: 1,
       icon: <ShieldCheckIcon size={28} />,
-      title: 'Upfront Honest Pricing',
-      desc: 'Transparent flat-rate quotes provided prior to work commencing. Never any hidden fees or surprise diagnostic add-ons.',
+      title: 'Honest & Clear Pricing',
+      desc: 'Transparent quotes explained upfront before any work begins. No unexpected add-ons or hidden charges.',
     },
     {
       id: 2,
       icon: <CheckBadgeIcon size={28} />,
-      title: 'OEM Factory Parts',
-      desc: 'We install only genuine manufacturer replacement parts backed by comprehensive manufacturer reliability guarantees.',
+      title: 'Genuine OEM Parts',
+      desc: 'We install authentic manufacturer components built specifically for your appliance to ensure lasting reliability.',
     },
     {
       id: 3,
       icon: <BoltIcon size={28} />,
-      title: 'Fast Same-Day Dispatch',
-      desc: 'Mobile repair vans stocked with 90% of frequently needed components for one-trip turnaround and minimal household disruption.',
+      title: 'Tidy & Respectful Service',
+      desc: 'We protect your floors and counters with clean work mats and runners, leaving your home as clean as we found it.',
     },
     {
       id: 4,
       icon: <CertificateIcon size={28} />,
-      title: '90-Day Ironclad Warranty',
-      desc: 'Every service call includes our 90-day parts and labor warranty, giving you total peace of mind in our craftsmanship.',
+      title: 'Solid Service Warranty',
+      desc: 'Every repair is backed by a dependable warranty on parts and labor, so you can have complete confidence in our work.',
     },
   ];
 
@@ -130,7 +134,7 @@ export default function AboutPage() {
       step: '01',
       icon: <MagnifyIcon size={26} />,
       title: 'Smart Diagnostic',
-      desc: 'Certified technician performs thorough electrical and mechanical inspection of your appliance.',
+      desc: 'Experienced technician performs thorough electrical and mechanical inspection of your appliance.',
     },
     {
       step: '02',
@@ -152,8 +156,27 @@ export default function AboutPage() {
     },
   ];
 
+  const seoJsonLd = useMemo(() => [
+    buildWebPageSchema(
+      'About HomePulse — Trusted Appliance Repair Specialists in Massachusetts',
+      'Learn about HomePulse Appliance Repair: our mission, values, experienced technicians, and commitment to honest, high-quality home appliance repair across Massachusetts.',
+      '/about'
+    ),
+    buildBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'About Us', url: '/about' }
+    ])
+  ], []);
+
   return (
     <div className="about-page-wrapper">
+      <SEOHead
+        title="About HomePulse — Trusted Appliance Repair Specialists | Massachusetts"
+        description="Learn about HomePulse Appliance Repair: our mission, values, experienced technicians, and commitment to honest, high-quality home appliance repair across Massachusetts."
+        canonical="/about"
+        keywords="about HomePulse, appliance repair company, Massachusetts appliance technicians, trusted repair specialists, home appliance service"
+        jsonLd={seoJsonLd}
+      />
       {/* Top Strip Navigation Bar */}
       <div className="ab-top-strip">
         <div className="container">
@@ -170,13 +193,13 @@ export default function AboutPage() {
                 <ArrowLeftIcon size={14} />
                 <span>Back to Home</span>
               </Link>
-              <a href="tel:+18005550199" className="ab-phone-pill d-none d-sm-inline-flex">
+              <a href={`tel:+${settings.phone_raw || '18005550199'}`} className="ab-phone-pill d-none d-sm-inline-flex">
                 <div className="ab-phone-icon-wrap">
                   <PhoneIcon size={14} />
                 </div>
                 <div className="ab-phone-txt">
                   <small>Dispatch Hotline</small>
-                  <strong>(800) 555-0199</strong>
+                  <strong>{settings.phone || '(800) 555-0199'}</strong>
                 </div>
               </a>
             </div>
@@ -220,24 +243,24 @@ export default function AboutPage() {
 
                 {/* Page Title */}
                 <motion.h1 variants={fadeUpVariants} className="ab-hero-title">
-                  Dedicated To Restoring Your Home Comfort With Precision & Integrity
+                  Dedicated To Restoring Your Home Comfort With Precision & Care
                 </motion.h1>
 
                 {/* Page Description */}
                 <motion.p variants={fadeUpVariants} className="ab-hero-desc">
-                  Founded with a customer-first philosophy, HomePulse delivers high-caliber appliance repairs across the region. We combine decades of technical expertise, prompt scheduling, and uncompromising standards to keep your essential household equipment operating at peak performance.
+                  Built on a simple commitment to doing things right, HomePulse provides dependable, high-quality appliance repair across Massachusetts. For many years, we have focused on honest diagnostics, clean and careful workmanship, and respectful customer service that local homeowners can count on.
                 </motion.p>
 
                 {/* Trust Chips */}
                 <motion.div variants={fadeUpVariants} className="ab-trust-row">
                   <span className="ab-trust-chip">
-                    <ShieldCheckIcon size={15} /> 100% Licensed & Insured
+                    <ShieldCheckIcon size={15} /> Fully Licensed & Insured
                   </span>
                   <span className="ab-trust-chip">
-                    <CertificateIcon size={15} /> EPA Certified Technicians
+                    <WrenchIcon size={15} /> Skilled Technicians
                   </span>
                   <span className="ab-trust-chip">
-                    <ClockIcon size={15} /> 90-Day Service Guarantee
+                    <ClockIcon size={15} /> Dependable Service Warranty
                   </span>
                 </motion.div>
               </motion.div>
@@ -253,8 +276,8 @@ export default function AboutPage() {
                   <div className="ab-badge-icon">
                     <MedalIcon size={46} />
                   </div>
-                  <div className="ab-badge-number">15+</div>
-                  <div className="ab-badge-label">Years of Excellence</div>
+                  <div className="ab-badge-number">Many Years</div>
+                  <div className="ab-badge-label">Of Dedicated Service</div>
                 </div>
               </motion.div>
             </div>
@@ -301,13 +324,13 @@ export default function AboutPage() {
               >
                 <img
                   src="/assets/images/about-repairman.jpg"
-                  alt="Certified HomePulse Master Technician"
+                  alt="HomePulse Master Technician"
                   className="ab-story-img"
                 />
                 <div className="ab-story-floating-badge">
                   <div className="ab-pulse-dot"></div>
                   <div className="ab-floating-badge-text">
-                    <strong>Certified Master Technicians</strong>
+                    <strong>Experienced Master Technicians</strong>
                     <span>Full Diagnostic & Repair Fleet</span>
                   </div>
                 </div>
@@ -321,15 +344,15 @@ export default function AboutPage() {
                 viewport={{ once: true, margin: '-50px' }}
                 transition={smoothSpring}
               >
-                <span className="ab-section-subtitle">Our Heritage & Mission</span>
+                <span className="ab-section-subtitle">Our Approach & Commitment</span>
                 <h2 className="ab-section-title">
-                  We Don't Just Fix Appliances — We Restore Peace of Mind
+                  We Take Pride in Doing Honest, High-Quality Work
                 </h2>
                 <p className="ab-story-text">
-                  A broken refrigerator, a flooded laundry room, or an oven refusing to heat can bring your household to a standstill. At HomePulse, we understand the frustration appliance malfunctions cause.
+                  A broken refrigerator, a leaking washer, or an oven refusing to heat brings your daily routine to an abrupt halt. At HomePulse, our mission is simple: solve the problem properly, without shortcuts, rush jobs, or unnecessary sales pressure.
                 </p>
                 <p className="ab-story-text">
-                  That’s why we’ve built our company around immediate responsiveness, transparent upfront pricing, and factory-trained specialists who get the job done right on the very first visit. Our technicians are non-commissioned, meaning our diagnosis is always honest, objective, and solely focused on the most cost-effective solution for you.
+                  For many years, we have approached every single service call with the same mindset: do clean, honest, and meticulous work. Our technicians take the time to accurately diagnose the root cause, explain your repair options clearly, and install proper manufacturer parts so your equipment runs smoothly for the long term. We treat your home with care, protect your living space with clean mats, and make sure everything is tested thoroughly before we leave.
                 </p>
 
                 <ul className="ab-checklist">
@@ -337,19 +360,19 @@ export default function AboutPage() {
                     <span className="ab-check-icon">
                       <CheckIcon size={14} />
                     </span>
-                    <span>All major residential & commercial appliance brands supported</span>
+                    <span>Comprehensive repair for all major kitchen and laundry appliances</span>
                   </li>
                   <li>
                     <span className="ab-check-icon">
                       <CheckIcon size={14} />
                     </span>
-                    <span>Strict adherence to manufacturer safety & OEM specifications</span>
+                    <span>Strict adherence to manufacturer safety and installation procedures</span>
                   </li>
                   <li>
                     <span className="ab-check-icon">
                       <CheckIcon size={14} />
                     </span>
-                    <span>Fully stocked service vehicles for immediate single-day fixes</span>
+                    <span>Fully equipped service vans for prompt, one-trip solutions</span>
                   </li>
                 </ul>
 
@@ -438,11 +461,11 @@ export default function AboutPage() {
               </div>
               <div className="col-lg-5">
                 <div className="ab-cta-buttons">
-                  <a href="tel:+18005550199" className="ab-btn-call">
-                    <PhoneIcon size={16} /> (800) 555-0199
+                  <a href={`tel:+${settings.phone_raw || '18005550199'}`} className="ab-btn-call">
+                    <PhoneIcon size={16} /> {settings.phone || '(800) 555-0199'}
                   </a>
                   <a
-                    href="https://wa.me/18005550199"
+                    href={`https://wa.me/${settings.whatsapp_number || '18005550199'}`}
                     target="_blank"
                     rel="noreferrer"
                     className="ab-btn-whatsapp"

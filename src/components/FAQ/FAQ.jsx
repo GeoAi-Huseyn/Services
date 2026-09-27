@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { submitServiceRequest, submitInquiry } from '../../lib/supabase';
+import { serviceOptions, brandOptions, cityOptions } from '../../data/formOptions';
+import CustomDropdown from '../Common/CustomDropdown';
+import './FAQ.css';
 
 const faqs = [
   {
@@ -12,7 +16,7 @@ const faqs = [
     id: 1,
     question: 'How quickly can a technician arrive?',
     answer:
-      'After you reach out, a certified technician can be assigned and dispatched within 30 to 60 minutes. The majority of repairs are diagnosed and completed right on-site within 1 to 2 hours.',
+      'After you reach out, a skilled master technician will be assigned and dispatched as soon as possible. The majority of repairs are diagnosed and completed right on-site promptly.',
   },
   {
     id: 2,
@@ -25,11 +29,15 @@ const faqs = [
 export default function FAQ() {
   const [activeFaq, setActiveFaq] = useState(0);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: '',
-    subject: '',
+    address: '',
+    serviceType: '',
+    brand: '',
+    city: '',
     message: '',
   });
 
@@ -41,13 +49,46 @@ export default function FAQ() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormSubmitted(true);
-    setTimeout(() => {
-      setFormData({ name: '', phone: '', email: '', subject: '', message: '' });
-      setFormSubmitted(false);
-    }, 4000);
+    setIsSubmitting(true);
+    try {
+      await submitServiceRequest({
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        address: formData.address,
+        serviceType: formData.serviceType || 'General Appliance Repair',
+        brand: formData.brand || 'Not Specified',
+        city: formData.city || 'Massachusetts',
+        message: formData.message,
+      });
+      await submitInquiry({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: `${formData.serviceType || 'Repair Request'} - ${formData.city || formData.address || 'MA'}`,
+        message: `Address: ${formData.address || 'N/A'}\nCity: ${formData.city || 'N/A'}\nBrand: ${formData.brand || 'N/A'}\nService: ${formData.serviceType || 'N/A'}\n\nProblem Details:\n${formData.message}`,
+      });
+    } catch (err) {
+      console.error('Error submitting repair request:', err);
+    } finally {
+      setIsSubmitting(false);
+      setFormSubmitted(true);
+      setTimeout(() => {
+        setFormData({
+          name: '',
+          phone: '',
+          email: '',
+          address: '',
+          serviceType: '',
+          brand: '',
+          city: '',
+          message: '',
+        });
+        setFormSubmitted(false);
+      }, 4000);
+    }
   };
 
   return (
@@ -70,52 +111,27 @@ export default function FAQ() {
             <div className="accordion tj-faq wow fadeInUp" data-wow-delay=".4s">
               {faqs.map((faq) => {
                 const isOpen = activeFaq === faq.id;
+                const itemClass = 'accordion-item faq-accordion-item' + (isOpen ? ' active' : '');
+                const btnClass = 'faq-title' + (isOpen ? '' : ' collapsed');
+                const bodyKey = 'faq-body-' + faq.id;
                 return (
-                  <div
-                    className={`accordion-item ${isOpen ? 'active' : ''}`}
-                    key={faq.id}
-                    style={{
-                      overflow: 'hidden',
-                      marginBottom: '16px',
-                      borderRadius: '12px',
-                      transition: 'background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
-                    }}
-                  >
+                  <div className={itemClass} key={faq.id}>
                     <button
-                      className={`faq-title ${isOpen ? '' : 'collapsed'}`}
+                      className={btnClass}
                       type="button"
                       onClick={() => toggleFaq(faq.id)}
                       aria-expanded={isOpen}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        width: '100%',
-                        cursor: 'pointer',
-                        transition: 'background-color 0.3s ease, color 0.3s ease',
-                      }}
                     >
-                      <span style={{ fontWeight: 600 }}>{faq.question}</span>
-                      <motion.span
-                        animate={{ rotate: isOpen ? 180 : 0 }}
-                        transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          marginLeft: '12px',
-                          flexShrink: 0,
-                          fontSize: '14px',
-                        }}
-                      >
+                      <span className="faq-question-text">{faq.question}</span>
+                      <span className="faq-chevron">
                         <i className="fa-solid fa-chevron-down"></i>
-                      </motion.span>
+                      </span>
                     </button>
 
                     <AnimatePresence initial={false}>
                       {isOpen && (
                         <motion.div
-                          key={`faq-content-${faq.id}`}
+                          key={bodyKey}
                           initial={{ height: 0, opacity: 0 }}
                           animate={{
                             height: 'auto',
@@ -135,16 +151,8 @@ export default function FAQ() {
                           }}
                           style={{ overflow: 'hidden' }}
                         >
-                          <div
-                            className="accordion-body faq-text"
-                            style={{
-                              display: 'block',
-                              padding: '16px 22px',
-                              lineHeight: '1.65',
-                              borderTop: '1px solid rgba(0, 0, 0, 0.06)',
-                            }}
-                          >
-                            <p style={{ margin: 0 }}>{faq.answer}</p>
+                          <div className="accordion-body faq-accordion-body">
+                            <p>{faq.answer}</p>
                           </div>
                         </motion.div>
                       )}
@@ -159,71 +167,111 @@ export default function FAQ() {
             <div className="contact-form-one wow fadeInRight" data-wow-delay=".4s">
               <h3 className="title">Schedule a Repair</h3>
               {formSubmitted ? (
-                <div
-                  style={{
-                    padding: '20px',
-                    background: '#28a745',
-                    color: '#fff',
-                    borderRadius: '8px',
-                    textAlign: 'center',
-                    fontWeight: 600,
-                  }}
-                >
-                  <i className="fa-solid fa-check-circle" style={{ marginRight: '8px' }}></i>
+                <div className="form-success-message">
+                  <i className="fa-solid fa-check-circle"></i>
                   Your message has been sent successfully! Our team will contact you shortly.
                 </div>
               ) : (
                 <form onSubmit={handleSubmit}>
-                  <div className="form-input">
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Full Name *"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                    />
+                  <div className="row g-2">
+                    <div className="col-sm-6">
+                      <div className="form-input">
+                        <input
+                          type="text"
+                          name="name"
+                          placeholder="Full Name *"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="col-sm-6">
+                      <div className="form-input">
+                        <input
+                          type="tel"
+                          name="phone"
+                          placeholder="Phone Number *"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="col-sm-6">
+                      <div className="form-input">
+                        <input
+                          type="email"
+                          name="email"
+                          placeholder="Email Address *"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="col-sm-6">
+                      <div className="form-input">
+                        <input
+                          type="text"
+                          name="address"
+                          placeholder="Street Address *"
+                          value={formData.address}
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="col-sm-6">
+                      <div className="form-input">
+                        <CustomDropdown
+                          name="serviceType"
+                          placeholder="Select Service / Appliance *"
+                          value={formData.serviceType}
+                          onChange={handleInputChange}
+                          options={serviceOptions}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="col-sm-6">
+                      <div className="form-input">
+                        <CustomDropdown
+                          name="brand"
+                          placeholder="Select Brand (if known)"
+                          value={formData.brand}
+                          onChange={handleInputChange}
+                          options={brandOptions}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-12">
+                      <div className="form-input">
+                        <CustomDropdown
+                          name="city"
+                          placeholder="Select City / Town in MA *"
+                          value={formData.city}
+                          onChange={handleInputChange}
+                          options={cityOptions}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="col-12">
+                      <div className="form-input">
+                        <textarea
+                          name="message"
+                          rows="3"
+                          placeholder="Describe the issue (e.g. Refrigerator not cooling, leaking water, humming noise)..."
+                          value={formData.message}
+                          onChange={handleInputChange}
+                        ></textarea>
+                      </div>
+                    </div>
                   </div>
-                  <div className="form-input">
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Phone Number *"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-                  <div className="form-input">
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Email Address"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                  <div className="form-input">
-                    <input
-                      type="text"
-                      name="subject"
-                      placeholder="Address or City *"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-                  <div className="form-input">
-                    <textarea
-                      name="message"
-                      placeholder="Describe the appliance and issue (e.g. Refrigerator not cooling).."
-                      value={formData.message}
-                      onChange={handleInputChange}
-                    ></textarea>
-                  </div>
-                  <div className="submit-button">
-                    <button type="submit" className="tj-white-btn style-2">
-                      Send Request
+                  <div className="submit-button mt-3">
+                    <button type="submit" className="tj-white-btn style-2 w-100" disabled={isSubmitting}>
+                      {isSubmitting ? 'Sending Request...' : 'Send Request'}
                       <span className="icon_box">
                         <i className="icon_first fa-regular fa-arrow-right"></i>
                         <i className="icon_second fa-regular fa-arrow-right"></i>

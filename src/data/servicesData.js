@@ -7,7 +7,7 @@ export const servicesData = [
     ],
     "title": "Refrigerator Repair",
     "metaTitle": "Refrigerator Repair Massachusetts | Same-Day Service | HomePulse",
-    "metaDescription": "Expert same-day refrigerator repair across Massachusetts. Certified master technicians, upfront binding pricing, and a 90-day warranty.",
+    "metaDescription": "Expert same-day refrigerator repair across Massachusetts. Experienced master technicians, upfront binding pricing, and a 90-day warranty.",
     "category": "Kitchen Appliances",
     "heroTitle": "Refrigerator Repair in Massachusetts",
     "desc": "Not cooling, leaking, or noisy — fixed fast before food spoils.",
@@ -20,7 +20,7 @@ export const servicesData = [
     "longDesc": "Not cooling, leaking, or noisy — fixed fast before food spoils. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
     "features": [
       "Same-Day Priority Dispatch",
-      "Factory-Certified Technicians",
+      "Master Appliance Specialists",
       "Upfront Binding Quotes",
       "90-Day Parts & Labor Warranty"
     ],
@@ -86,7 +86,7 @@ export const servicesData = [
           "desc": "Fast appointments 7 days a week across Greater Boston, Worcester, and all of Massachusetts."
         },
         {
-          "title": "Factory-Certified Specialists",
+          "title": "Master Appliance Specialists",
           "desc": "Experienced with every major refrigerator brand."
         },
         {
@@ -190,7 +190,7 @@ export const servicesData = [
     ],
     "title": "Freezer Repair",
     "metaTitle": "Freezer Repair Massachusetts | Same-Day Service | HomePulse",
-    "metaDescription": "Expert same-day freezer repair across Massachusetts. Certified master technicians, upfront binding pricing, and a 90-day warranty.",
+    "metaDescription": "Expert same-day freezer repair across Massachusetts. Experienced master technicians, upfront binding pricing, and a 90-day warranty.",
     "category": "Kitchen Appliances",
     "heroTitle": "Freezer Repair in Massachusetts",
     "desc": "Frost build-up, won't freeze, or failed compressor.",
@@ -203,7 +203,7 @@ export const servicesData = [
     "longDesc": "Frost build-up, won't freeze, or failed compressor. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
     "features": [
       "Same-Day Priority Dispatch",
-      "Factory-Certified Technicians",
+      "Master Appliance Specialists",
       "Upfront Binding Quotes",
       "90-Day Parts & Labor Warranty"
     ],
@@ -269,7 +269,7 @@ export const servicesData = [
           "desc": "Fast appointments 7 days a week across Greater Boston, Worcester, and all of Massachusetts."
         },
         {
-          "title": "Factory-Certified Specialists",
+          "title": "Master Appliance Specialists",
           "desc": "Experienced with every major freezer brand."
         },
         {
@@ -372,7 +372,7 @@ export const servicesData = [
     ],
     "title": "Washer Repair",
     "metaTitle": "Washer Repair Massachusetts | Same-Day Service | HomePulse",
-    "metaDescription": "Expert same-day washer repair across Massachusetts. Certified master technicians, upfront binding pricing, and a 90-day warranty.",
+    "metaDescription": "Expert same-day washer repair across Massachusetts. Experienced master technicians, upfront binding pricing, and a 90-day warranty.",
     "category": "Laundry Appliances",
     "heroTitle": "Washer Repair in Massachusetts",
     "desc": "Won't drain, spin, or fill — leaks and error codes solved.",
@@ -385,7 +385,7 @@ export const servicesData = [
     "longDesc": "Won't drain, spin, or fill — leaks and error codes solved. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
     "features": [
       "Same-Day Priority Dispatch",
-      "Factory-Certified Technicians",
+      "Master Appliance Specialists",
       "Upfront Binding Quotes",
       "90-Day Parts & Labor Warranty"
     ],
@@ -451,7 +451,7 @@ export const servicesData = [
           "desc": "Fast appointments 7 days a week across Greater Boston, Worcester, and all of Massachusetts."
         },
         {
-          "title": "Factory-Certified Specialists",
+          "title": "Master Appliance Specialists",
           "desc": "Experienced with every major washer brand."
         },
         {
@@ -555,7 +555,7 @@ export const servicesData = [
     ],
     "title": "Dryer Repair",
     "metaTitle": "Dryer Repair Massachusetts | Same-Day Service | HomePulse",
-    "metaDescription": "Expert same-day dryer repair across Massachusetts. Certified master technicians, upfront binding pricing, and a 90-day warranty.",
+    "metaDescription": "Expert same-day dryer repair across Massachusetts. Experienced master technicians, upfront binding pricing, and a 90-day warranty.",
     "category": "Laundry Appliances",
     "heroTitle": "Dryer Repair in Massachusetts",
     "desc": "No heat, won't tumble, or taking too long to dry.",
@@ -568,7 +568,7 @@ export const servicesData = [
     "longDesc": "No heat, won't tumble, or taking too long to dry. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
     "features": [
       "Same-Day Priority Dispatch",
-      "Factory-Certified Technicians",
+      "Master Appliance Specialists",
       "Upfront Binding Quotes",
       "90-Day Parts & Labor Warranty"
     ],
@@ -634,7 +634,7 @@ export const servicesData = [
           "desc": "Fast appointments 7 days a week across Greater Boston, Worcester, and all of Massachusetts."
         },
         {
-          "title": "Factory-Certified Specialists",
+          "title": "Master Appliance Specialists",
           "desc": "Experienced with every major dryer brand."
         },
         {
@@ -737,7 +737,7 @@ export const servicesData = [
     ],
     "title": "Dishwasher Repair",
     "metaTitle": "Dishwasher Repair Massachusetts | Same-Day Service | HomePulse",
-    "metaDescription": "Expert same-day dishwasher repair across Massachusetts. Certified master technicians, upfront binding pricing, and a 90-day warranty.",
+    "metaDescription": "Expert same-day dishwasher repair across Massachusetts. Experienced master technicians, upfront binding pricing, and a 90-day warranty.",
     "category": "Kitchen Appliances",
     "heroTitle": "Dishwasher Repair in Massachusetts",
     "desc": "Not draining, not cleaning, or leaking onto the floor.",
@@ -750,7 +750,7 @@ export const servicesData = [
     "longDesc": "Not draining, not cleaning, or leaking onto the floor. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
     "features": [
       "Same-Day Priority Dispatch",
-      "Factory-Certified Technicians",
+      "Master Appliance Specialists",
       "Upfront Binding Quotes",
       "90-Day Parts & Labor Warranty"
     ],
@@ -816,7 +816,7 @@ export const servicesData = [
           "desc": "Fast appointments 7 days a week across Greater Boston, Worcester, and all of Massachusetts."
         },
         {
-          "title": "Factory-Certified Specialists",
+          "title": "Master Appliance Specialists",
           "desc": "Experienced with every major dishwasher brand."
         },
         {
@@ -920,7 +920,7 @@ export const servicesData = [
     ],
     "title": "Oven & Range Repair",
     "metaTitle": "Oven & Range Repair Massachusetts | Same-Day Service | HomePulse",
-    "metaDescription": "Expert same-day oven & range repair across Massachusetts. Certified master technicians, upfront binding pricing, and a 90-day warranty.",
+    "metaDescription": "Expert same-day oven & range repair across Massachusetts. Experienced master technicians, upfront binding pricing, and a 90-day warranty.",
     "category": "Cooking Appliances",
     "heroTitle": "Oven & Range Repair in Massachusetts",
     "desc": "Won't heat, uneven temps, or faulty igniters and elements.",
@@ -933,7 +933,7 @@ export const servicesData = [
     "longDesc": "Won't heat, uneven temps, or faulty igniters and elements. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
     "features": [
       "Same-Day Priority Dispatch",
-      "Factory-Certified Technicians",
+      "Master Appliance Specialists",
       "Upfront Binding Quotes",
       "90-Day Parts & Labor Warranty"
     ],
@@ -986,7 +986,7 @@ export const servicesData = [
         {
           "num": "05",
           "title": "Do not attempt gas valve or sealed burner repairs",
-          "desc": "Gas supply components require certified technician work for safety and code compliance. Call us if you smell gas, see a yellow flame, or hear a persistent igniter click."
+          "desc": "Gas supply components require professional technician work for safety and code compliance. Call us if you smell gas, see a yellow flame, or hear a persistent igniter click."
         }
       ],
       "bottomNote": "Problem still there? Call (571) 571-1664 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
@@ -999,7 +999,7 @@ export const servicesData = [
           "desc": "Fast appointments 7 days a week across Greater Boston, Worcester, and all of Massachusetts."
         },
         {
-          "title": "Factory-Certified Specialists",
+          "title": "Master Appliance Specialists",
           "desc": "Experienced with every major oven & range brand."
         },
         {
@@ -1092,7 +1092,7 @@ export const servicesData = [
       "Haverhill, MA",
       "Lawrence, MA"
     ],
-    "badge": "Master Certified",
+    "badge": "Master Technicians",
     "bgGradient": "linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%)"
   },
   {
@@ -1103,7 +1103,7 @@ export const servicesData = [
     ],
     "title": "Cooktop & Stove Repair",
     "metaTitle": "Cooktop & Stove Repair Massachusetts | Same-Day Service | HomePulse",
-    "metaDescription": "Expert same-day cooktop & stove repair across Massachusetts. Certified master technicians, upfront binding pricing, and a 90-day warranty.",
+    "metaDescription": "Expert same-day cooktop & stove repair across Massachusetts. Experienced master technicians, upfront binding pricing, and a 90-day warranty.",
     "category": "Cooking Appliances",
     "heroTitle": "Cooktop & Stove Repair in Massachusetts",
     "desc": "Burners won't light or heat — gas and induction.",
@@ -1116,7 +1116,7 @@ export const servicesData = [
     "longDesc": "Burners won't light or heat — gas and induction. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
     "features": [
       "Same-Day Priority Dispatch",
-      "Factory-Certified Technicians",
+      "Master Appliance Specialists",
       "Upfront Binding Quotes",
       "90-Day Parts & Labor Warranty"
     ],
@@ -1182,7 +1182,7 @@ export const servicesData = [
           "desc": "Fast appointments 7 days a week across Greater Boston, Worcester, and all of Massachusetts."
         },
         {
-          "title": "Factory-Certified Specialists",
+          "title": "Master Appliance Specialists",
           "desc": "Experienced with every major cooktop & stove brand."
         },
         {
@@ -1286,7 +1286,7 @@ export const servicesData = [
     ],
     "title": "Microwave Repair",
     "metaTitle": "Microwave Repair Massachusetts | Same-Day Service | HomePulse",
-    "metaDescription": "Expert same-day microwave repair across Massachusetts. Certified master technicians, upfront binding pricing, and a 90-day warranty.",
+    "metaDescription": "Expert same-day microwave repair across Massachusetts. Experienced master technicians, upfront binding pricing, and a 90-day warranty.",
     "category": "Cooking Appliances",
     "heroTitle": "Microwave Repair in Massachusetts",
     "desc": "Built-in and over-the-range units repaired on-site.",
@@ -1299,7 +1299,7 @@ export const servicesData = [
     "longDesc": "Built-in and over-the-range units repaired on-site. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
     "features": [
       "Same-Day Priority Dispatch",
-      "Factory-Certified Technicians",
+      "Master Appliance Specialists",
       "Upfront Binding Quotes",
       "90-Day Parts & Labor Warranty"
     ],
@@ -1365,7 +1365,7 @@ export const servicesData = [
           "desc": "Fast appointments 7 days a week across Greater Boston, Worcester, and all of Massachusetts."
         },
         {
-          "title": "Factory-Certified Specialists",
+          "title": "Master Appliance Specialists",
           "desc": "Experienced with every major microwave brand."
         },
         {
@@ -1468,7 +1468,7 @@ export const servicesData = [
     ],
     "title": "Ice Maker Repair",
     "metaTitle": "Ice Maker Repair Massachusetts | Same-Day Service | HomePulse",
-    "metaDescription": "Expert same-day ice maker repair across Massachusetts. Certified master technicians, upfront binding pricing, and a 90-day warranty.",
+    "metaDescription": "Expert same-day ice maker repair across Massachusetts. Experienced master technicians, upfront binding pricing, and a 90-day warranty.",
     "category": "Refrigeration",
     "heroTitle": "Ice Maker Repair in Massachusetts",
     "desc": "No ice, slow production, or leaks in built-in units.",
@@ -1481,7 +1481,7 @@ export const servicesData = [
     "longDesc": "No ice, slow production, or leaks in built-in units. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
     "features": [
       "Same-Day Priority Dispatch",
-      "Factory-Certified Technicians",
+      "Master Appliance Specialists",
       "Upfront Binding Quotes",
       "90-Day Parts & Labor Warranty"
     ],
@@ -1547,7 +1547,7 @@ export const servicesData = [
           "desc": "Fast appointments 7 days a week across Greater Boston, Worcester, and all of Massachusetts."
         },
         {
-          "title": "Factory-Certified Specialists",
+          "title": "Master Appliance Specialists",
           "desc": "Experienced with every major ice maker brand."
         },
         {
@@ -1651,7 +1651,7 @@ export const servicesData = [
     ],
     "title": "Wine Cooler Repair",
     "metaTitle": "Wine Cooler Repair Massachusetts | Same-Day Service | HomePulse",
-    "metaDescription": "Expert same-day wine cooler repair across Massachusetts. Certified master technicians, upfront binding pricing, and a 90-day warranty.",
+    "metaDescription": "Expert same-day wine cooler repair across Massachusetts. Experienced master technicians, upfront binding pricing, and a 90-day warranty.",
     "category": "Refrigeration",
     "heroTitle": "Wine Cooler Repair in Massachusetts",
     "desc": "Temperature drift that puts your collection at risk.",
@@ -1664,7 +1664,7 @@ export const servicesData = [
     "longDesc": "Temperature drift that puts your collection at risk. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
     "features": [
       "Same-Day Priority Dispatch",
-      "Factory-Certified Technicians",
+      "Master Appliance Specialists",
       "Upfront Binding Quotes",
       "90-Day Parts & Labor Warranty"
     ],
@@ -1730,7 +1730,7 @@ export const servicesData = [
           "desc": "Fast appointments 7 days a week across Greater Boston, Worcester, and all of Massachusetts."
         },
         {
-          "title": "Factory-Certified Specialists",
+          "title": "Master Appliance Specialists",
           "desc": "Experienced with every major wine cooler brand."
         },
         {
@@ -1834,7 +1834,7 @@ export const servicesData = [
     ],
     "title": "Range Hood Repair",
     "metaTitle": "Range Hood Repair Massachusetts | Same-Day Service | HomePulse",
-    "metaDescription": "Expert same-day range hood repair across Massachusetts. Certified master technicians, upfront binding pricing, and a 90-day warranty.",
+    "metaDescription": "Expert same-day range hood repair across Massachusetts. Experienced master technicians, upfront binding pricing, and a 90-day warranty.",
     "category": "Cooking Appliances",
     "heroTitle": "Range Hood Repair in Massachusetts",
     "desc": "Weak suction, noise, or lighting and fan failures.",
@@ -1847,7 +1847,7 @@ export const servicesData = [
     "longDesc": "Weak suction, noise, or lighting and fan failures. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
     "features": [
       "Same-Day Priority Dispatch",
-      "Factory-Certified Technicians",
+      "Master Appliance Specialists",
       "Upfront Binding Quotes",
       "90-Day Parts & Labor Warranty"
     ],
@@ -1913,7 +1913,7 @@ export const servicesData = [
           "desc": "Fast appointments 7 days a week across Greater Boston, Worcester, and all of Massachusetts."
         },
         {
-          "title": "Factory-Certified Specialists",
+          "title": "Master Appliance Specialists",
           "desc": "Experienced with every major range hood brand."
         },
         {

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Counter from '../UI/Counter';
 
 export default function About() {
   return (
@@ -20,10 +19,10 @@ export default function About() {
                   <i className="fa-solid fa-medal"></i>
                 </div>
                 <div className="fun-fact-item">
-                  <div className="tj-count">
-                    <Counter end={15} suffix="+" />
+                  <div className="tj-count" style={{ fontSize: '22px', fontWeight: 800 }}>
+                    Many Years
                   </div>
-                  <span className="client">Years Experience</span>
+                  <span className="client">Of Dedicated Service</span>
                 </div>
               </div>
             </div>
@@ -40,15 +39,15 @@ export default function About() {
               </div>
               <div className="desc wow fadeInUp" data-wow-delay=".6s">
                 <p>
-                  With certified master technicians and authentic OEM factory components, we provide fast, high-quality, and dependable appliance repair for all major household brands.
+                  For many years, our skilled master technicians have taken pride in doing high-quality, honest, and meticulous appliance repairs for homeowners across Massachusetts. Using genuine OEM components and thorough diagnostics, we treat every home with care and ensure your appliances work properly.
                 </p>
               </div>
               <div className="check-list style-2 wow fadeInUp" data-wow-delay=".5s">
                 <ul>
-                  <li><span><i className="fa-solid fa-check"></i></span> Certified Master Technicians</li>
-                  <li><span><i className="fa-solid fa-check"></i></span> Fast Response & Same-Day Dispatch</li>
-                  <li><span><i className="fa-solid fa-check"></i></span> Genuine OEM Parts with Warranty</li>
-                  <li><span><i className="fa-solid fa-check"></i></span> Transparent Flat-Rate Pricing</li>
+                  <li><span><i className="fa-solid fa-check"></i></span> Meticulous & Tidy Workmanship</li>
+                  <li><span><i className="fa-solid fa-check"></i></span> Prompt & Responsive Scheduling</li>
+                  <li><span><i className="fa-solid fa-check"></i></span> Genuine OEM Factory Parts with Warranty</li>
+                  <li><span><i className="fa-solid fa-check"></i></span> Transparent, Upfront Pricing Without Surprises</li>
                 </ul>
               </div>
               <div className="about-button wow fadeInUp" data-wow-delay=".6s">

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSiteSettings } from '../context/SiteSettingsContext';
 import { projectsData } from '../data/projectsData';
 import {
   HomeIcon,
@@ -16,6 +17,7 @@ import {
   MedalIcon,
   ClipboardCheckIcon,
 } from '../components/UI/DetailIcons';
+import SEOHead, { buildBreadcrumbSchema } from '../components/SEO/SEOHead';
 import './ProjectDetailPage.css';
 
 const smoothSpring = {
@@ -25,6 +27,7 @@ const smoothSpring = {
 };
 
 export default function ProjectDetailPage() {
+  const { settings } = useSiteSettings();
   const { slug } = useParams();
   const navigate = useNavigate();
 
@@ -85,8 +88,36 @@ export default function ProjectDetailPage() {
     .filter((p) => p.id !== project.id)
     .slice(0, 3);
 
+  const seoJsonLd = useMemo(() => [
+    buildBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Recent Work', url: '/projects' },
+      { name: project.title, url: `/project/${project.slug || project.id}` }
+    ]),
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": project.title,
+      "description": project.problemSummary || project.title,
+      "image": project.heroImage ? `https://homepulserepair.com${project.heroImage}` : undefined,
+      "author": {
+        "@type": "Organization",
+        "name": "HomePulse Appliance Repair"
+      }
+    }
+  ], [project]);
+
   return (
     <div className="pjd-page-wrapper">
+      <SEOHead
+        title={`${project.title} | HomePulse Appliance Repair`}
+        description={project.problemSummary || `Detailed case study of ${project.title} by HomePulse certified technicians in Massachusetts.`}
+        canonical={`/project/${project.slug || project.id}`}
+        ogImage={project.heroImage}
+        ogType="article"
+        keywords={`${project.title}, appliance repair case study, ${project.category || ''} repair, Massachusetts`}
+        jsonLd={seoJsonLd}
+      />
       {/* Top Brand & Navigation Bar */}
       <div className="pjd-top-bar">
         <div className="container">
@@ -103,13 +134,13 @@ export default function ProjectDetailPage() {
                 <ArrowLeftIcon size={14} />
                 <span>All Recent Work</span>
               </Link>
-              <a href="tel:+18005550199" className="pjd-phone-pill d-none d-sm-inline-flex">
+              <a href={`tel:+${settings.phone_raw || '18005550199'}`} className="pjd-phone-pill d-none d-sm-inline-flex">
                 <div className="pjd-phone-icon">
                   <PhoneIcon size={14} />
                 </div>
                 <div className="pjd-phone-txt">
                   <small>Direct Dispatch</small>
-                  <strong>(800) 555-0199</strong>
+                  <strong>{settings.phone || '(800) 555-0199'}</strong>
                 </div>
               </a>
             </div>
@@ -150,7 +181,7 @@ export default function ProjectDetailPage() {
                   <i className="fa-solid fa-microchip me-1"></i> {project.brandModel}
                 </span>
                 <span className="pjd-status-badge">
-                  <CheckBadgeIcon size={13} /> 100% Fixed & Certified
+                  <CheckBadgeIcon size={13} /> 100% Fixed & Verified
                 </span>
               </div>
 
@@ -179,7 +210,7 @@ export default function ProjectDetailPage() {
             <div className="col-lg-4 text-lg-end mt-4 mt-lg-0">
               <div className="pjd-quick-cta">
                 <span className="label">Need a similar repair?</span>
-                <a href="tel:+18005550199" className="pjd-quick-call-btn">
+                <a href={`tel:+${settings.phone_raw || '18005550199'}`} className="pjd-quick-call-btn">
                   <PhoneIcon size={16} />
                   <span>Call Master Technician</span>
                 </a>
@@ -302,35 +333,6 @@ export default function ProjectDetailPage() {
                     </button>
                   ))}
                 </div>
-
-                {/* Full Grid Preview of All Photos */}
-                <div className="pjd-gallery-grid-block mt-4">
-                  <div className="pjd-grid-header">
-                    <h5>
-                      <i className="fa-solid fa-images me-2 text-primary"></i>
-                      Complete Repair Process Image Archive
-                    </h5>
-                    <small className="text-muted">Click any image to view high-resolution inspection</small>
-                  </div>
-                  <div className="row g-3 mt-1">
-                    {galleryList.map((photo, idx) => (
-                      <div className="col-md-4 col-6" key={photo.id}>
-                        <div
-                          className="pjd-mini-card"
-                          onClick={() => handleOpenLightbox(idx)}
-                        >
-                          <div className="pjd-mini-img-wrap">
-                            <img src={photo.src} alt={photo.title} />
-                            <span className="pjd-mini-badge">{photo.stage}</span>
-                          </div>
-                          <div className="pjd-mini-info">
-                            <h6>{photo.title}</h6>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
               </div>
 
 
@@ -419,7 +421,7 @@ export default function ProjectDetailPage() {
               )}
             </div>
 
-            {/* Right Sidebar: Tech Specs, Certifications & Booking */}
+            {/* Right Sidebar: Tech Specs, Qualifications & Booking */}
             <div className="col-lg-4">
               {/* Technical Job Specifications Box */}
               <div className="pjd-sidebar-box">
@@ -444,14 +446,14 @@ export default function ProjectDetailPage() {
                     <i className="fa-solid fa-user-gear"></i>
                   </div>
                   <div>
-                    <span className="tech-role">Certified Lead Specialist</span>
+                    <span className="tech-role">Master Lead Specialist</span>
                     <h5 className="tech-name mb-0">{project.technician.split('(')[0]}</h5>
                     <small className="text-muted">{project.technician.includes('(') ? project.technician.split('(')[1].replace(')', '') : 'Master Appliance Tech'}</small>
                   </div>
                 </div>
                 <ul className="tech-skills-list">
-                  <li><i className="fa-solid fa-check text-success me-2"></i> EPA Universal Certified</li>
-                  <li><i className="fa-solid fa-check text-success me-2"></i> Factory Trained OEM Procedures</li>
+                  <li><i className="fa-solid fa-check text-success me-2"></i> EPA Universal Compliant</li>
+                  <li><i className="fa-solid fa-check text-success me-2"></i> Factory OEM Precision Procedures</li>
                   <li><i className="fa-solid fa-check text-success me-2"></i> Background-Checked & Insured</li>
                 </ul>
               </div>
@@ -461,14 +463,14 @@ export default function ProjectDetailPage() {
                 <div className="booking-badge">FASTEST DISPATCH</div>
                 <h3>Have a Faulty {project.categoryLabel}?</h3>
                 <p>
-                  We have certified technicians in your neighborhood with mobile vans stocked with 90% of frequently needed OEM parts.
+                  We have experienced technicians in your neighborhood with mobile vans stocked with 90% of frequently needed OEM parts.
                 </p>
                 <div className="d-grid gap-2">
-                  <a href="tel:+18005550199" className="pjd-btn-primary">
+                  <a href={`tel:+${settings.phone_raw || '18005550199'}`} className="pjd-btn-primary">
                     <PhoneIcon size={16} />
-                    <span>Call (800) 555-0199</span>
+                    <span>Call {settings.phone || '(800) 555-0199'}</span>
                   </a>
-                  <a href="https://wa.me/18005550199" target="_blank" rel="noreferrer" className="pjd-btn-whatsapp">
+                  <a href={`https://wa.me/${settings.whatsapp_number || '18005550199'}`} target="_blank" rel="noreferrer" className="pjd-btn-whatsapp">
                     <WhatsAppIcon size={18} />
                     <span>Message on WhatsApp</span>
                   </a>
@@ -495,7 +497,7 @@ export default function ProjectDetailPage() {
               <div className="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
                 <div>
                   <h3 className="related-title">Explore Related Appliance Repairs</h3>
-                  <p className="related-sub text-muted">More proven case studies completed by our certified team.</p>
+                  <p className="related-sub text-muted">More proven case studies completed by our master technician team.</p>
                 </div>
                 <Link to="/projects" className="btn btn-outline-primary btn-sm rounded-pill px-3">
                   View All ({projectsData.length}) <ArrowRightIcon size={12} className="ms-1" />

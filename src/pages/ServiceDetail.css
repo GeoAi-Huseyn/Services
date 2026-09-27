@@ -1483,10 +1483,43 @@
   color: #ffffff;
 }
 
+.sd-areas-cloud-wrapper {
+  min-height: 350px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
 .sd-areas-cloud-modern {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 10px;
+  align-content: start;
+  width: 100%;
+}
+
+@media (max-width: 1199px) {
+  .sd-areas-cloud-wrapper {
+    min-height: 420px;
+  }
+}
+
+@media (max-width: 991px) {
+  .sd-areas-cloud-wrapper {
+    min-height: 520px;
+  }
+}
+
+@media (max-width: 767px) {
+  .sd-areas-cloud-wrapper {
+    min-height: 620px;
+  }
+}
+
+@media (max-width: 575px) {
+  .sd-areas-cloud-wrapper {
+    min-height: 720px;
+  }
 }
 
 .sd-area-card-chip {

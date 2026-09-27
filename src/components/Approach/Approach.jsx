@@ -3,7 +3,7 @@ import Counter from '../UI/Counter';
 
 export default function Approach() {
   return (
-    <section className="tj-approach-section" id="surec">
+    <section className="tj-approach-section" id="approach">
       <div className="approach-top-content-area">
         <div className="container">
           <div className="row align-items-end">
@@ -44,7 +44,7 @@ export default function Approach() {
                   <h2 className="title wow anim-fade-right" data-wow-delay=".5s">Leaders in Appliance Repair</h2>
                   <div className="desc wow anim-pop-up" data-wow-delay=".6s">
                     <p>
-                      We repair your faulty household appliances quickly and reliably. With our certified expert team, we bring your essential equipment back to peak operating performance.
+                      We repair your faulty household appliances quickly and reliably. With our experienced expert team, we bring your essential equipment back to peak operating performance.
                     </p>
                   </div>
                   <div className="check-list style-3 wow anim-pop-up" data-wow-delay=".7s">

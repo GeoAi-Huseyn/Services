@@ -21,7 +21,7 @@ export default function Projects() {
               </div>
               <div className="desc">
                 <p>
-                  A showcase of successful repairs completed by our certified technicians. Using authentic OEM parts and certified procedures, we restore appliances to optimal performance.
+                  A showcase of successful repairs completed by our experienced master technicians. Using authentic OEM parts and meticulous procedures, we restore appliances to optimal performance.
                 </p>
               </div>
               <div className="project-button d-none d-md-inline-block">

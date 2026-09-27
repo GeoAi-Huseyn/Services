@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { servicesData } from '../../data/servicesData';
+import { useSiteSettings } from '../../context/SiteSettingsContext';
 
 export default function Header() {
+  const { settings } = useSiteSettings();
   const location = useLocation();
   const [isSticky, setIsSticky] = useState(false);
   const [isOffcanvasOpen, setIsOffcanvasOpen] = useState(false);
@@ -39,20 +41,9 @@ export default function Header() {
     setIsMobileMenuOpen(false);
   };
 
-  const handleHomeClick = (e) => {
-    closeMenus();
-    if (location.pathname === '/') {
-      e.preventDefault();
-      if (window.location.hash) {
-        window.history.replaceState(null, '', '/');
-      }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      window.scrollTo(0, 0);
-    }
-  };
-
-  const handleLogoClick = (e) => {
+  // Unified handler for logo and home link: scrolls to top on the homepage,
+  // or lets React Router navigate normally from other pages.
+  const handleNavClick = (e) => {
     closeMenus();
     if (location.pathname === '/') {
       e.preventDefault();
@@ -80,7 +71,7 @@ export default function Header() {
       <div className={`offcanvas-area d-none d-lg-inline-block ${isOffcanvasOpen ? 'opened' : ''}`}>
         <div className="offcanvas-wrapper d-flex align-items-center justify-content-between">
           <div className="canvas-logo">
-            <Link to="/" onClick={handleLogoClick}>
+            <Link to="/" onClick={handleNavClick}>
               <img src="/homepulse_brand_horizontal_white.png" alt="HomePulse Appliance Repair" />
             </Link>
           </div>
@@ -103,7 +94,7 @@ export default function Header() {
             </div>
             <div className="contact-text">
               <span>Email</span>
-              <div className="text"><a className="link" href="mailto:info@homepulse.com">info@homepulse.com</a></div>
+              <div className="text"><a className="link" href={`mailto:${settings.email || 'info@homepulse.com'}`}>{settings.email || 'info@homepulse.com'}</a></div>
             </div>
           </div>
           <div className="contact-item">
@@ -112,7 +103,7 @@ export default function Header() {
             </div>
             <div className="contact-text">
               <span>Phone Number</span>
-              <div className="text"><a className="link" href="tel:+18005550199">(800) 555-0199</a></div>
+              <div className="text"><a className="link" href={`tel:+${settings.phone_raw || '18005550199'}`}>{settings.phone || '(800) 555-0199'}</a></div>
             </div>
           </div>
           <div className="contact-item">
@@ -121,7 +112,7 @@ export default function Header() {
             </div>
             <div className="contact-text">
               <span>Address</span>
-              <div className="text">742 Evergreen Terrace, Suite 100, Austin, TX 78701</div>
+              <div className="text">{settings.address || '100 State Street, Suite 400'}, {settings.city_state || 'Boston, MA 02109'}</div>
             </div>
           </div>
         </div>
@@ -129,10 +120,10 @@ export default function Header() {
         <div className="canvas-share">
           <h4 className="offcanvas-title">Social Media</h4>
           <ul>
-            <li><a href="https://www.facebook.com" target="_blank" rel="noreferrer"><i className="fa-brands fa-facebook"></i></a></li>
-            <li><a href="https://www.instagram.com" target="_blank" rel="noreferrer"><i className="fa-brands fa-instagram"></i></a></li>
-            <li><a href="https://www.twitter.com" target="_blank" rel="noreferrer"><i className="fa-brands fa-twitter"></i></a></li>
-            <li><a href="https://www.linkedin.com" target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin"></i></a></li>
+            <li><a href={settings.facebook_url || "https://www.facebook.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-facebook"></i></a></li>
+            <li><a href={settings.instagram_url || "https://www.instagram.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-instagram"></i></a></li>
+            <li><a href={settings.twitter_url || "https://www.twitter.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-twitter"></i></a></li>
+            <li><a href={settings.linkedin_url || "https://www.linkedin.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin"></i></a></li>
           </ul>
         </div>
 
@@ -154,7 +145,7 @@ export default function Header() {
         <div className="hamburger_wrapper">
           <div className="hamburger_top d-flex align-items-center justify-content-between">
             <div className="hamburger_logo">
-              <Link to="/" className="mobile_logo" onClick={handleLogoClick}>
+              <Link to="/" className="mobile_logo" onClick={handleNavClick}>
                 <img src="/homepulse_brand_horizontal_white.png" alt="HomePulse Appliance Repair" />
               </Link>
             </div>
@@ -167,7 +158,7 @@ export default function Header() {
 
           <div className="hamburger_menu">
             <ul className="mobile-nav-list" style={{ listStyle: 'none', padding: 0, margin: '20px 0' }}>
-              <li><Link to="/" onClick={handleHomeClick}>Home</Link></li>
+              <li><Link to="/" onClick={handleNavClick}>Home</Link></li>
               <li className="has-dropdown">
                 <div className="d-flex justify-content-between align-items-center">
                   <Link to="/about" onClick={closeMenus}>About Us</Link>
@@ -223,7 +214,7 @@ export default function Header() {
               </div>
               <div className="contact-text">
                 <span>Email</span>
-                <div className="text"><a className="link" href="mailto:info@homepulse.com">info@homepulse.com</a></div>
+                <div className="text"><a className="link" href={`mailto:${settings.email || 'info@homepulse.com'}`}>{settings.email || 'info@homepulse.com'}</a></div>
               </div>
             </div>
             <div className="contact-item">
@@ -232,7 +223,7 @@ export default function Header() {
               </div>
               <div className="contact-text">
                 <span>Phone Number</span>
-                <div className="text"><a className="link" href="tel:+18005550199">(800) 555-0199</a></div>
+                <div className="text"><a className="link" href={`tel:+${settings.phone_raw || '18005550199'}`}>{settings.phone || '(800) 555-0199'}</a></div>
               </div>
             </div>
             <div className="contact-item">
@@ -241,17 +232,17 @@ export default function Header() {
               </div>
               <div className="contact-text">
                 <span>Address</span>
-                <div className="text">742 Evergreen Terrace, Suite 100, Austin, TX 78701</div>
+                <div className="text">{settings.address || '100 State Street, Suite 400'}, {settings.city_state || 'Boston, MA 02109'}</div>
               </div>
             </div>
           </div>
 
           <div className="hamburger-socials">
             <ul>
-              <li><a href="https://www.facebook.com" target="_blank" rel="noreferrer"><i className="fa-brands fa-facebook"></i></a></li>
-              <li><a href="https://www.instagram.com" target="_blank" rel="noreferrer"><i className="fa-brands fa-instagram"></i></a></li>
-              <li><a href="https://www.twitter.com" target="_blank" rel="noreferrer"><i className="fa-brands fa-twitter"></i></a></li>
-              <li><a href="https://www.linkedin.com" target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin"></i></a></li>
+              <li><a href={settings.facebook_url || "https://www.facebook.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-facebook"></i></a></li>
+              <li><a href={settings.instagram_url || "https://www.instagram.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-instagram"></i></a></li>
+              <li><a href={settings.twitter_url || "https://www.twitter.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-twitter"></i></a></li>
+              <li><a href={settings.linkedin_url || "https://www.linkedin.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin"></i></a></li>
             </ul>
           </div>
 
@@ -280,23 +271,23 @@ export default function Header() {
                   <div className="header-contact-infos">
                     <ul>
                       <li>
-                        <a href="tel:+18005550199"><i className="flaticon-call"></i>(800) 555-0199</a>
+                        <a href={`tel:+${settings.phone_raw || '18005550199'}`}><i className="flaticon-call"></i>{settings.phone || '(800) 555-0199'}</a>
                       </li>
                       <li>
-                        <a href="mailto:info@homepulse.com"><i className="flaticon-mail"></i>info@homepulse.com</a>
+                        <a href={`mailto:${settings.email || 'info@homepulse.com'}`}><i className="flaticon-mail"></i>{settings.email || 'info@homepulse.com'}</a>
                       </li>
                       <li>
-                        <i className="flaticon-home"></i> 742 Evergreen Terrace, Suite 100, Austin, TX 78701
+                        <i className="flaticon-home"></i> {settings.address || '100 State Street, Suite 400'}, {settings.city_state || 'Boston, MA 02109'}
                       </li>
                     </ul>
                   </div>
                   <div className="header-socials">
                     <span className="text">Social Media</span>
                     <ul>
-                      <li><a href="https://www.facebook.com" target="_blank" rel="noreferrer"><i className="fa-brands fa-facebook"></i></a></li>
-                      <li><a href="https://www.instagram.com" target="_blank" rel="noreferrer"><i className="fa-brands fa-instagram"></i></a></li>
-                      <li><a href="https://www.twitter.com" target="_blank" rel="noreferrer"><i className="fa-brands fa-twitter"></i></a></li>
-                      <li><a href="https://www.linkedin.com" target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin"></i></a></li>
+                      <li><a href={settings.facebook_url || "https://www.facebook.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-facebook"></i></a></li>
+                      <li><a href={settings.instagram_url || "https://www.instagram.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-instagram"></i></a></li>
+                      <li><a href={settings.twitter_url || "https://www.twitter.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-twitter"></i></a></li>
+                      <li><a href={settings.linkedin_url || "https://www.linkedin.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin"></i></a></li>
                     </ul>
                   </div>
                 </div>
@@ -313,13 +304,13 @@ export default function Header() {
                 <div className="mainmenu-wrapper">
                   <div className="mainmenu-box">
                     <div className="site-logo">
-                      <Link className="logo" to="/" onClick={handleLogoClick}>
+                      <Link className="logo" to="/" onClick={handleNavClick}>
                         <img src="/homepulse_brand_horizontal.png" alt="HomePulse Appliance Repair" />
                       </Link>
                     </div>
                     <div className="mainmenu main-mobile-menu d-none d-lg-inline-block">
                       <ul>
-                        <li><Link to="/" onClick={handleHomeClick}>Home</Link></li>
+                        <li><Link to="/" onClick={handleNavClick}>Home</Link></li>
                         <li className="has-dropdown">
                           <Link to="/about">About Us</Link>
                           <ul className="sub-menu">
@@ -380,13 +371,13 @@ export default function Header() {
               <div className="col-12">
                 <div className="mainmenu-wrapper">
                   <div className="site-logo">
-                    <Link className="logo" to="/" onClick={handleLogoClick}>
+                    <Link className="logo" to="/" onClick={handleNavClick}>
                       <img src="/homepulse_brand_horizontal.png" alt="HomePulse Appliance Repair" />
                     </Link>
                   </div>
                   <div className="mainmenu d-none d-lg-inline-block">
                     <ul>
-                      <li><Link to="/" onClick={handleHomeClick}>Home</Link></li>
+                      <li><Link to="/" onClick={handleNavClick}>Home</Link></li>
                       <li className="has-dropdown">
                         <Link to="/about">About Us</Link>
                         <ul className="sub-menu">

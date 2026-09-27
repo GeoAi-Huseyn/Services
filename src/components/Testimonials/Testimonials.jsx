@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
+import { useSiteSettings } from '../../context/SiteSettingsContext';
 import 'swiper/css';
 import './Testimonials.css';
 
@@ -142,6 +143,7 @@ const maCities = [
 ];
 
 export default function Testimonials() {
+  const { settings } = useSiteSettings();
   const swiperRef = useRef(null);
   const [activeCity, setActiveCity] = useState(maCities[0]);
   const [selectedRegion, setSelectedRegion] = useState('All');
@@ -183,7 +185,7 @@ export default function Testimonials() {
             </div>
             <h2 className="reviews-main-title">WHAT OUR CLIENTS SAY</h2>
             <p className="reviews-subtitle-desc">
-              Here is what homeowners across Massachusetts say about choosing HomePulse for dependable, certified appliance repair.
+              Here is what homeowners across Massachusetts say about choosing HomePulse for dependable, expert appliance repair.
             </p>
           </div>
 
@@ -310,7 +312,7 @@ export default function Testimonials() {
             </div>
             <h2 className="map-main-title">OUR SERVICE AREA</h2>
             <p className="map-subtitle-desc">
-              We dispatch factory-certified master technicians across Massachusetts, providing prompt same-day appliance repair into:
+              We dispatch experienced master technicians across Massachusetts, providing prompt same-day appliance repair into:
             </p>
           </div>
 
@@ -396,8 +398,8 @@ export default function Testimonials() {
                     </div>
                     <strong>We Service "{searchQuery}" & All Surrounding Towns!</strong>
                     <p>We provide prompt same-day appliance repair across all 351 cities and towns in Massachusetts.</p>
-                    <a href="tel:+18005550199" className="no-cities-call-btn">
-                      <i className="fa-solid fa-phone-volume"></i> Call Now: (800) 555-0199
+                    <a href={`tel:+${settings.phone_raw || '18005550199'}`} className="no-cities-call-btn">
+                      <i className="fa-solid fa-phone-volume"></i> Call Now: {settings.phone || '(800) 555-0199'}
                     </a>
                   </div>
                 )}
@@ -476,11 +478,11 @@ export default function Testimonials() {
                   <span>All 351 Cities & Towns Covered</span>
                 </div>
               </div>
-              <a href="tel:+18005550199" className="coverage-banner-cta-btn">
+              <a href={`tel:+${settings.phone_raw || '18005550199'}`} className="coverage-banner-cta-btn">
                 <i className="fa-solid fa-phone-volume"></i>
                 <div className="cta-btn-text-wrap">
                   <span className="cta-small-label">BOOK SAME-DAY DISPATCH</span>
-                  <span className="cta-phone-number">(800) 555-0199</span>
+                  <span className="cta-phone-number">{settings.phone || '(800) 555-0199'}</span>
                 </div>
               </a>
             </div>

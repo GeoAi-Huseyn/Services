@@ -1,25 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import { useSiteSettings } from '../../context/SiteSettingsContext';
 import './Hero.css';
 
 const HERO_SLIDES = [
   {
     id: 1,
-    image: '/assets/images/hero-tech-subzero.jpg?v=2',
-    alt: 'Certified technician diagnosing a Sub-Zero refrigerator in luxury kitchen',
+    image: '/assets/images/hero-tech-subzero.png',
+    alt: 'Master technician diagnosing a Sub-Zero refrigerator in luxury kitchen',
   },
   {
     id: 2,
-    image: '/assets/images/hero-tech-oven.jpg?v=2',
-    alt: 'Certified technician servicing a built-in luxury Wolf wall oven',
+    image: '/assets/images/hero-tech-oven.png',
+    alt: 'Master technician servicing a built-in luxury Wolf wall oven',
   },
   {
     id: 3,
-    image: '/assets/images/hero-tech-dishwasher.jpg?v=2',
-    alt: 'Certified specialist technician servicing a premium built-in Miele dishwasher',
+    image: '/assets/images/hero-tech-dishwasher.png',
+    alt: 'Skilled specialist technician servicing a premium built-in Miele dishwasher',
   },
 ];
 
 export default function Hero() {
+  const { settings } = useSiteSettings();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [prevSlide, setPrevSlide] = useState(null);
 
@@ -36,7 +38,7 @@ export default function Hero() {
 
   return (
     <>
-      <section className="dynamic-hero-section" id="anasayfa">
+      <section className="dynamic-hero-section" id="hero">
         {/* Dynamic Changing Background Slides */}
         <div className="hero-bg-container">
           {HERO_SLIDES.map((slide, index) => {
@@ -106,7 +108,7 @@ export default function Hero() {
 
                 {/* CTA Action Buttons */}
                 <div className="hero-cta-group">
-                  <a href="tel:+15715711664" className="hero-btn-call">
+                  <a href={`tel:+${settings.phone_raw || '15715711664'}`} className="hero-btn-call">
                     <svg
                       width="18"
                       height="18"
@@ -119,7 +121,7 @@ export default function Hero() {
                     >
                       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
                     </svg>
-                    <span>Call (571) 571-1664</span>
+                    <span>Call {settings.phone || '(571) 571-1664'}</span>
                   </a>
 
                   <a href="#contact" className="hero-btn-secondary">

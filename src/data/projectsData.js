@@ -1,590 +1,698 @@
 export const projectsData = [
   {
-    id: 1,
-    slug: 'refrigerator-compressor-replacement',
-    title: 'Refrigerator Inverter Compressor Replacement & Sealed System Recharge',
-    shortTitle: 'Refrigerator Compressor Replacement',
-    category: 'refrigerator',
-    categoryLabel: 'Refrigerator Repair',
-    applianceType: 'French Door Refrigerator',
-    brandModel: 'Samsung French Door RF28R7351SR',
-    date: 'September 12, 2026',
-    location: 'Downtown Metro Area',
-    duration: '2 Hours 30 Mins',
-    warranty: '12-Month Ironclad Warranty',
-    technician: 'David Miller (Master HVAC & Sealed System Specialist)',
-    rating: 5,
-    heroImage: '/assets/images/project-refrigerator.jpg',
-    gallery: [
+    "id": 1,
+    "slug": "sub-zero-refrigerator-compressor-sealed-system-repair",
+    "title": "Sub-Zero Built-In French Door Refrigerator Sealed System & Inverter Compressor Overhaul",
+    "shortTitle": "Sub-Zero Refrigerator Compressor Overhaul",
+    "category": "refrigerator",
+    "categoryLabel": "Refrigerator Repair",
+    "applianceType": "Built-in French Door Refrigerator",
+    "brandModel": "Sub-Zero Classic Series 42\" French Door (BI-42UFD/S/PH)",
+    "date": "September 18, 2026",
+    "location": "Back Bay, Boston, MA",
+    "duration": "2 Hours 45 Mins",
+    "warranty": "12-Month Ironclad Warranty",
+    "technician": "David Miller (Master HVAC & EPA Universal Specialist, Lic. #74291)",
+    "rating": 5,
+    "heroImage": "/assets/images/project-subzero-repair.jpg",
+    "gallery": [
       {
-        id: 1,
-        src: '/assets/images/project-refrigerator.jpg',
-        title: 'Initial Diagnostic & Temperature Measurement',
-        stage: 'Stage 1: Diagnostic',
-        desc: 'Digital gauge set and thermal imaging revealed zero compression from the inverter compressor with high electrical draw.',
+        "id": 1,
+        "src": "/assets/images/project-subzero-repair.jpg",
+        "title": "Wireless Pressure Transducers & Digital Gauge Diagnostic",
+        "stage": "Stage 1: Digital Diagnostic",
+        "desc": "Sub-Zero diagnostic menu flagged Service Code EC 50. High and low side digital manifold gauges verified loss of pumping efficiency on Embraco inverter linear compressor."
       },
       {
-        id: 2,
-        src: '/assets/images/service-refrigerator.jpg',
-        title: 'Safe Refrigerant Recovery & Component Disassembly',
-        stage: 'Stage 2: Recovery',
-        desc: 'EPA-certified recovery machine used to safely evacuate remaining R600a isobutane without venting into the home.',
+        "id": 2,
+        "src": "/assets/images/tech-brazing-compressor.jpg",
+        "title": "Nitrogen-Purged Brazing of Genuine OEM Inverter Compressor",
+        "stage": "Stage 2: Precision Brazing",
+        "desc": "Installed factory-spec Embraco variable-speed compressor and copper spun filter dryer using 15% silver brazing under continuous 3 PSI dry nitrogen purge."
       },
       {
-        id: 3,
-        src: '/assets/images/approach-process.jpg',
-        title: 'Braze-Welding OEM Inverter Compressor & Filter Dryer',
-        stage: 'Stage 3: Installation',
-        desc: 'Installed brand-new genuine Samsung inverter compressor with a high-capacity copper spin-on filter dryer using nitrogen-purged brazing.',
+        "id": 3,
+        "src": "/assets/images/tech-pcb-diagnostic.jpg",
+        "title": "Inverter Driver Frequency Calibration & Capacitor Bank Check",
+        "stage": "Stage 3: PCB & Inverter Drive Test",
+        "desc": "Verified 3-phase variable frequency PWM output voltage between 80Hz and 180Hz from Sub-Zero inverter control module to ensure smooth motor modulation."
       },
       {
-        id: 4,
-        src: '/assets/images/hero-technician.jpg',
-        title: 'Deep Vacuum Evacuation & Precision Gram-Scale Recharge',
-        stage: 'Stage 4: Sealed System',
-        desc: 'Pulled system down to 250 microns to eliminate moisture and non-condensables, followed by precise gram-scale R600a charging.',
+        "id": 4,
+        "src": "/assets/images/tech-steam-defrost.jpg",
+        "title": "Evaporator Frost Pattern Inspection & Thermal Steam Defrost",
+        "stage": "Stage 4: Evaporator Inspection",
+        "desc": "Inspected aluminum evaporator fin array, cleared residual frost buildup with low-pressure temperature-controlled steam, and verified thermistor continuity."
       },
       {
-        id: 5,
-        src: '/assets/images/about-repairman.jpg',
-        title: 'Post-Repair Frost Pattern & Digital Inverter Calibration',
-        stage: 'Stage 5: Verification',
-        desc: 'Verified uniform evaporator frost pattern, verified inverter PCB pulse signals, and documented stable -2°F freezer & 36°F fresh food compartment temperatures.',
-      },
+        "id": 5,
+        "src": "/assets/images/service-refrigerator.jpg",
+        "title": "220-Micron Vacuum Hold & Exact Gram-Scale Refrigerant Charge",
+        "stage": "Stage 5: Deep Vacuum & Charge",
+        "desc": "Triple-evacuated sealed system to 220 microns with zero rise, followed by precision gram-scale factory charge of R600a isobutane."
+      }
     ],
-    problemSummary: 'The homeowner noticed the refrigerator fresh food section climbing to 58°F with a faint intermittent clicking sound from the rear bottom panel. Ice maker ceased production and food began spoiling.',
-    diagnosticDetails: 'Our certified sealed-system technician hooked up wireless digital pressure transducers. High-side and low-side pressures were equalized during compressor run cycle, indicating a catastrophic internal reed valve failure on the linear inverter motor.',
-    solutionSteps: [
+    "problemSummary": "Back Bay homeowner noticed the fresh food compartment climbing to 54°F with food starting to warm. The Sub-Zero control panel was chiming with error code \"EC 50\" (Excessive Compressor Run Time) and the ice maker had shut down.",
+    "diagnosticDetails": "Technician hooked up wireless digital pressure transducers and an oscilloscope. The compressor was running continuously at maximum frequency with high amperage, yet suction and discharge pressures were nearly equalized, confirming internal valve failure on the sealed system compressor.",
+    "solutionSteps": [
       {
-        step: '01',
-        title: 'EPA Safe Refrigerant Evacuation',
-        desc: 'Certified recovery unit evacuated existing refrigerant in strict accordance with environmental safety protocols.',
+        "step": "01",
+        "title": "EPA Universal Safe Evacuation",
+        "desc": "Safely recovered residual refrigerant according to Section 608 EPA standards using a sealed-system recovery cart."
       },
       {
-        step: '02',
-        title: 'Faulty Compressor Removal',
-        desc: 'Unbrazed suction and discharge lines, unbolted motor mounts, and inspected lines for oil contamination.',
+        "step": "02",
+        "title": "De-soldering & Contamination Check",
+        "desc": "Unbrazed suction and process stubs, flushed high-side loop, and verified oil clarity to rule out acid contamination."
       },
       {
-        step: '03',
-        title: 'OEM Compressor & Filter Installation',
-        desc: 'Installed factory-spec Samsung inverter compressor and new copper filter dryer with nitrogen purging to prevent inner oxidation.',
+        "step": "03",
+        "title": "OEM Sub-Zero Compressor Installation",
+        "desc": "Mounted genuine Sub-Zero Embraco variable-speed compressor with factory vibration dampeners and new high-capacity copper filter dryer."
       },
       {
-        step: '04',
-        title: 'Vacuum & Precision Recharge',
-        desc: 'Triple evacuation achieved 250 microns holding vacuum, followed by exact manufacturer specification refrigerant charge.',
+        "step": "04",
+        "title": "Deep Micron Vacuum Pull-Down",
+        "desc": "Dual-stage vacuum pump pulled system down to 220 microns, holding decay test under 15 microns over 15 minutes."
       },
       {
-        step: '05',
-        title: 'Cycle Testing & Thermal Log',
-        desc: 'Tested inverter PCB modulation frequencies and ran cold cycle verification for 45 minutes to confirm rapid pull-down.',
-      },
+        "step": "05",
+        "title": "Gram-Scale Charge & Pull-Down Test",
+        "desc": "Weighed in exact manufacturer-specified R600a charge on digital gram scale. Verified pull-down to 37°F fresh food and -1°F freezer."
+      }
     ],
-    specs: [
-      { label: 'Appliance', value: 'Samsung French Door RF28' },
-      { label: 'Part Replaced', value: 'OEM Inverter Compressor (BPA Series)' },
-      { label: 'Refrigerant', value: 'R600a (Isobutane 58g Exact Scale)' },
-      { label: 'Filter Type', value: 'Copper Molecular Sieve Dryer' },
-      { label: 'Vacuum Achieved', value: '240 Microns (< 10 micron drift)' },
-      { label: 'Final Temp', value: 'Freezer: -1°F / Fresh Food: 37°F' },
+    "specs": [
+      {
+        "label": "Appliance",
+        "value": "Sub-Zero Classic 42\" French Door (BI-42UFD)"
+      },
+      {
+        "label": "Part Replaced",
+        "value": "OEM Embraco Variable-Speed Compressor & Dryer"
+      },
+      {
+        "label": "Refrigerant",
+        "value": "R600a Isobutane (Gram-Scale Precision Weighed)"
+      },
+      {
+        "label": "Vacuum Achieved",
+        "value": "220 Microns (< 15 Micron Rise Test)"
+      },
+      {
+        "label": "Operating Temps",
+        "value": "Freezer: -1°F / Fresh Food: 37°F"
+      },
+      {
+        "label": "Safety Standards",
+        "value": "EPA Section 608 Universal Compliant"
+      }
     ],
-    customerReview: {
-      name: 'Richard Cole',
-      location: 'Downtown Metro Area',
-      date: 'September 13, 2026',
-      rating: 5,
-      comment: 'Our refrigerator suddenly stopped cooling, and our groceries were about to spoil. The HomePulse technician arrived within 40 minutes, diagnosed the issue with digital gauges, and installed a genuine OEM compressor the exact same day. It is running completely silent and ice-cold. Phenomenal service!',
-    },
+    "customerReview": {
+      "name": "Jonathan & Eleanor Vance",
+      "location": "Back Bay, Boston, MA",
+      "date": "September 19, 2026",
+      "rating": 5,
+      "comment": "Our built-in Sub-Zero began warming up on a Friday afternoon before a dinner party. HomePulse dispatched their master sealed-system technician within an hour. He had the authentic compressor and nitrogen setup in his service vehicle and completed the entire job right in our kitchen with surgical precision. It is cooling perfectly and runs silently. Unmatched professionalism!"
+    }
   },
   {
-    id: 2,
-    slug: 'washer-control-board-and-bearing-repair',
-    title: 'Front-Load Washer Electronic Control Board & Direct Drive Rotor Repair',
-    shortTitle: 'Washer Electronic Control Board Repair',
-    category: 'washer',
-    categoryLabel: 'Washing Machine',
-    applianceType: 'Front-Load Inverter Washer',
-    brandModel: 'LG Smart Inverter Steam DirectDrive 10.5kg',
-    date: 'September 08, 2026',
-    location: 'West End District',
-    duration: '1 Hour 45 Mins',
-    warranty: '12-Month Ironclad Warranty',
-    technician: 'Michael Sterling (Certified Electronics & Motor Specialist)',
-    rating: 5,
-    heroImage: '/assets/images/project-washer.jpg',
-    gallery: [
+    "id": 2,
+    "slug": "miele-front-load-washer-motor-drain-pump-repair",
+    "title": "Miele W1 Series Front-Load Washer High-Pressure Wash Pump & Sensor Overhaul",
+    "shortTitle": "Miele W1 Front-Load Washer Overhaul",
+    "category": "washer",
+    "categoryLabel": "Washing Machine",
+    "applianceType": "Front-Load Smart Washer",
+    "brandModel": "Miele W1 TwinDos Front-Load Washer (WXR860WCS)",
+    "date": "September 14, 2026",
+    "location": "Brookline, MA",
+    "duration": "1 Hour 40 Mins",
+    "warranty": "12-Month Ironclad Warranty",
+    "technician": "Michael Sterling (Master European Electronics Specialist)",
+    "rating": 5,
+    "heroImage": "/assets/images/project-washer-repair.jpg",
+    "gallery": [
       {
-        id: 1,
-        src: '/assets/images/project-washer.jpg',
-        title: 'Error Diagnostic & Resistance Testing',
-        stage: 'Stage 1: Error Readout',
-        desc: 'Machine showed flashing LE (Locked Rotor) error code and failed to tumble even under zero load.',
+        "id": 1,
+        "src": "/assets/images/project-washer-repair.jpg",
+        "title": "Optical Interface Diagnostics & Optical M-Check Scan",
+        "stage": "Stage 1: Error Readout",
+        "desc": "Connected Miele optical diagnostic interface to main PCB; retrieved fault memory showing error F20 (Water intake timeout) and F138 (Water leakage in base drip pan)."
       },
       {
-        id: 2,
-        src: '/assets/images/service-washer.jpg',
-        title: 'Direct Drive Rotor & Stator Disassembly',
-        stage: 'Stage 2: Motor Disassembly',
-        desc: 'Removed rear service cover and rotor hub to expose stator coils and hall effect rotor position sensor.',
+        "id": 2,
+        "src": "/assets/images/tech-pcb-diagnostic.jpg",
+        "title": "ProfiEco Motor Driver & Triac Bridge Resistance Check",
+        "stage": "Stage 2: Inverter PCB Testing",
+        "desc": "Tested motor drive switching semiconductors and Hall-effect drum position sensor circuits under simulated load using precision digital oscilloscope probes."
       },
       {
-        id: 3,
-        src: '/assets/images/about-repairman.jpg',
-        title: 'Oscilloscope & Multimeter Sensor Testing',
-        stage: 'Stage 3: Component Diagnostic',
-        desc: 'Measured stator coil resistance (found balanced 11.2 ohms across all three phases) while hall sensor output was open circuit.',
+        "id": 3,
+        "src": "/assets/images/service-washer.jpg",
+        "title": "Disassembly of Front Service Fascia & Drainage Manifold",
+        "stage": "Stage 3: Pump & Seal Extraction",
+        "desc": "Safely opened front panel, removed coin trap debris chamber, and extracted seized dual-impeller magnetic synchronous drain pump."
       },
       {
-        id: 4,
-        src: '/assets/images/approach-process.jpg',
-        title: 'New OEM Hall Sensor & Main PCB Replacement',
-        stage: 'Stage 4: OEM Replacement',
-        desc: 'Fitted upgraded OEM Hall sensor module and replaced heat-stressed triac bridge on the power inverter motherboard.',
+        "id": 4,
+        "src": "/assets/images/about-repairman.jpg",
+        "title": "Installing Genuine Miele OEM Pump & Reinforced Tub Bellows",
+        "stage": "Stage 4: OEM Component Fitment",
+        "desc": "Installed factory OEM Miele wash pump assembly, brand-new silicone pressure sensor hose, and heavy-duty tub shock absorbers."
       },
       {
-        id: 5,
-        src: '/assets/images/hero-technician.jpg',
-        title: 'Calibration, Vibration Dampening & High Spin Test',
-        stage: 'Stage 5: High-Speed Spin Verification',
-        desc: 'Conducted high-speed 1400 RPM spin balance test, calibrated tub load sensor, and verified silent vibration levels.',
-      },
+        "id": 5,
+        "src": "/assets/images/approach-process.jpg",
+        "title": "Dynamic 1600 RPM High-Speed Spin & Balance Calibration",
+        "stage": "Stage 5: 1600 RPM Spin Test",
+        "desc": "Executed automated calibration wash cycle with full water fill and high-speed 1600 RPM spin. Vibration dampening met factory tolerance (< 0.05G)."
+      }
     ],
-    problemSummary: 'During rinse cycle, the washer suddenly halted with a continuous alarm and displayed error code "LE". The drum shuddered violently when attempting to spin and emitted an electrical overheating scent.',
-    diagnosticDetails: 'Technician performed step-by-step continuity analysis. While the direct-drive stator motor coils were fully intact, the Hall-effect positioning sensor had experienced micro-fractures on circuit pin 3, resulting in lost motor position data to the microcontroller.',
-    solutionSteps: [
+    "problemSummary": "Brookline homeowner encountered an immediate cycle pause with chime alarms displaying fault \"Drainage Fault / F20\" on the touchscreen. The wash drum shuddered during spin attempts, and water failed to evacuate.",
+    "diagnosticDetails": "Diagnostics revealed a mechanical blockage in the magnetic synchronous pump impeller coupled with micro-cracking in the pressure switch transducer line, giving inaccurate water level feedback to the processor.",
+    "solutionSteps": [
       {
-        step: '01',
-        title: 'Fault Code Diagnostic & Isolation',
-        desc: 'Interrogated internal error memory via diagnostic mode to confirm motor drive failure sequence.',
+        "step": "01",
+        "title": "Miele Diagnostic Interface Scan",
+        "desc": "Accessed service engineer mode via optical interface to review fault memory log and motor run hours."
       },
       {
-        step: '02',
-        title: 'Rotor Hub Removal',
-        desc: 'De-energized capacitor bank and unbolted the magnetic rotor plate from the direct drive tub shaft.',
+        "step": "02",
+        "title": "Base Pan Leak Isolation",
+        "desc": "Drained remaining wash water through manual emergency filter tube and cleared safety float switch."
       },
       {
-        step: '03',
-        title: 'Hall Sensor Replacement',
-        desc: 'Installed reinforced OEM rotor position sensor and checked wiring harness for chafing or resistance.',
+        "step": "03",
+        "title": "OEM Dual-Impeller Pump Replacement",
+        "desc": "Fitted genuine OEM Miele synchronous drain pump and renewed silicone discharge elbow."
       },
       {
-        step: '04',
-        title: 'Main PCB Surge Inspection',
-        desc: 'Tested gate driver diodes on main PCB to verify zero current backfeed into the inverter processor.',
+        "step": "04",
+        "title": "Pressure Line & Shock Absorber Service",
+        "desc": "Installed updated pressure transducer hose and upgraded hydraulic tub dampers."
       },
       {
-        step: '05',
-        title: '1400 RPM Full Load Test',
-        desc: 'Ran automated test routine with water fill, drain pump verification, and high-speed spin cycle.',
-      },
+        "step": "05",
+        "title": "1600 RPM High Spin Verification",
+        "desc": "Ran complete Cottons 60°C wash cycle with 1600 RPM spin speed to verify zero vibration and rapid drain."
+      }
     ],
-    specs: [
-      { label: 'Appliance', value: 'LG Smart Inverter 10.5kg' },
-      { label: 'Part Replaced', value: 'OEM Hall Effect Sensor (6501KW2002A)' },
-      { label: 'Motor Type', value: 'Brushless Direct Drive 3-Phase BLDC' },
-      { label: 'Max Spin Speed', value: '1400 RPM Verified Stable' },
-      { label: 'Vibration Score', value: '< 0.08G Peak Acceleration' },
-      { label: 'Testing Result', value: 'Pass (0 Diagnostic Faults)' },
+    "specs": [
+      {
+        "label": "Appliance",
+        "value": "Miele W1 TwinDos (WXR860WCS)"
+      },
+      {
+        "label": "Part Replaced",
+        "value": "OEM Drain Pump Unit (09913220) & Tub Dampers"
+      },
+      {
+        "label": "Motor Type",
+        "value": "ProfiEco Permanent Magnet Brushless BLDC"
+      },
+      {
+        "label": "Max Spin Speed",
+        "value": "1600 RPM (Verified Zero Drum Wobble)"
+      },
+      {
+        "label": "Drain Rate",
+        "value": "22 Liters/Min (Factory Benchmark Met)"
+      },
+      {
+        "label": "Calibration",
+        "value": "Automatic TwinDos Dispenser Re-zeroed"
+      }
     ],
-    customerReview: {
-      name: 'Sarah Jenkins',
-      location: 'West End District',
-      date: 'September 09, 2026',
-      rating: 5,
-      comment: 'Our washer halted during the spin cycle with an LE error code, and the drum would not turn. Another contractor claimed the entire motor was blown. HomePulse tested the circuit precisely and found only the hall position sensor was bad. They fixed it in an hour at a fraction of the price. Honest and highly skilled!',
-    },
+    "customerReview": {
+      "name": "Dr. Katherine Brooks",
+      "location": "Brookline, MA",
+      "date": "September 15, 2026",
+      "rating": 5,
+      "comment": "Our Miele washer stopped mid-cycle with an F20 error. Another service company told us we had to wait 3 weeks for German parts. HomePulse came the following morning with the exact genuine Miele pump on their truck. The technician was courteous, put down protective floor runners, and had our laundry room running smoothly in under two hours. Exceptional!"
+    }
   },
   {
-    id: 3,
-    slug: 'dishwasher-drain-pump-and-heating-element-renewal',
-    title: 'Dishwasher Circulation Wash Pump & Flow-Through Heater Renewal',
-    shortTitle: 'Dishwasher Drain Pump Renewal',
-    category: 'dishwasher',
-    categoryLabel: 'Dishwasher',
-    applianceType: 'Built-in Quiet Series Dishwasher',
-    brandModel: 'Bosch Serie 6 SuperSilence Built-in (SMV68MD02E)',
-    date: 'August 28, 2026',
-    location: 'Oakridge Heights',
-    duration: '1 Hour 30 Mins',
-    warranty: '12-Month Ironclad Warranty',
-    technician: 'James Anderson (Senior European Appliance Specialist)',
-    rating: 5,
-    heroImage: '/assets/images/project-dishwasher.jpg',
-    gallery: [
+    "id": 3,
+    "slug": "bosch-benchmark-dishwasher-circulation-heat-pump-repair",
+    "title": "Bosch Benchmark 800 Series Dishwasher Heat Pump & AquaStop Flood Sensor Replacement",
+    "shortTitle": "Bosch Dishwasher Heat Pump Repair",
+    "category": "dishwasher",
+    "categoryLabel": "Dishwasher Repair",
+    "applianceType": "Built-in Panel-Ready Dishwasher",
+    "brandModel": "Bosch Benchmark 24\" Custom Panel (SHV88PZ63N)",
+    "date": "September 09, 2026",
+    "location": "Cambridge, MA",
+    "duration": "1 Hour 30 Mins",
+    "warranty": "12-Month Ironclad Warranty",
+    "technician": "James Anderson (Senior European Appliance Specialist)",
+    "rating": 5,
+    "heroImage": "/assets/images/project-dishwasher-repair.jpg",
+    "gallery": [
       {
-        id: 1,
-        src: '/assets/images/project-dishwasher.jpg',
-        title: 'Base Pan Water Leak & Float Switch Diagnostic',
-        stage: 'Stage 1: Leak Detection',
-        desc: 'Detected 40mm of standing water in safety drip tray causing Styrofoam float micro-switch to trip error E15.',
+        "id": 1,
+        "src": "/assets/images/project-dishwasher-repair.jpg",
+        "title": "AquaStop Safety Float Switch Diagnostic & Cabinet Extraction",
+        "stage": "Stage 1: AquaStop Diagnostic",
+        "desc": "Detected 35mm of water pooled in the bottom safety pan causing error code E15. Pulled unit forward onto protective moving blanket without touching stone counter."
       },
       {
-        id: 2,
-        src: '/assets/images/approach-process.jpg',
-        title: 'Built-in Extraction & Sump Disassembly',
-        stage: 'Stage 2: Extraction',
-        desc: 'Safely removed integrated front cabinet door panel, decoupled drain hoses, and pulled unit into service position.',
+        "id": 2,
+        "src": "/assets/images/tech-dishwasher-pump.jpg",
+        "title": "Circulation Heat Pump Motor & Thick-Film Element Removal",
+        "stage": "Stage 2: Heat Pump Extraction",
+        "desc": "Disconnected electrical wiring harness and decoupled circulation motor to inspect integrated ceramic shaft and impeller bearing."
       },
       {
-        id: 3,
-        src: '/assets/images/service-dryer.jpg',
-        title: 'Inspection of Circulation Impeller & Heat Element',
-        stage: 'Stage 3: Component Inspection',
-        desc: 'Found broken ceramic bearing sleeve on the brushless heat pump causing water weeping directly into bottom tray.',
+        "id": 3,
+        "src": "/assets/images/tech-pcb-diagnostic.jpg",
+        "title": "NTC Temperature Sensor & Heater Resistance Verification",
+        "stage": "Stage 3: Resistance Diagnostics",
+        "desc": "Tested internal thick-film heating element showing open circuit (infinite ohms) and calibrated dual NTC thermistors with digital multimeter."
       },
       {
-        id: 4,
-        src: '/assets/images/about-repairman.jpg',
-        title: 'New OEM Bosch Heat Pump & Silicone Gasket Assembly',
-        stage: 'Stage 4: OEM Installation',
-        desc: 'Installed upgraded OEM Bosch circulation pump with integrated thick-film heater and fresh silicone sump gasket.',
+        "id": 4,
+        "src": "/assets/images/service-dishwasher.jpg",
+        "title": "Installing Genuine OEM Bosch Heat Pump & Upgraded Sump Seal",
+        "stage": "Stage 4: OEM Pump Installation",
+        "desc": "Installed brand-new OEM Bosch brushless circulation pump with integrated heater (Part #12019637) and fitted heavy-duty silicone sump reinforcement gasket."
       },
       {
-        id: 5,
-        src: '/assets/images/hero-technician.jpg',
-        title: 'High-Temperature 70°C Intensive Hygiene Cycle Test',
-        stage: 'Stage 5: Temperature & Leak Testing',
-        desc: 'Executed 70°C Intensive program with dry pan verification. Zero leaks detected and water reached target 158°F.',
-      },
+        "id": 5,
+        "src": "/assets/images/approach-process.jpg",
+        "title": "70°C Intensive Hygiene Verification & Zero Leak Validation",
+        "stage": "Stage 5: Hygiene Cycle Verification",
+        "desc": "Conducted full 70°C Intensive sanitation wash cycle. Verified water heating to 158°F, whisper-quiet 38 dBA wash cycle, and 100% dry base tray."
+      }
     ],
-    problemSummary: 'Dishwasher stopped mid-cycle with drain pump running continuously even when door was opened. Display flashed error code "E15" with tap symbol, and dirty wash water pooled in the bottom tub.',
-    diagnosticDetails: 'Technician opened bottom access kickplate. The internal AquaStop flood safety switch had triggered due to hairline gasket seepage where the circulation heat pump joins the polypropylene tub sump.',
-    solutionSteps: [
+    "problemSummary": "Cambridge condo owner reported dishwasher running its drain pump non-stop with the tap symbol illuminated and display flashing error \"E15\" (AquaStop activated). Water had collected in the lower containment tray beneath luxury custom cabinetry.",
+    "diagnosticDetails": "Water seepage had leaked from a deteriorated factory sump seal directly into the base tray, raising the polystyrene safety float micro-switch and forcing the drain pump into emergency lockout mode.",
+    "solutionSteps": [
       {
-        step: '01',
-        title: 'AquaStop Diagnostic Scan',
-        desc: 'Verified error E15, dried base pan, and used borescope camera to spot exact leak pathway.',
+        "step": "01",
+        "title": "AquaStop Error Reset",
+        "desc": "Manually cleared water from safety catch pan, reset control board memory, and verified electrical isolation."
       },
       {
-        step: '02',
-        title: 'Unit Extraction & Safe Drainage',
-        desc: 'Drained remaining wash water, unplugged safety water valve, and pulled unit from under stone countertop.',
+        "step": "02",
+        "title": "Flush Cabinet Extraction",
+        "desc": "Carefully detached integrated custom wood panel and unfastened granite countertop mounting brackets without scratching cabinets."
       },
       {
-        step: '03',
-        title: 'Heat Pump Module Replacement',
-        desc: 'Replaced worn integrated circulation motor assembly with latest revision OEM Bosch heat pump.',
+        "step": "03",
+        "title": "Circulation Pump Replacement",
+        "desc": "Removed defective heat pump with compromised bearing sleeve; installed latest revision genuine OEM Bosch unit."
       },
       {
-        step: '04',
-        title: 'Sump Seal Upgraded',
-        desc: 'Cleaned stainless tub mating flange and fitted specialized silicone reinforcement seal.',
+        "step": "04",
+        "title": "Silicone Sump Reinforcement",
+        "desc": "Installed genuine Bosch sump repair gasket kit with torque-calibrated stainless fasteners."
       },
       {
-        step: '05',
-        title: 'Hot Cycle Pressure Verification',
-        desc: 'Monitored 70°C wash cycle with absorbent test paper beneath pump; certified 100% watertight.',
-      },
+        "step": "05",
+        "title": "High-Temperature Hydro Test",
+        "desc": "Monitored full 70°C sanitizing cycle using moisture-sensitive paper beneath all hydraulic joints to verify watertight integrity."
+      }
     ],
-    specs: [
-      { label: 'Appliance', value: 'Bosch Serie 6 Built-In' },
-      { label: 'Part Replaced', value: 'OEM Integrated Heat Pump (12019637)' },
-      { label: 'Heater Output', value: '2080W / 230V Thick Film' },
-      { label: 'Noise Level', value: '42 dB (Silent Factory Spec)' },
-      { label: 'Water Seal Test', value: 'Zero Drop Seepage (Pass)' },
-      { label: 'Final Wash Temp', value: '70°C Intensive Sanitation' },
+    "specs": [
+      {
+        "label": "Appliance",
+        "value": "Bosch Benchmark 24\" Custom Panel"
+      },
+      {
+        "label": "Part Replaced",
+        "value": "OEM Integrated Heat Pump (12019637) & Sump Seal Kit"
+      },
+      {
+        "label": "Heating Output",
+        "value": "2080W / 240V Integrated Thick-Film"
+      },
+      {
+        "label": "Operating Noise",
+        "value": "38 dBA (Whisper-Quiet Verified)"
+      },
+      {
+        "label": "Safety System",
+        "value": "AquaStop Flood Protection 100% Operational"
+      },
+      {
+        "label": "Max Water Temp",
+        "value": "70°C (158°F) Sanitation Reached"
+      }
     ],
-    customerReview: {
-      name: 'Emily Campbell',
-      location: 'Oakridge Heights',
-      date: 'August 29, 2026',
-      rating: 5,
-      comment: 'Our built-in dishwasher started running the drain pump continuously with error E15. Because it was integrated into custom stone cabinetry, we were worried about damage. The technicians carefully pulled the unit without a scratch, renewed the pump and seals, and re-installed it seamlessly. Exceptionally neat work!',
-    },
+    "customerReview": {
+      "name": "Marcus & Chloe Thorne",
+      "location": "Cambridge, MA",
+      "date": "September 10, 2026",
+      "rating": 5,
+      "comment": "Our custom-panel Bosch dishwasher started beeping with an E15 error and the drain pump would not shut off. We were worried our hardwood floors would get soaked. HomePulse came out within hours. James pulled the dishwasher onto a thick protective mat, replaced the pump and upgraded the seals, and pushed it back with perfect cabinet alignment. True master craftsmen!"
+    }
   },
   {
-    id: 4,
-    slug: 'built-in-oven-heating-element-and-thermostat-repair',
-    title: 'Dual-Zone Electric Oven Convection Fan Motor & Dual Baking Element Renewal',
-    shortTitle: 'Cooling Refrigerant Leak Test & Recharge',
-    category: 'oven',
-    categoryLabel: 'Oven & Range',
-    applianceType: 'Smart Convection Electric Oven',
-    brandModel: 'Siemens iQ700 StudioLine Convection Oven',
-    date: 'August 14, 2026',
-    location: 'Northside Suburb',
-    duration: '1 Hour 20 Mins',
-    warranty: '12-Month Ironclad Warranty',
-    technician: 'Robert Vance (High-End Cooking Appliance Specialist)',
-    rating: 5,
-    heroImage: '/assets/images/project-oven.jpg',
-    gallery: [
+    "id": 4,
+    "slug": "wolf-built-in-convection-oven-element-blower-repair",
+    "title": "Wolf E Series 30\" Built-In Double Oven Dual Convection Blower & Bake Element Renewal",
+    "shortTitle": "Wolf Double Wall Oven Convection Repair",
+    "category": "oven",
+    "categoryLabel": "Oven & Range",
+    "applianceType": "Built-in Double Convection Oven",
+    "brandModel": "Wolf E Series 30\" Dual Convection Double Oven (DO30TE/S/TH)",
+    "date": "August 26, 2026",
+    "location": "Newton, MA",
+    "duration": "1 Hour 45 Mins",
+    "warranty": "12-Month Ironclad Warranty",
+    "technician": "Robert Vance (Master Gas & Electric Cooking Specialist, Lic. #81204)",
+    "rating": 5,
+    "heroImage": "/assets/images/project-oven-repair.jpg",
+    "gallery": [
       {
-        id: 1,
-        src: '/assets/images/project-oven.jpg',
-        title: 'Thermal Imaging Diagnostic & Element Inspection',
-        stage: 'Stage 1: Thermal Scan',
-        desc: 'Thermal imaging revealed the circular convection element had ruptured, causing immediate RCD ground fault trip on 240V supply.',
+        "id": 1,
+        "src": "/assets/images/project-oven-repair.jpg",
+        "title": "Oven Cavity Diagnostic & 240V Electrical Safety Isolation",
+        "stage": "Stage 1: Thermal Scan & Isolation",
+        "desc": "Safely isolated 50A double-pole circuit breaker; thermal camera and multimeter testing identified open convection element and seized left-hand blower."
       },
       {
-        id: 2,
-        src: '/assets/images/approach-process.jpg',
-        title: 'Oven Cavity Liner Removal & Wiring Check',
-        stage: 'Stage 2: Cavity Disassembly',
-        desc: 'Removed catalytic rear liner plates and fan baffle to safely test temperature sensor probe and motor windings.',
+        "id": 2,
+        "src": "/assets/images/tech-oven-element.jpg",
+        "title": "Multimeter Testing on 2600W Convection Heating Element",
+        "stage": "Stage 2: Element Resistance Test",
+        "desc": "Fluke multimeter registered \"OL\" (open loop), confirming a severed internal nichrome coil inside the circular convection heating element jacket."
       },
       {
-        id: 3,
-        src: '/assets/images/service-dryer.jpg',
-        title: 'PT1000 Temperature Sensor & Fan Motor Testing',
-        stage: 'Stage 3: Resistance Diagnostics',
-        desc: 'Calibrated RTD temperature sensor against reference probe; identified seized convection motor rear brass bushing.',
+        "id": 3,
+        "src": "/assets/images/tech-pcb-diagnostic.jpg",
+        "title": "Relay Motherboard Contact Inspection & Thermocouple Cal",
+        "stage": "Stage 3: Relay Board Diagnostic",
+        "desc": "Inspected heavy-duty relay contacts for carbon pitting on power board; verified calibration of platinum PT1000 RTD oven temperature sensor."
       },
       {
-        id: 4,
-        src: '/assets/images/about-repairman.jpg',
-        title: 'OEM 2400W Circular Element & High-Temp Fan Assembly',
-        stage: 'Stage 4: OEM Part Installation',
-        desc: 'Fitted genuine 2400W nickel-chromium heating element, high-temperature silicon terminals, and new convection motor.',
+        "id": 4,
+        "src": "/assets/images/service-oven.jpg",
+        "title": "Installing Genuine Wolf Convection Fan Blower & Wiring",
+        "stage": "Stage 4: OEM Blower & Element Install",
+        "desc": "Mounted brand-new OEM Wolf 2600W circular element, high-temp ceramic insulated wiring, and balanced dual convection fan motor."
       },
       {
-        id: 5,
-        src: '/assets/images/hero-technician.jpg',
-        title: 'Pyrolytic 250°C Calibration & Insulation Resistance Test',
-        stage: 'Stage 5: High-Heat Verification',
-        desc: 'Megohmmeter test showed > 200 Megaohms insulation. Reached target 220°C in under 9 minutes with uniform heat distribution.',
-      },
+        "id": 5,
+        "src": "/assets/images/approach-process.jpg",
+        "title": "Pyrolytic 450°F Temperature Ramp & Uniformity Test",
+        "stage": "Stage 5: 450°F Calibration",
+        "desc": "Ran multi-point digital thermocouple data log across 3 baking racks at 350°F and 450°F. Temperature deviation held within ±3°F across entire cavity."
+      }
     ],
-    problemSummary: 'Whenever baking mode was selected, the main apartment circuit breaker tripped instantly. In standard mode without fan, the bottom scorched food while the top remained unbaked.',
-    diagnosticDetails: 'Insulation resistance testing (500V Megger) confirmed a zero-ohm ground fault inside the rear 2400W ring heating element jacket. In addition, the convection fan motor bearings had seized due to heat degradation.',
-    solutionSteps: [
+    "problemSummary": "Newton residence double wall oven failed to heat properly on convection bake and roast modes. When set above 325°F, the digital display flashed error \"F3 / E0\" (Convection loop open circuit) and baked goods came out scorched on the bottom while uncooked on top.",
+    "diagnosticDetails": "High-voltage megohmmeter and resistance analysis detected that the circular convection element had fractured internally from thermal fatigue. The left convection fan motor bearings had also seized, causing localized overheating.",
+    "solutionSteps": [
       {
-        step: '01',
-        title: 'Electrical Safety Isolation',
-        desc: 'Locked out 32-amp circuit breaker, tested zero live voltage with calibrated Fluke multimeter.',
+        "step": "01",
+        "title": "50A Electrical Lockout",
+        "desc": "Verified zero voltage with calibrated Fluke 87V multimeter across both 120V legs."
       },
       {
-        step: '02',
-        title: 'Heating Element Extraction',
-        desc: 'Removed rear baffle, disconnected high-temperature ceramic spade terminals, and removed split element.',
+        "step": "02",
+        "title": "Cobalt Porcelain Baffle Removal",
+        "desc": "Extracted interior blue porcelain baffle plates using non-marring tools to protect factory finish."
       },
       {
-        step: '03',
-        title: 'OEM Convection Assembly Fitment',
-        desc: 'Installed OEM Siemens 2400W circular heating ring and whisper-quiet convection cooling fan.',
+        "step": "03",
+        "title": "Defective Element & Blower Removal",
+        "desc": "Unclipped high-temp ceramic spade terminals and unbolted seized convection fan motor."
       },
       {
-        step: '04',
-        title: 'Insulation & Ground Continuity Test',
-        desc: 'Conducted high-voltage insulation dielectric test to guarantee 100% home safety.',
+        "step": "04",
+        "title": "OEM Wolf Component Installation",
+        "desc": "Installed genuine Wolf 2600W circular heating ring, heavy-duty convection motor, and upgraded wiring harness."
       },
       {
-        step: '05',
-        title: 'Precision Temperature Calibration',
-        desc: 'Verified thermocouple accuracy at 150°C, 180°C, and 220°C using thermocouple data logger.',
-      },
+        "step": "05",
+        "title": "Multi-Point Temperature Calibration",
+        "desc": "Calibrated RTD temperature probe with digital logging thermometer; confirmed exact 350°F and 450°F setpoints."
+      }
     ],
-    specs: [
-      { label: 'Appliance', value: 'Siemens iQ700 Convection Oven' },
-      { label: 'Part Replaced', value: 'OEM 2400W Ring Element + Fan Unit' },
-      { label: 'Voltage / Amp', value: '230V AC / 10.4 Amps Measured' },
-      { label: 'Insulation Test', value: '> 250 Megaohms (Exceeds Safety Standard)' },
-      { label: 'Preheat Time', value: '0°C to 200°C in 7 Mins 45 Sec' },
-      { label: 'Temp Deviation', value: '± 2°C Across Entire Oven Cavity' },
+    "specs": [
+      {
+        "label": "Appliance",
+        "value": "Wolf E Series 30\" Double Wall Oven (DO30TE)"
+      },
+      {
+        "label": "Part Replaced",
+        "value": "OEM 2600W Convection Ring & Dual Fan Assembly"
+      },
+      {
+        "label": "Supply Voltage",
+        "value": "240V AC / 10.8 Amps Measured Operating Draw"
+      },
+      {
+        "label": "Preheat Performance",
+        "value": "Reached 350°F in 8 Mins 30 Sec (Benchmark Passed)"
+      },
+      {
+        "label": "Temperature Tolerance",
+        "value": "± 3°F Uniformity Across All 3 Oven Racks"
+      },
+      {
+        "label": "Safety Insulation",
+        "value": "> 250 Megaohms Dielectric Megger Test"
+      }
     ],
-    customerReview: {
-      name: 'Thomas Reynolds',
-      location: 'Northside Suburb',
-      date: 'August 15, 2026',
-      rating: 5,
-      comment: 'Every time we started baking, the main circuit breaker tripped immediately. The technician isolated the ground fault to a split heating ring within 15 minutes and replaced both the element and convection fan. The oven now heats up faster than ever and bakes evenly. Very impressed!',
-    },
+    "customerReview": {
+      "name": "Arthur & Beatrice Montgomery",
+      "location": "Newton, MA",
+      "date": "August 27, 2026",
+      "rating": 5,
+      "comment": "Our Wolf double oven stopped heating right as we were preparing for a family reunion. Robert from HomePulse arrived right on time, diagnosed the open convection ring immediately, and had the authentic Wolf parts ready in his vehicle. The ovens heat up faster than they have in years and bake evenly on every shelf. Simply brilliant service!"
+    }
   },
   {
-    id: 5,
-    slug: 'dryer-roller-and-thermal-fuse-overhaul',
-    title: 'Heat Pump Clothes Dryer Compressor Fan & Thermal Limiter Overhaul',
-    shortTitle: 'Heat Pump Dryer Thermal Overhaul',
-    category: 'washer',
-    categoryLabel: 'Dryer Repair',
-    applianceType: 'Heat Pump Eco Dryer',
-    brandModel: 'Miele EcoSpeed Heat Pump T1 Series',
-    date: 'July 30, 2026',
-    location: 'East River Valley',
-    duration: '1 Hour 30 Mins',
-    warranty: '12-Month Ironclad Warranty',
-    technician: 'David Miller (Master HVAC & Sealed System Specialist)',
-    rating: 5,
-    heroImage: '/assets/images/service-dryer.jpg',
-    gallery: [
+    "id": 5,
+    "slug": "electrolux-steam-dryer-drum-roller-heating-element-overhaul",
+    "title": "Electrolux Perfect Steam Dryer Heavy-Duty Drum Roller, Idler Pulley & Thermistor Overhaul",
+    "shortTitle": "Electrolux Steam Dryer Mechanical Overhaul",
+    "category": "washer",
+    "categoryLabel": "Dryer Repair",
+    "applianceType": "Front-Load Steam Electric Dryer",
+    "brandModel": "Electrolux Perfect Steam 8.0 Cu. Ft. Dryer (ELFE7637AT)",
+    "date": "August 19, 2026",
+    "location": "Beacon Hill, Boston, MA",
+    "duration": "1 Hour 20 Mins",
+    "warranty": "12-Month Ironclad Warranty",
+    "technician": "David Miller (Master HVAC & Domestic Appliance Specialist)",
+    "rating": 5,
+    "heroImage": "/assets/images/project-dryer-repair.jpg",
+    "gallery": [
       {
-        id: 1,
-        src: '/assets/images/service-dryer.jpg',
-        title: 'Airflow & Lint Heat-Exchanger Inspection',
-        stage: 'Stage 1: Lint Diagnostic',
-        desc: 'Inspected heat pump micro-fin condenser radiator; detected dense lint clogging reducing airflow by 85%.',
+        "id": 1,
+        "src": "/assets/images/project-dryer-repair.jpg",
+        "title": "Front Shroud Disassembly & Blower Housing Inspection",
+        "stage": "Stage 1: Mechanical Inspection",
+        "desc": "Removed lower access panel to inspect blower impeller, motor drive belt, and thermal limiter; identified heavy lint blockage and flattened roller bearing."
       },
       {
-        id: 2,
-        src: '/assets/images/about-repairman.jpg',
-        title: 'Blower Fan & Drum Support Roller Inspection',
-        stage: 'Stage 2: Mechanical Inspection',
-        desc: 'Tested moisture sensor carbon brushes and detected heavy squeaking from front idler pulley bearing.',
+        "id": 2,
+        "src": "/assets/images/tech-dryer-rollers.jpg",
+        "title": "Installing Heavy-Duty Sealed Bearing Rollers & Idler Pulley",
+        "stage": "Stage 2: Roller & Pulley Renewal",
+        "desc": "Extracted worn rubber rollers with grooved axle shafts; installed genuine OEM sealed ball-bearing drum rollers and spring-loaded idler pulley assembly."
       },
       {
-        id: 3,
-        src: '/assets/images/approach-process.jpg',
-        title: 'Deep Ultrasonic Coil Cleaning & Lint Seal Renewal',
-        stage: 'Stage 3: Deep Cleaning',
-        desc: 'Ultrasonic wet-cleaned the delicate aluminum heat exchanger fins and installed new felt drum sealing gaskets.',
+        "id": 3,
+        "src": "/assets/images/tech-pcb-diagnostic.jpg",
+        "title": "Testing Cycling Thermostats & High-Limit Thermal Fuse",
+        "stage": "Stage 3: Thermal Cutoff Testing",
+        "desc": "Tested thermal limiter switch and moisture sensing sensor bars with multimeter, confirming intermittent thermal cutoff trip caused by restricted airflow."
       },
       {
-        id: 4,
-        src: '/assets/images/hero-technician.jpg',
-        title: 'New OEM Moisture Sensors & Idler Pulley Installed',
-        stage: 'Stage 4: OEM Parts Installed',
-        desc: 'Fitted OEM Miele drum drive belt, lubricated idler pulley assembly, and replaced residual moisture sensor electrodes.',
+        "id": 4,
+        "src": "/assets/images/service-dryer.jpg",
+        "title": "Nichrome Heating Element Inspection & Deep Duct Vacuum",
+        "stage": "Stage 4: Heating Coil & Duct Cleaning",
+        "desc": "Inspected 5500W dual-coil heating element, cleared packed lint from blower housing, and lubricated drum rear sintered bronze bearing."
       },
       {
-        id: 5,
-        src: '/assets/images/project-washer.jpg',
-        title: 'Full Load Drying Verification & Moisture Sensor Test',
-        stage: 'Stage 5: Full Cycle Verification',
-        desc: 'Completed 6kg damp cotton test cycle. Cycle completed in 68 minutes with 0% residual moisture and whisper-quiet operation.',
-      },
+        "id": 5,
+        "src": "/assets/images/approach-process.jpg",
+        "title": "Full Load 45-Min Test Cycle & Moisture Sensor Auto-Cutoff",
+        "stage": "Stage 5: Silent Steam Test",
+        "desc": "Completed full load drying test with damp towels. Squeak eliminated completely (< 42 dBA), moisture sensors auto-terminated cycle at exactly 42 minutes."
+      }
     ],
-    problemSummary: 'Dryer ran complete 2.5-hour cycle, but laundry remained completely damp and cold. Drum emitted high-pitched squeak during rotation.',
-    diagnosticDetails: 'Primary heat-exchanger radiator fins were choked with micro-fibers, preventing warm air circulation. The residual moisture sensor had mineral buildup giving false reading to control module.',
-    solutionSteps: [
+    "problemSummary": "Beacon Hill townhouse dryer developed a loud rhythmic squeaking and thumping noise during tumbling. Clothes took multiple cycles to dry because the safety thermostat kept cutting power to the heating element due to constricted airflow.",
+    "diagnosticDetails": "Both front drum support rollers had developed flat spots on their rubber bushings, and lint accumulation inside the blower scroll had choked exhaust velocity, causing the cycling thermostat to trip prematurely.",
+    "solutionSteps": [
       {
-        step: '01',
-        title: 'Sensor & Heat Scan',
-        desc: 'Checked heat pump compressor temperature, measured R134a operating head pressures.',
+        "step": "01",
+        "title": "Cabinet Disassembly",
+        "desc": "Unbolted top cover, disconnect door harness, and removed front bulkhead to access drum drive train."
       },
       {
-        step: '02',
-        title: 'Cabinet Disassembly',
-        desc: 'Removed drum, front bulkhead, and blower fan shroud to access sealed air path.',
+        "step": "02",
+        "title": "Roller & Axle Overhaul",
+        "desc": "Removed retaining c-clips, polished stainless axle shafts, and installed 4 upgraded sealed ball-bearing rollers."
       },
       {
-        step: '03',
-        title: 'Fin Radiator De-clogging',
-        desc: 'Specialized condenser comb and chemical coil rinse restored 100% unrestricted airflow.',
+        "step": "03",
+        "title": "Belt & Idler Pulley Renewal",
+        "desc": "Installed heavy-duty poly-rib drive belt and new spring-loaded idler tensioner bracket."
       },
       {
-        step: '04',
-        title: 'Mechanical Overhaul',
-        desc: 'Replaced rear drum support bearing and fitted new poly-V drive belt.',
+        "step": "04",
+        "title": "Airflow Path De-linting",
+        "desc": "Used rotary air brush and HEPA vacuum to completely clear lint from internal exhaust duct and blower wheel."
       },
       {
-        step: '05',
-        title: 'Test Cycle Verification',
-        desc: 'Logged exhaust temperature curve and confirmed precise auto-shutoff when laundry reached bone-dry status.',
-      },
+        "step": "05",
+        "title": "High-Heat Operational Run",
+        "desc": "Verified 5500W heating element operation, measured 145°F exhaust temp, and verified silent drum rotation."
+      }
     ],
-    specs: [
-      { label: 'Appliance', value: 'Miele EcoSpeed T1 Heat Pump' },
-      { label: 'Part Replaced', value: 'OEM Belt, Pulley & Moisture Electrodes' },
-      { label: 'Airflow Restored', value: '185 CFM (Factory Benchmark)' },
-      { label: 'Condenser Temp', value: '54°C Stable Operating Temp' },
-      { label: 'Drying Time', value: 'Reduced from 160 min to 68 min' },
-      { label: 'Noise Reduction', value: '-12 dB (Squeak Eliminated)' },
+    "specs": [
+      {
+        "label": "Appliance",
+        "value": "Electrolux Perfect Steam 8.0 Cu. Ft. (ELFE7637)"
+      },
+      {
+        "label": "Part Replaced",
+        "value": "OEM Heavy-Duty Roller Kit, Idler Pulley & Belt"
+      },
+      {
+        "label": "Heat Output",
+        "value": "5500W Dual-Stage Electric Heating Element"
+      },
+      {
+        "label": "Airflow Speed",
+        "value": "210 CFM (Cleaned to Factory Benchmark)"
+      },
+      {
+        "label": "Noise Level",
+        "value": "-16 dBA Reduction (Whisper-Quiet Tumbling)"
+      },
+      {
+        "label": "Dry Cycle Time",
+        "value": "Reduced from 110 Mins to 42 Mins"
+      }
     ],
-    customerReview: {
-      name: 'Samuel White',
-      location: 'East River Valley',
-      date: 'July 31, 2026',
-      rating: 5,
-      comment: 'Our heat pump dryer was running for over 2 hours but clothes came out damp and cold. HomePulse came the very afternoon we called, conducted an ultrasonic coil cleaning, and replaced the drive pulley. Clothes now dry in under an hour and it runs whisper-quiet!',
-    },
+    "customerReview": {
+      "name": "Caroline Davenport",
+      "location": "Beacon Hill, Boston, MA",
+      "date": "August 20, 2026",
+      "rating": 5,
+      "comment": "Our dryer was squeaking so loudly you could hear it from the living room, and clothes took 2 hours to dry. David from HomePulse took the entire unit apart, cleaned all the internal lint buildup, and replaced all rollers and belts. The dryer is now completely silent and dries a full load of laundry in 40 minutes flat. Exceptional workmanship!"
+    }
   },
   {
-    id: 6,
-    slug: 'deep-freezer-evaporator-fan-and-defrost-heater-repair',
-    title: 'Upright Commercial Deep Freezer Defrost Thermostat & Blower Fan Overhaul',
-    shortTitle: 'Deep Freezer Defrost System Repair',
-    category: 'refrigerator',
-    categoryLabel: 'Freezer Repair',
-    applianceType: 'No-Frost Upright Deep Freezer',
-    brandModel: 'Liebherr NoFrost Upright Commercial Grade (GN 5215)',
-    date: 'July 18, 2026',
-    location: 'Pine Crest District',
-    duration: '2 Hours 10 Mins',
-    warranty: '12-Month Ironclad Warranty',
-    technician: 'James Anderson (Senior European Appliance Specialist)',
-    rating: 5,
-    heroImage: '/assets/images/service-freezer.jpg',
-    gallery: [
+    "id": 6,
+    "slug": "true-residential-freezer-defrost-evaporator-fan-repair",
+    "title": "True Residential Column Deep Freezer Defrost Bimetal, Heater & Airflow Fan Overhaul",
+    "shortTitle": "True Column Freezer Defrost System Repair",
+    "category": "refrigerator",
+    "categoryLabel": "Freezer Repair",
+    "applianceType": "Built-in Column Deep Freezer",
+    "brandModel": "True Residential 30\" Column Freezer Stainless (TR-30FRZ-R-SS-B)",
+    "date": "August 11, 2026",
+    "location": "Wellesley, MA",
+    "duration": "2 Hours 15 Mins",
+    "warranty": "12-Month Ironclad Warranty",
+    "technician": "James Anderson (Senior European & Commercial Specialist)",
+    "rating": 5,
+    "heroImage": "/assets/images/project-freezer-repair.jpg",
+    "gallery": [
       {
-        id: 1,
-        src: '/assets/images/service-freezer.jpg',
-        title: 'Severe Ice Blockage & Evaporator Coil Freezing',
-        stage: 'Stage 1: Ice Diagnosis',
-        desc: 'Evaporator cover removed to reveal 5cm thick solid ice pack choking airflow and freezing the blower fan blades.',
+        "id": 1,
+        "src": "/assets/images/project-freezer-repair.jpg",
+        "title": "Evaporator Inspection & Defrost Circuit Diagnostic",
+        "stage": "Stage 1: Evaporator Inspection",
+        "desc": "Removed interior stainless rear panel to reveal solid frost pack choking the evaporator fin pack and freezing the circulation blower blades."
       },
       {
-        id: 2,
-        src: '/assets/images/approach-process.jpg',
-        title: 'Controlled High-Efficiency Steam Defrosting',
-        stage: 'Stage 2: Steam Defrost',
-        desc: 'Used commercial low-pressure steam generator to melt 5kg ice block safely without damaging fragile plastic liners.',
+        "id": 2,
+        "src": "/assets/images/tech-steam-defrost.jpg",
+        "title": "Controlled Steam Evaporator Defrost & Drain Trough Clearing",
+        "stage": "Stage 2: Steam Coil Defrost",
+        "desc": "Melted solid frost bank using commercial low-pressure dry steam wand without damaging sensitive electronic sensors or aluminum coil fins."
       },
       {
-        id: 3,
-        src: '/assets/images/about-repairman.jpg',
-        title: 'Testing Defrost Heater, Bi-Metal Thermostat & Thermal Fuse',
-        stage: 'Stage 3: Electrical Diagnosis',
-        desc: 'Diagnosed an open-circuit defrost termination bimetal thermostat and calibrated high-limit thermal safety fuse.',
+        "id": 3,
+        "src": "/assets/images/tech-pcb-diagnostic.jpg",
+        "title": "Testing Defrost Heater, Bimetal Thermostat & High-Limit Fuse",
+        "stage": "Stage 3: Resistance Testing",
+        "desc": "Multimeter testing confirmed defrost termination bimetal thermostat had failed open-circuit at -10°F, preventing electronic control from triggering heater."
       },
       {
-        id: 4,
-        src: '/assets/images/hero-technician.jpg',
-        title: 'OEM Calrod Defrost Heater & Blower Assembly Installed',
-        stage: 'Stage 4: OEM Replacement',
-        desc: 'Installed upgraded OEM Liebherr defrost heater element and replacement brushless fan motor with low-temp silicone bearings.',
+        "id": 4,
+        "src": "/assets/images/tech-brazing-compressor.jpg",
+        "title": "OEM Defrost Heater Element & Brushless Fan Motor Fitment",
+        "stage": "Stage 4: Component Installation",
+        "desc": "Installed genuine OEM True Residential high-output Calrod defrost heater element, waterproof clip-on bimetal harness, and ECM circulation fan motor."
       },
       {
-        id: 5,
-        src: '/assets/images/project-refrigerator.jpg',
-        title: 'Rapid Pull-Down & Automated Defrost Cycle Verification',
-        stage: 'Stage 5: Deep Freeze Verification',
-        desc: 'Forced manual defrost cycle verified heater draw at 380 Watts; pulled chamber down to -22°C within 80 minutes.',
-      },
+        "id": 5,
+        "src": "/assets/images/service-freezer.jpg",
+        "title": "Rapid Chamber Pull-Down Verification to -15°F",
+        "stage": "Stage 5: Deep Freeze Verification",
+        "desc": "Forced diagnostic defrost cycle confirmed 420W heater draw. Chamber rapidly pulled down from 45°F to -15°F within 75 minutes with steady green indicator."
+      }
     ],
-    problemSummary: 'The freezer sound alarm beeped continuously with temperature indicator flashing red (-4°C instead of -18°C). Fan motor made grinding noises before stopping, and interior back wall was bulged with solid ice.',
-    diagnosticDetails: 'The defrost termination sensor had failed in the open position, preventing the electronic defrost controller from energizing the heating element every 8 hours. Over 3 weeks, condensed moisture froze into a solid block.',
-    solutionSteps: [
+    "problemSummary": "Wellesley luxury residence commercial freezer sounded an audible temperature alarm with compartment warming to 18°F. The back stainless wall was coated in heavy frost and the circulation fan made buzzing noises before freezing solid.",
+    "diagnosticDetails": "The defrost termination bimetal switch had failed in the open position, failing to complete the 120V circuit to the defrost heating element during automated 8-hour defrost cycles, resulting in cumulative ice accumulation.",
+    "solutionSteps": [
       {
-        step: '01',
-        title: 'Safety Evacuation & Steam Melt',
-        desc: 'Transferred frozen goods to portable insulated coolers and melted ice block using temperature-controlled steam.',
+        "step": "01",
+        "title": "Temperature Alarm Diagnostic",
+        "desc": "Interrogated digital controller event log confirming 48 consecutive missed defrost cycles."
       },
       {
-        step: '02',
-        title: 'Defrost Circuit Ohm Check',
-        desc: 'Checked defrost heater (found healthy 42 ohms), but bimetal switch was open circuit even at sub-zero temp.',
+        "step": "02",
+        "title": "Low-Pressure Steam Melting",
+        "desc": "Safely melted ice block using temperature-controlled steam wand and flushed condensate drain pan."
       },
       {
-        step: '03',
-        title: 'OEM Sensor & Heater Harness Replacement',
-        desc: 'Installed authentic Liebherr defrost sensor harness with waterproof heat-shrink seals.',
+        "step": "03",
+        "title": "Defrost Circuit Continuity Check",
+        "desc": "Confirmed 44-ohm resistance on Calrod heater, but termination bimetal was open even when chilled in ice."
       },
       {
-        step: '04',
-        title: 'Fan Motor Bearing Replacement',
-        desc: 'Replaced seized sub-zero circulation blower fan and balanced aerodynamic fan impeller.',
+        "step": "04",
+        "title": "OEM Harness & Motor Installation",
+        "desc": "Replaced bimetal thermostat harness with OEM silicone sealed clips and installed brushless ECM blower motor."
       },
       {
-        step: '05',
-        title: 'Forced Defrost & Re-chill Test',
-        desc: 'Initiated technician service menu, confirmed automatic heater cycling, and verified -22°C holding temperature.',
-      },
+        "step": "05",
+        "title": "Deep Freeze Cycle Test",
+        "desc": "Forced automated defrost cycle, verified 3.5A heater current draw, and confirmed fast recovery to -15°F."
+      }
     ],
-    specs: [
-      { label: 'Appliance', value: 'Liebherr GN 5215 NoFrost' },
-      { label: 'Part Replaced', value: 'OEM Defrost Bimetal + Fan Unit' },
-      { label: 'Heater Wattage', value: '380W Rapid Defrost Element' },
-      { label: 'Target Temp', value: '-22°C Commercial Freeze' },
-      { label: 'Pull-Down Speed', value: 'Fast Freeze (< 80 mins)' },
-      { label: 'Alarm Status', value: 'Cleared (Normal Green Indicator)' },
+    "specs": [
+      {
+        "label": "Appliance",
+        "value": "True Residential 30\" Column Freezer (TR-30FRZ)"
+      },
+      {
+        "label": "Part Replaced",
+        "value": "OEM Calrod Defrost Heater & Bimetal Harness"
+      },
+      {
+        "label": "Heater Output",
+        "value": "420W Rapid Defrost Element"
+      },
+      {
+        "label": "Operating Temp",
+        "value": "-15°F (-26°C) Commercial Freeze"
+      },
+      {
+        "label": "Pull-Down Speed",
+        "value": "Fast Recovery (< 75 Mins)"
+      },
+      {
+        "label": "Fan Motor",
+        "value": "Brushless ECM with Low-Temp Lubrication"
+      }
     ],
-    customerReview: {
-      name: 'Eric Patterson',
-      location: 'Pine Crest District',
-      date: 'July 19, 2026',
-      rating: 5,
-      comment: 'Our commercial deep freezer began building up solid frost on the rear wall and the temperature alarm kept beeping. The specialist safely steam-defrosted the coils, replaced the faulty defrost bimetal, and restored it to -20°C holding temperature. Outstanding professionalism!',
-    },
-  },
+    "customerReview": {
+      "name": "Harrison & Claire Sterling",
+      "location": "Wellesley, MA",
+      "date": "August 12, 2026",
+      "rating": 5,
+      "comment": "Our True Residential column freezer started beeping with frost forming on the back wall. True customer service recommended HomePulse as their authorized specialist in Massachusetts. James arrived with specialized steam equipment and authentic parts. He melted the ice cleanly, installed the new defrost harness, and got it down to -15°F within the afternoon. Impeccable service!"
+    }
+  }
 ];

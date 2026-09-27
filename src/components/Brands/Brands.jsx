@@ -18,6 +18,14 @@ const brands = [
   { name: 'Dacor', img: '/assets/images/brands/dacor.svg' },
   { name: 'Liebherr', img: '/assets/images/brands/liebherr.svg' },
   { name: 'GE Monogram', img: '/assets/images/brands/monogram.svg' },
+  { name: 'Samsung', img: '/assets/images/brands/samsung.svg' },
+  { name: 'LG', img: '/assets/images/brands/lg.svg' },
+  { name: 'Siemens', img: '/assets/images/brands/siemens.svg' },
+  { name: 'GE', img: '/assets/images/brands/ge.svg' },
+  { name: 'Panasonic', img: '/assets/images/brands/panasonic.svg' },
+  { name: 'Sharp', img: '/assets/images/brands/sharp.svg' },
+  { name: 'Toshiba', img: '/assets/images/brands/toshiba.svg' },
+  { name: 'Maytag', img: '/assets/images/brands/maytag.svg' },
 ];
 
 export default function Brands() {

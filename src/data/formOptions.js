@@ -1,0 +1,71 @@
+/**
+ * Shared Form Dropdown Options (Services, Brands, Cities)
+ * Used across Homepage (FAQ), Service Detail, and Contact forms
+ */
+
+export const serviceOptions = [
+  'Refrigerator Repair',
+  'Freezer Repair',
+  'Washer Repair',
+  'Dryer Repair',
+  'Dishwasher Repair',
+  'Oven & Range Repair',
+  'Cooktop & Stove Repair',
+  'Microwave Repair',
+  'Ice Maker Repair',
+  'Wine Cooler Repair',
+  'Range Hood Repair',
+  'Other / General Appliance Repair',
+];
+
+export const brandOptions = [
+  'Sub-Zero',
+  'Wolf',
+  'Viking',
+  'Thermador',
+  'Miele',
+  'Bosch',
+  'Gaggenau',
+  'KitchenAid',
+  'JennAir',
+  'Dacor',
+  'Liebherr',
+  'GE Profile / Monogram',
+  'Samsung',
+  'LG',
+  'Siemens',
+  'Panasonic',
+  'Sharp',
+  'Toshiba',
+  'Maytag',
+  'Whirlpool',
+  'Kenmore',
+  'Electrolux',
+  'Frigidaire',
+  'Other / Not Sure',
+];
+
+export const cityOptions = [
+  'Boston, MA',
+  'Cambridge, MA',
+  'Worcester, MA',
+  'Springfield, MA',
+  'Lowell, MA',
+  'Newton, MA',
+  'Quincy, MA',
+  'Somerville, MA',
+  'Brookline, MA',
+  'Waltham, MA',
+  'Framingham, MA',
+  'Salem, MA',
+  'Plymouth, MA',
+  'Lynn, MA',
+  'Wellesley, MA',
+  'Lexington, MA',
+  'Concord, MA',
+  'Belmont, MA',
+  'Needham, MA',
+  'Natick, MA',
+  'Marlborough, MA',
+  'Other Massachusetts City / Town',
+];
