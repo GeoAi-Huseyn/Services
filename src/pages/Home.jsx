@@ -16,6 +16,16 @@ export default function Home() {
   const { settings } = useSiteSettings();
 
   useEffect(() => {
+    if (window.location.hash) {
+      const targetId = window.location.hash.replace('#', '');
+      const el = document.getElementById(targetId);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }, 150);
+        return;
+      }
+    }
     // Scroll to top on mount (useful when navigating back from a detail page)
     window.scrollTo(0, 0);
   }, []);

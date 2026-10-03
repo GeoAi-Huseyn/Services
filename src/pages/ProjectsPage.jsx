@@ -83,13 +83,13 @@ export default function ProjectsPage() {
                 <ArrowLeftIcon size={14} />
                 <span>Back to Home</span>
               </Link>
-              <a href={`tel:+${settings.phone_raw || '18005550199'}`} className="pj-phone-pill d-none d-sm-inline-flex">
+              <a href={`tel:+${settings.phone_raw}`} className="pj-phone-pill d-none d-sm-inline-flex">
                 <div className="pj-phone-icon-wrap">
                   <PhoneIcon size={14} />
                 </div>
                 <div className="pj-phone-txt">
                   <small>Dispatch Hotline</small>
-                  <strong>{settings.phone || '(800) 555-0199'}</strong>
+                  <strong>{settings.phone}</strong>
                 </div>
               </a>
             </div>
@@ -277,7 +277,7 @@ export default function ProjectsPage() {
                           <i className="fa-solid fa-stopwatch me-1"></i> {project.duration}
                         </span>
                         <span className="pj-spec-chip">
-                          <i className="fa-solid fa-shield-halved me-1"></i> 1-Year Warranty
+                          <i className="fa-solid fa-shield-halved me-1"></i> {project.warranty || '90-Day Warranty'}
                         </span>
                       </div>
 
@@ -325,7 +325,7 @@ export default function ProjectsPage() {
                 <div className="feature-icon">
                   <i className="fa-solid fa-shield-check"></i>
                 </div>
-                <h4>12-Month Guarantee</h4>
+                <h4>90-Day Guarantee</h4>
                 <p>Full warranty covering parts and labor.</p>
               </div>
             </div>
@@ -358,11 +358,11 @@ export default function ProjectsPage() {
               </div>
               <div className="col-lg-4 text-lg-end text-center mt-lg-0 mt-4">
                 <div className="d-flex flex-column flex-sm-row justify-content-lg-end justify-content-center gap-3">
-                  <a href={`tel:+${settings.phone_raw || '18005550199'}`} className="pj-cta-phone-btn">
+                  <a href={`tel:+${settings.phone_raw}`} className="pj-cta-phone-btn">
                     <PhoneIcon size={16} />
-                    <span>Call {settings.phone || '(800) 555-0199'}</span>
+                    <span>Call {settings.phone}</span>
                   </a>
-                  <a href={`https://wa.me/${settings.whatsapp_number || '18005550199'}`} target="_blank" rel="noreferrer" className="pj-cta-wa-btn">
+                  <a href={settings.whatsapp_link} target="_blank" rel="noreferrer" className="pj-cta-wa-btn">
                     <WhatsAppIcon size={18} />
                     <span>WhatsApp Chat</span>
                   </a>

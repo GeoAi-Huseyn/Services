@@ -21,6 +21,13 @@ export default function Footer() {
   const [newsletterSent, setNewsletterSent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const hasSocialMedia = Boolean(
+    settings.facebook_url ||
+    settings.instagram_url ||
+    settings.twitter_url ||
+    settings.linkedin_url
+  );
+
   const handleNewsletter = async (e) => {
     e.preventDefault();
     if (newsletterEmail) {
@@ -54,8 +61,8 @@ export default function Footer() {
                   <div className="contact-text">
                     <span>Email</span>
                     <div className="text">
-                      <a className="link" href={`mailto:${settings.email || 'info@homepulse.com'}`}>
-                        {settings.email || 'info@homepulse.com'}
+                      <a className="link" href={`mailto:${settings.email}`}>
+                        {settings.email}
                       </a>
                     </div>
                   </div>
@@ -68,8 +75,8 @@ export default function Footer() {
                   <div className="contact-text">
                     <span>Phone</span>
                     <div className="text">
-                      <a className="link" href={`tel:+${settings.phone_raw || '18005550199'}`}>
-                        {settings.phone || '(800) 555-0199'}
+                      <a className="link" href={`tel:+${settings.phone_raw}`}>
+                        {settings.phone}
                       </a>
                     </div>
                   </div>
@@ -82,7 +89,7 @@ export default function Footer() {
                   <div className="contact-text">
                     <span>Address</span>
                     <div className="text">
-                      {settings.address || '100 State Street, Suite 400'}, {settings.city_state || 'Boston, MA 02109'}
+                      {settings.address}{settings.city_state ? `, ${settings.city_state}` : ''}
                     </div>
                   </div>
                 </div>
@@ -118,14 +125,16 @@ export default function Footer() {
                 <div className="desc">
                   <p>HomePulse - Professional major home appliance, cooling, and kitchen equipment repair services.</p>
                 </div>
-                <div className="footer-share">
-                  <ul>
-                    <li><a href={settings.facebook_url || "https://www.facebook.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-facebook"></i></a></li>
-                    <li><a href={settings.instagram_url || "https://www.instagram.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-instagram"></i></a></li>
-                    <li><a href={settings.twitter_url || "https://www.twitter.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-twitter"></i></a></li>
-                    <li><a href={settings.linkedin_url || "https://www.linkedin.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin"></i></a></li>
-                  </ul>
-                </div>
+                {hasSocialMedia && (
+                  <div className="footer-share">
+                    <ul>
+                      {settings.facebook_url && <li><a href={settings.facebook_url} target="_blank" rel="noreferrer"><i className="fa-brands fa-facebook"></i></a></li>}
+                      {settings.instagram_url && <li><a href={settings.instagram_url} target="_blank" rel="noreferrer"><i className="fa-brands fa-instagram"></i></a></li>}
+                      {settings.twitter_url && <li><a href={settings.twitter_url} target="_blank" rel="noreferrer"><i className="fa-brands fa-twitter"></i></a></li>}
+                      {settings.linkedin_url && <li><a href={settings.linkedin_url} target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin"></i></a></li>}
+                    </ul>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -207,7 +216,7 @@ export default function Footer() {
             <div className="col-lg-6">
               <div className="copyright-text">
                 <p>
-                  © Copyright 2024 - All Rights Reserved.{' '}
+                  © Copyright 2026 - All Rights Reserved.{' '}
                   <a href="#">HomePulse Appliance Repair</a>
                 </p>
               </div>

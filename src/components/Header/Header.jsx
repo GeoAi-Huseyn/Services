@@ -56,6 +56,28 @@ export default function Header() {
     }
   };
 
+  // Handler for Book Service button: smoothly scrolls to FAQ section on the homepage,
+  // or navigates to /#faq from other pages.
+  const handleBookServiceClick = (e) => {
+    closeMenus();
+    if (location.pathname === '/') {
+      e.preventDefault();
+      const faqEl = document.getElementById('faq');
+      if (faqEl) {
+        faqEl.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.location.hash = '#faq';
+      }
+    }
+  };
+
+  const hasSocialMedia = Boolean(
+    settings.facebook_url ||
+    settings.instagram_url ||
+    settings.twitter_url ||
+    settings.linkedin_url
+  );
+
   return (
     <>
       {/* Body / Offcanvas Overlay */}
@@ -94,7 +116,7 @@ export default function Header() {
             </div>
             <div className="contact-text">
               <span>Email</span>
-              <div className="text"><a className="link" href={`mailto:${settings.email || 'info@homepulse.com'}`}>{settings.email || 'info@homepulse.com'}</a></div>
+              <div className="text"><a className="link" href={`mailto:${settings.email}`}>{settings.email}</a></div>
             </div>
           </div>
           <div className="contact-item">
@@ -103,7 +125,7 @@ export default function Header() {
             </div>
             <div className="contact-text">
               <span>Phone Number</span>
-              <div className="text"><a className="link" href={`tel:+${settings.phone_raw || '18005550199'}`}>{settings.phone || '(800) 555-0199'}</a></div>
+              <div className="text"><a className="link" href={`tel:+${settings.phone_raw}`}>{settings.phone}</a></div>
             </div>
           </div>
           <div className="contact-item">
@@ -112,20 +134,22 @@ export default function Header() {
             </div>
             <div className="contact-text">
               <span>Address</span>
-              <div className="text">{settings.address || '100 State Street, Suite 400'}, {settings.city_state || 'Boston, MA 02109'}</div>
+              <div className="text">{settings.address}{settings.city_state ? `, ${settings.city_state}` : ''}</div>
             </div>
           </div>
         </div>
 
-        <div className="canvas-share">
-          <h4 className="offcanvas-title">Social Media</h4>
-          <ul>
-            <li><a href={settings.facebook_url || "https://www.facebook.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-facebook"></i></a></li>
-            <li><a href={settings.instagram_url || "https://www.instagram.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-instagram"></i></a></li>
-            <li><a href={settings.twitter_url || "https://www.twitter.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-twitter"></i></a></li>
-            <li><a href={settings.linkedin_url || "https://www.linkedin.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin"></i></a></li>
-          </ul>
-        </div>
+        {hasSocialMedia && (
+          <div className="canvas-share">
+            <h4 className="offcanvas-title">Social Media</h4>
+            <ul>
+              {settings.facebook_url && <li><a href={settings.facebook_url} target="_blank" rel="noreferrer"><i className="fa-brands fa-facebook"></i></a></li>}
+              {settings.instagram_url && <li><a href={settings.instagram_url} target="_blank" rel="noreferrer"><i className="fa-brands fa-instagram"></i></a></li>}
+              {settings.twitter_url && <li><a href={settings.twitter_url} target="_blank" rel="noreferrer"><i className="fa-brands fa-twitter"></i></a></li>}
+              {settings.linkedin_url && <li><a href={settings.linkedin_url} target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin"></i></a></li>}
+            </ul>
+          </div>
+        )}
 
         <div className="canvas-map">
           <iframe
@@ -214,7 +238,7 @@ export default function Header() {
               </div>
               <div className="contact-text">
                 <span>Email</span>
-                <div className="text"><a className="link" href={`mailto:${settings.email || 'info@homepulse.com'}`}>{settings.email || 'info@homepulse.com'}</a></div>
+                <div className="text"><a className="link" href={`mailto:${settings.email}`}>{settings.email}</a></div>
               </div>
             </div>
             <div className="contact-item">
@@ -223,7 +247,7 @@ export default function Header() {
               </div>
               <div className="contact-text">
                 <span>Phone Number</span>
-                <div className="text"><a className="link" href={`tel:+${settings.phone_raw || '18005550199'}`}>{settings.phone || '(800) 555-0199'}</a></div>
+                <div className="text"><a className="link" href={`tel:+${settings.phone_raw}`}>{settings.phone}</a></div>
               </div>
             </div>
             <div className="contact-item">
@@ -232,17 +256,17 @@ export default function Header() {
               </div>
               <div className="contact-text">
                 <span>Address</span>
-                <div className="text">{settings.address || '100 State Street, Suite 400'}, {settings.city_state || 'Boston, MA 02109'}</div>
+                <div className="text">{settings.address}{settings.city_state ? `, ${settings.city_state}` : ''}</div>
               </div>
             </div>
           </div>
 
           <div className="hamburger-socials">
             <ul>
-              <li><a href={settings.facebook_url || "https://www.facebook.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-facebook"></i></a></li>
-              <li><a href={settings.instagram_url || "https://www.instagram.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-instagram"></i></a></li>
-              <li><a href={settings.twitter_url || "https://www.twitter.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-twitter"></i></a></li>
-              <li><a href={settings.linkedin_url || "https://www.linkedin.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin"></i></a></li>
+              {settings.facebook_url && <li><a href={settings.facebook_url} target="_blank" rel="noreferrer"><i className="fa-brands fa-facebook"></i></a></li>}
+              {settings.instagram_url && <li><a href={settings.instagram_url} target="_blank" rel="noreferrer"><i className="fa-brands fa-instagram"></i></a></li>}
+              {settings.twitter_url && <li><a href={settings.twitter_url} target="_blank" rel="noreferrer"><i className="fa-brands fa-twitter"></i></a></li>}
+              {settings.linkedin_url && <li><a href={settings.linkedin_url} target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin"></i></a></li>}
             </ul>
           </div>
 
@@ -271,25 +295,27 @@ export default function Header() {
                   <div className="header-contact-infos">
                     <ul>
                       <li>
-                        <a href={`tel:+${settings.phone_raw || '18005550199'}`}><i className="flaticon-call"></i>{settings.phone || '(800) 555-0199'}</a>
+                        <a href={`tel:+${settings.phone_raw}`}><i className="flaticon-call"></i>{settings.phone}</a>
                       </li>
                       <li>
-                        <a href={`mailto:${settings.email || 'info@homepulse.com'}`}><i className="flaticon-mail"></i>{settings.email || 'info@homepulse.com'}</a>
+                        <a href={`mailto:${settings.email}`}><i className="flaticon-mail"></i>{settings.email}</a>
                       </li>
                       <li>
-                        <i className="flaticon-home"></i> {settings.address || '100 State Street, Suite 400'}, {settings.city_state || 'Boston, MA 02109'}
+                        <i className="flaticon-home"></i> {settings.address}{settings.city_state ? `, ${settings.city_state}` : ''}
                       </li>
                     </ul>
                   </div>
-                  <div className="header-socials">
-                    <span className="text">Social Media</span>
-                    <ul>
-                      <li><a href={settings.facebook_url || "https://www.facebook.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-facebook"></i></a></li>
-                      <li><a href={settings.instagram_url || "https://www.instagram.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-instagram"></i></a></li>
-                      <li><a href={settings.twitter_url || "https://www.twitter.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-twitter"></i></a></li>
-                      <li><a href={settings.linkedin_url || "https://www.linkedin.com"} target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin"></i></a></li>
-                    </ul>
-                  </div>
+                  {hasSocialMedia && (
+                    <div className="header-socials">
+                      <span className="text">Social Media</span>
+                      <ul>
+                        {settings.facebook_url && <li><a href={settings.facebook_url} target="_blank" rel="noreferrer"><i className="fa-brands fa-facebook"></i></a></li>}
+                        {settings.instagram_url && <li><a href={settings.instagram_url} target="_blank" rel="noreferrer"><i className="fa-brands fa-instagram"></i></a></li>}
+                        {settings.twitter_url && <li><a href={settings.twitter_url} target="_blank" rel="noreferrer"><i className="fa-brands fa-twitter"></i></a></li>}
+                        {settings.linkedin_url && <li><a href={settings.linkedin_url} target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin"></i></a></li>}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -344,7 +370,7 @@ export default function Header() {
                       </button>
                     </div>
                     <div className="header-button d-none d-xl-inline-flex">
-                      <a className="tj-white-btn" href="/#contact">Book Service</a>
+                      <a className="tj-white-btn" href="/#faq" onClick={handleBookServiceClick}>Book Service</a>
                     </div>
                   </div>
 
@@ -401,7 +427,7 @@ export default function Header() {
 
                   <div className="mainmenu-right d-none d-lg-inline-flex">
                     <div className="header-button d-none d-md-inline-block">
-                      <a className="tj-white-btn" href="/#contact">Book Service</a>
+                      <a className="tj-white-btn" href="/#faq" onClick={handleBookServiceClick}>Book Service</a>
                     </div>
                   </div>
 

@@ -175,7 +175,7 @@ export async function adminChangePassword(token, oldPassword, newPassword) {
     return data;
   } catch (err) {
     console.error('Change password error:', err);
-    return { success: false, error: err.message || 'Şifre değiştirilemedi' };
+    return { success: false, error: err.message || 'Failed to change password' };
   }
 }
 

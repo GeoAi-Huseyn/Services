@@ -106,6 +106,7 @@
 .tj-faq-section {
   min-height: 860px;
   box-sizing: border-box;
+  scroll-margin-top: 90px;
 }
 
 .tj-faq-section .accordion.tj-faq {

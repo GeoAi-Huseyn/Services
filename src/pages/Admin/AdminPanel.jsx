@@ -17,10 +17,30 @@ import {
 } from '../../lib/supabase';
 import { useSiteSettings } from '../../context/SiteSettingsContext';
 import AdminLogin from './AdminLogin';
+import AdminStatusDropdown from './AdminStatusDropdown';
 import './AdminPanel.css';
 
+export function formatUsPhone(val) {
+  if (!val) return '';
+  const str = String(val);
+  let digits = str.replace(/\D/g, '');
+  if (!digits) return '';
+
+  if (digits.startsWith('1') && digits.length > 1) {
+    digits = digits.slice(1);
+  } else if (digits === '1') {
+    return '+1 (';
+  }
+
+  digits = digits.slice(0, 10);
+  if (digits.length === 0) return '';
+  if (digits.length <= 3) return `+1 (${digits}`;
+  if (digits.length <= 6) return `+1 (${digits.slice(0, 3)}) ${digits.slice(3)}`;
+  return `+1 (${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+}
+
 export default function AdminPanel() {
-  const { refreshSettings: refreshGlobalSettings } = useSiteSettings();
+  const { settings, refreshSettings: refreshGlobalSettings } = useSiteSettings();
 
   // Auth State
   const [token, setToken] = useState(() => localStorage.getItem('homepulse_admin_token') || '');
@@ -67,26 +87,58 @@ export default function AdminPanel() {
   const [subscribers, setSubscribers] = useState([]);
   const [subscribersLoading, setSubscribersLoading] = useState(false);
 
-  // Contact Info Settings State
-  const [settingsForm, setSettingsForm] = useState({
-    company_name: '',
-    phone: '',
-    phone_raw: '',
-    emergency_phone: '',
-    email: '',
-    address: '',
-    city_state: '',
-    working_hours: '',
-    emergency_badge: '',
-    announcement: '',
-    whatsapp_number: '',
-    whatsapp_display: '',
-    facebook_url: '',
-    instagram_url: '',
-    twitter_url: '',
-    linkedin_url: '',
+  // Contact Info Settings State (Initialized from cache / context for zero lag)
+  const [settingsForm, setSettingsForm] = useState(() => {
+    let base = {};
+    try {
+      const cached = localStorage.getItem('homepulse_site_settings');
+      if (cached) base = JSON.parse(cached);
+    } catch (e) {}
+    return {
+      company_name: base.company_name || '',
+      phone: formatUsPhone(base.phone || ''),
+      phone_raw: base.phone_raw || '',
+      emergency_phone: formatUsPhone(base.phone || ''),
+      email: base.email || '',
+      address: base.address || '',
+      city_state: base.city_state || '',
+      working_hours: base.working_hours || '',
+      emergency_badge: base.emergency_badge || '',
+      announcement: base.announcement || '',
+      whatsapp_number: formatUsPhone(base.whatsapp_display || base.whatsapp_number || ''),
+      whatsapp_display: formatUsPhone(base.whatsapp_display || base.whatsapp_number || ''),
+      facebook_url: base.facebook_url || '',
+      instagram_url: base.instagram_url || '',
+      twitter_url: base.twitter_url || '',
+      linkedin_url: base.linkedin_url || '',
+    };
   });
   const [settingsSaving, setSettingsSaving] = useState(false);
+
+  // Sync settings when context loads
+  useEffect(() => {
+    if (settings && (!settingsForm.phone || !settingsForm.email)) {
+      setSettingsForm((prev) => ({
+        ...prev,
+        company_name: prev.company_name || settings.company_name || '',
+        phone: prev.phone || formatUsPhone(settings.phone || ''),
+        phone_raw: prev.phone_raw || settings.phone_raw || '',
+        emergency_phone: prev.emergency_phone || formatUsPhone(settings.phone || ''),
+        email: prev.email || settings.email || '',
+        address: prev.address || settings.address || '',
+        city_state: prev.city_state || settings.city_state || '',
+        working_hours: prev.working_hours || settings.working_hours || '',
+        emergency_badge: prev.emergency_badge || settings.emergency_badge || '',
+        announcement: prev.announcement || settings.announcement || '',
+        whatsapp_number: prev.whatsapp_number || formatUsPhone(settings.whatsapp_display || settings.whatsapp_number || ''),
+        whatsapp_display: prev.whatsapp_display || formatUsPhone(settings.whatsapp_display || settings.whatsapp_number || ''),
+        facebook_url: prev.facebook_url || settings.facebook_url || '',
+        instagram_url: prev.instagram_url || settings.instagram_url || '',
+        twitter_url: prev.twitter_url || settings.twitter_url || '',
+        linkedin_url: prev.linkedin_url || settings.linkedin_url || '',
+      }));
+    }
+  }, [settings]);
 
   // Password Change State
   const [pwdForm, setPwdForm] = useState({
@@ -95,6 +147,18 @@ export default function AdminPanel() {
     confirmPassword: '',
   });
   const [pwdSaving, setPwdSaving] = useState(false);
+
+  // Phone Number Auto-Formatter Handler (+1 (xxx) xxx-xxxx)
+  const handlePhoneChange = (field, e) => {
+    const rawVal = e.target.value;
+    const digitsOnly = rawVal.replace(/\D/g, '');
+    if (!digitsOnly || (digitsOnly === '1' && rawVal.length <= 4)) {
+      setSettingsForm((prev) => ({ ...prev, [field]: '' }));
+      return;
+    }
+    const formatted = formatUsPhone(rawVal);
+    setSettingsForm((prev) => ({ ...prev, [field]: formatted }));
+  };
 
   // Verify Auth on Load
   useEffect(() => {
@@ -134,27 +198,27 @@ export default function AdminPanel() {
     }
   }, [token]);
 
-  // Fetch Service Requests
+  // Fetch Service Requests (Always fetch all to maintain persistent counts across tabs)
   const fetchServices = useCallback(async () => {
     if (!token) return;
     setServicesLoading(true);
-    const res = await adminGetServiceRequests(token, serviceFilter);
+    const res = await adminGetServiceRequests(token, 'all');
     if (res && res.success && res.data) {
       setServiceRequests(res.data);
     }
     setServicesLoading(false);
-  }, [token, serviceFilter]);
+  }, [token]);
 
-  // Fetch Inquiries
+  // Fetch Inquiries (Always fetch all to maintain persistent counts across tabs)
   const fetchInquiries = useCallback(async () => {
     if (!token) return;
     setInquiriesLoading(true);
-    const res = await adminGetInquiries(token, inquiryFilter);
+    const res = await adminGetInquiries(token, 'all');
     if (res && res.success && res.data) {
       setInquiries(res.data);
     }
     setInquiriesLoading(false);
-  }, [token, inquiryFilter]);
+  }, [token]);
 
   // Fetch Subscribers
   const fetchSubscribers = useCallback(async () => {
@@ -173,17 +237,17 @@ export default function AdminPanel() {
     if (data) {
       setSettingsForm({
         company_name: data.company_name || '',
-        phone: data.phone || '',
+        phone: formatUsPhone(data.phone || ''),
         phone_raw: data.phone_raw || '',
-        emergency_phone: data.emergency_phone || '',
+        emergency_phone: formatUsPhone(data.phone || ''),
         email: data.email || '',
         address: data.address || '',
         city_state: data.city_state || '',
         working_hours: data.working_hours || '',
         emergency_badge: data.emergency_badge || '',
         announcement: data.announcement || '',
-        whatsapp_number: data.whatsapp_number || '',
-        whatsapp_display: data.whatsapp_display || '',
+        whatsapp_number: formatUsPhone(data.whatsapp_display || data.whatsapp_number || ''),
+        whatsapp_display: formatUsPhone(data.whatsapp_display || data.whatsapp_number || ''),
         facebook_url: data.facebook_url || '',
         instagram_url: data.instagram_url || '',
         twitter_url: data.twitter_url || '',
@@ -199,6 +263,7 @@ export default function AdminPanel() {
     if (activeTab === 'dashboard') {
       fetchServices();
       fetchInquiries();
+      fetchSettings();
     } else if (activeTab === 'services') {
       fetchServices();
     } else if (activeTab === 'inquiries') {
@@ -304,19 +369,25 @@ export default function AdminPanel() {
     e.preventDefault();
     setSettingsSaving(true);
     try {
-      const cleanPhoneDigits = (settingsForm.phone || '').replace(/[^0-9]/g, '');
-      const cleanWhatsappDigits = (settingsForm.whatsapp_number || '').replace(/[^0-9]/g, '');
+      const formattedPhone = formatUsPhone(settingsForm.phone);
+      const formattedWhatsapp = formatUsPhone(settingsForm.whatsapp_number);
+      const cleanPhoneDigits = formattedPhone.replace(/[^0-9]/g, '');
+      const cleanWhatsappDigits = formattedWhatsapp.replace(/[^0-9]/g, '');
 
       const payload = {
         ...settingsForm,
-        phone: settingsForm.phone,
+        phone: formattedPhone || settingsForm.phone,
         phone_raw: cleanPhoneDigits,
+        emergency_phone: formattedPhone || settingsForm.phone,
         whatsapp_number: cleanWhatsappDigits,
-        whatsapp_display: settingsForm.whatsapp_number || settingsForm.phone,
+        whatsapp_display: formattedWhatsapp || settingsForm.whatsapp_number,
       };
 
       const res = await adminUpdateSettings(token, payload);
       if (res && res.success) {
+        try {
+          localStorage.setItem('homepulse_site_settings', JSON.stringify(payload));
+        } catch (e) {}
         showToast('Company and contact settings updated successfully!');
         await refreshGlobalSettings();
       } else {
@@ -391,8 +462,11 @@ export default function AdminPanel() {
     return <span className={`hp-status-badge ${c.class}`}>{c.label}</span>;
   };
 
-  // Filtered Services
+  // Filtered Services with Tab Filtering
   const filteredServices = serviceRequests.filter((item) => {
+    if (serviceFilter !== 'all' && item.status !== serviceFilter) {
+      return false;
+    }
     if (!serviceSearch.trim()) return true;
     const q = serviceSearch.toLowerCase();
     return (
@@ -404,8 +478,20 @@ export default function AdminPanel() {
     );
   });
 
-  // Filtered Inquiries
+  // Accurate individual counts for every status tab
+  const serviceCounts = {
+    all: serviceRequests.length,
+    pending: serviceRequests.filter((r) => r.status === 'pending').length,
+    in_progress: serviceRequests.filter((r) => r.status === 'in_progress').length,
+    completed: serviceRequests.filter((r) => r.status === 'completed').length,
+    cancelled: serviceRequests.filter((r) => r.status === 'cancelled').length,
+  };
+
+  // Filtered Inquiries with Tab Filtering
   const filteredInquiries = inquiries.filter((item) => {
+    if (inquiryFilter !== 'all' && item.status !== inquiryFilter) {
+      return false;
+    }
     if (!inquirySearch.trim()) return true;
     const q = inquirySearch.toLowerCase();
     return (
@@ -416,6 +502,14 @@ export default function AdminPanel() {
       (item.message && item.message.toLowerCase().includes(q))
     );
   });
+
+  // Accurate individual counts for every inquiry tab
+  const inquiryCounts = {
+    all: inquiries.length,
+    new: inquiries.filter((i) => i.status === 'new').length,
+    contacted: inquiries.filter((i) => i.status === 'contacted').length,
+    resolved: inquiries.filter((i) => i.status === 'resolved').length,
+  };
 
   // If session is checking
   if (authChecking) {
@@ -730,7 +824,13 @@ export default function AdminPanel() {
                             <td>
                               <span className="hp-city-tag">{req.city || '-'}</span>
                             </td>
-                            <td>{renderStatusBadge(req.status)}</td>
+                            <td>
+                              <AdminStatusDropdown
+                                value={req.status}
+                                type="service"
+                                onChange={(newStatus) => handleUpdateServiceStatus(req.id, newStatus)}
+                              />
+                            </td>
                             <td>
                               <button
                                 className="hp-action-btn"
@@ -760,24 +860,28 @@ export default function AdminPanel() {
                 </div>
                 <div className="hp-quick-info-box">
                   <div className="hp-info-row">
-                    <span>Phone:</span>
-                    <strong>{settingsForm.phone || '(800) 555-0199'}</strong>
+                    <span>Call Number:</span>
+                    <strong>{settingsForm.phone}</strong>
+                  </div>
+                  <div className="hp-info-row">
+                    <span>WhatsApp:</span>
+                    <strong>{settingsForm.whatsapp_number}</strong>
                   </div>
                   <div className="hp-info-row">
                     <span>Email:</span>
-                    <strong>{settingsForm.email || 'info@homepulse.com'}</strong>
+                    <strong>{settingsForm.email}</strong>
                   </div>
                   <div className="hp-info-row">
                     <span>Address:</span>
-                    <strong>{settingsForm.address || '100 State Street, Suite 400'}</strong>
+                    <strong>{settingsForm.address}</strong>
                   </div>
                   <div className="hp-info-row">
                     <span>City / State:</span>
-                    <strong>{settingsForm.city_state || 'Boston, MA 02109'}</strong>
+                    <strong>{settingsForm.city_state}</strong>
                   </div>
                   <div className="hp-info-row">
                     <span>Working Hours:</span>
-                    <strong>{settingsForm.working_hours || 'Mon - Sat: 7:00 AM - 9:00 PM'}</strong>
+                    <strong>{settingsForm.working_hours}</strong>
                   </div>
                 </div>
               </div>
@@ -794,31 +898,31 @@ export default function AdminPanel() {
                   className={serviceFilter === 'all' ? 'active' : ''}
                   onClick={() => setServiceFilter('all')}
                 >
-                  All ({serviceRequests.length})
+                  All <span className="hp-filter-count">{serviceCounts.all}</span>
                 </button>
                 <button
                   className={serviceFilter === 'pending' ? 'active' : ''}
                   onClick={() => setServiceFilter('pending')}
                 >
-                  Pending
+                  Pending <span className="hp-filter-count">{serviceCounts.pending}</span>
                 </button>
                 <button
                   className={serviceFilter === 'in_progress' ? 'active' : ''}
                   onClick={() => setServiceFilter('in_progress')}
                 >
-                  In Progress
+                  In Progress <span className="hp-filter-count">{serviceCounts.in_progress}</span>
                 </button>
                 <button
                   className={serviceFilter === 'completed' ? 'active' : ''}
                   onClick={() => setServiceFilter('completed')}
                 >
-                  Completed
+                  Completed <span className="hp-filter-count">{serviceCounts.completed}</span>
                 </button>
                 <button
                   className={serviceFilter === 'cancelled' ? 'active' : ''}
                   onClick={() => setServiceFilter('cancelled')}
                 >
-                  Cancelled
+                  Cancelled <span className="hp-filter-count">{serviceCounts.cancelled}</span>
                 </button>
               </div>
 
@@ -891,16 +995,11 @@ export default function AdminPanel() {
                           <span className="hp-time-badge">{req.time_preference || 'Anytime'}</span>
                         </td>
                         <td>
-                          <select
-                            className="hp-status-select"
+                          <AdminStatusDropdown
                             value={req.status}
-                            onChange={(e) => handleUpdateServiceStatus(req.id, e.target.value)}
-                          >
-                            <option value="pending">Pending</option>
-                            <option value="in_progress">In Progress</option>
-                            <option value="completed">Completed</option>
-                            <option value="cancelled">Cancelled</option>
-                          </select>
+                            type="service"
+                            onChange={(newStatus) => handleUpdateServiceStatus(req.id, newStatus)}
+                          />
                         </td>
                         <td>
                           <div className="hp-action-group">
@@ -944,25 +1043,25 @@ export default function AdminPanel() {
                   className={inquiryFilter === 'all' ? 'active' : ''}
                   onClick={() => setInquiryFilter('all')}
                 >
-                  All ({inquiries.length})
+                  All <span className="hp-filter-count">{inquiryCounts.all}</span>
                 </button>
                 <button
                   className={inquiryFilter === 'new' ? 'active' : ''}
                   onClick={() => setInquiryFilter('new')}
                 >
-                  New
+                  New <span className="hp-filter-count">{inquiryCounts.new}</span>
                 </button>
                 <button
                   className={inquiryFilter === 'contacted' ? 'active' : ''}
                   onClick={() => setInquiryFilter('contacted')}
                 >
-                  Contacted
+                  Contacted <span className="hp-filter-count">{inquiryCounts.contacted}</span>
                 </button>
                 <button
                   className={inquiryFilter === 'resolved' ? 'active' : ''}
                   onClick={() => setInquiryFilter('resolved')}
                 >
-                  Resolved
+                  Resolved <span className="hp-filter-count">{inquiryCounts.resolved}</span>
                 </button>
               </div>
 
@@ -996,15 +1095,13 @@ export default function AdminPanel() {
                         <span className="hp-inq-date">{formatDate(inq.created_at)}</span>
                       </div>
                       <div className="hp-inq-actions">
-                        <select
-                          className="hp-status-select hp-status-select-sm"
+                        <AdminStatusDropdown
                           value={inq.status}
-                          onChange={(e) => handleUpdateInquiryStatus(inq.id, e.target.value)}
-                        >
-                          <option value="new">New</option>
-                          <option value="contacted">Contacted</option>
-                          <option value="resolved">Resolved</option>
-                        </select>
+                          type="inquiry"
+                          size="sm"
+                          align="right"
+                          onChange={(newStatus) => handleUpdateInquiryStatus(inq.id, newStatus)}
+                        />
                         <button
                           className="hp-delete-btn"
                           title="Delete Message"
@@ -1080,44 +1177,33 @@ export default function AdminPanel() {
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                       </svg>
-                      İletişim & Yönlendirme Numaraları (Call & WhatsApp)
+                      Call & Routing Numbers (Call & WhatsApp)
                     </h4>
-                    <span>Arama butonları (tel:) ve WhatsApp (wa.me/) yönlendirmeleri için numaralar</span>
+                    <span>Phone numbers used for call buttons (tel:) and WhatsApp (wa.me/) redirections</span>
                   </div>
 
                   <div className="hp-field-group">
-                    <label>Arama Numarası (Call Number - Doğrudan Arama Linki)</label>
+                    <label>1) Call Number</label>
                     <input
                       type="text"
                       value={settingsForm.phone}
-                      onChange={(e) => setSettingsForm({ ...settingsForm, phone: e.target.value })}
-                      placeholder="(800) 555-0199 veya +1 800 555 0199"
+                      onChange={(e) => handlePhoneChange('phone', e)}
+                      placeholder="+1 (xxx) xxx-xxxx"
                       required
                     />
-                    <small>Sitedeki tüm "Ara" butonları ve başlıklar doğrudan bu numarayı arar (tel: linki otomatik oluşturulur)</small>
+                    <small>Auto-formatted: +1 (xxx) xxx-xxxx — All call buttons on the site will dial this number</small>
                   </div>
 
                   <div className="hp-field-group">
-                    <label>WhatsApp Numarası (WhatsApp Yönlendirecek Numara)</label>
+                    <label>2) WhatsApp Number</label>
                     <input
                       type="text"
                       value={settingsForm.whatsapp_number}
-                      onChange={(e) => setSettingsForm({ ...settingsForm, whatsapp_number: e.target.value })}
-                      placeholder="15715711664 veya +15715711664"
+                      onChange={(e) => handlePhoneChange('whatsapp_number', e)}
+                      placeholder="+1 (xxx) xxx-xxxx"
                       required
                     />
-                    <small>Sitedeki tüm WhatsApp butonlarına tıklandığında doğrudan bu numaraya WhatsApp sohbeti açılır (wa.me/)</small>
-                  </div>
-
-                  <div className="hp-field-group">
-                    <label>Acil Servis / 24-7 Hattı (Emergency Hotline - Opsiyonel)</label>
-                    <input
-                      type="text"
-                      value={settingsForm.emergency_phone}
-                      onChange={(e) => setSettingsForm({ ...settingsForm, emergency_phone: e.target.value })}
-                      placeholder="(800) 555-0199"
-                    />
-                    <small>Gece veya acil müdahale bildirimlerinde gösterilecek numara (boş ise normal arama numarası kullanılır)</small>
+                    <small>Auto-formatted: +1 (xxx) xxx-xxxx — All WhatsApp buttons on the site will open a chat to this number</small>
                   </div>
 
                   {/* SECTION 3: SOCIAL MEDIA ACCOUNTS */}
@@ -1207,7 +1293,7 @@ export default function AdminPanel() {
                       type="email"
                       value={settingsForm.email}
                       onChange={(e) => setSettingsForm({ ...settingsForm, email: e.target.value })}
-                      placeholder="info@homepulse.com"
+                      placeholder="homepulseappliance@gmail.com"
                       required
                     />
                   </div>
@@ -1478,16 +1564,11 @@ export default function AdminPanel() {
                 </div>
                 <div className="hp-detail-item hp-full-width">
                   <label>Status</label>
-                  <select
-                    className="hp-status-select"
+                  <AdminStatusDropdown
                     value={selectedService.status}
-                    onChange={(e) => handleUpdateServiceStatus(selectedService.id, e.target.value, editNotes)}
-                  >
-                    <option value="pending">Pending</option>
-                    <option value="in_progress">In Progress (Technician Dispatched)</option>
-                    <option value="completed">Completed</option>
-                    <option value="cancelled">Cancelled</option>
-                  </select>
+                    type="service"
+                    onChange={(newStatus) => handleUpdateServiceStatus(selectedService.id, newStatus, editNotes)}
+                  />
                 </div>
                 <div className="hp-detail-item hp-full-width">
                   <label>Internal Admin / Technician Note</label>

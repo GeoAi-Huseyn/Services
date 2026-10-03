@@ -1,0 +1,197 @@
+/* ==========================================================================
+   AdminStatusDropdown Component Styles (HomePulse Admin)
+   Modern Badge & Pill Dropdown for Status Management
+   ========================================================================== */
+
+.hp-admin-status-dropdown {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+  font-family: inherit;
+}
+
+/* Status Trigger Button */
+.hp-status-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border-radius: 9999px; /* Pill style */
+  border-width: 1px;
+  border-style: solid;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  white-space: nowrap;
+}
+
+.hp-status-trigger:hover {
+  filter: brightness(0.97);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transform: translateY(-0.5px);
+}
+
+.hp-status-trigger:active,
+.hp-status-trigger.is-open {
+  transform: scale(0.98);
+  box-shadow: 0 0 0 3px rgba(27, 104, 254, 0.15);
+}
+
+.hp-status-trigger:focus-visible {
+  box-shadow: 0 0 0 3px rgba(27, 104, 254, 0.3);
+}
+
+/* Status Dot */
+.hp-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.7);
+}
+
+/* Status Label */
+.hp-status-label {
+  letter-spacing: 0.01em;
+}
+
+/* Status Chevron */
+.hp-status-chevron {
+  opacity: 0.65;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  margin-left: 1px;
+}
+
+.hp-status-trigger:hover .hp-status-chevron {
+  opacity: 1;
+}
+
+.hp-status-trigger.is-open .hp-status-chevron {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* Compact / Small size variant */
+.hp-admin-status-dropdown.hp-status-sm .hp-status-trigger {
+  padding: 4px 9px;
+  font-size: 0.75rem;
+  gap: 5px;
+}
+
+.hp-admin-status-dropdown.hp-status-sm .hp-status-dot {
+  width: 6px;
+  height: 6px;
+}
+
+/* Floating Menu */
+.hp-status-menu {
+  position: absolute;
+  z-index: 1050;
+  min-width: 160px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 
+    0 12px 28px -4px rgba(15, 23, 42, 0.12),
+    0 4px 12px -2px rgba(15, 23, 42, 0.06);
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  animation: hpMenuPop 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hp-status-menu.is-dropdown {
+  top: calc(100% + 6px);
+}
+
+.hp-status-menu.is-dropup {
+  bottom: calc(100% + 6px);
+}
+
+.hp-status-menu.align-left {
+  left: 0;
+}
+
+.hp-status-menu.align-right {
+  right: 0;
+}
+
+@keyframes hpMenuPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(-4px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Menu Option Buttons */
+.hp-status-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 10px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  text-align: left;
+}
+
+.hp-status-option:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.hp-status-option.is-selected {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 600;
+}
+
+.hp-status-option:focus-visible {
+  background-color: #e2e8f0;
+}
+
+/* Option Content */
+.hp-option-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hp-option-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.hp-option-text {
+  white-space: nowrap;
+}
+
+.hp-option-check {
+  color: #2563eb;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+/* Disabled State */
+.hp-status-disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}

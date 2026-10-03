@@ -266,7 +266,7 @@ export default function ServiceDetail() {
           "provider": {
             "@type": "HomeAndConstructionBusiness",
             "name": "HomePulse Appliance Repair",
-            "telephone": settings.phone || service.phone || "(571) 571-1664",
+            "telephone": settings.phone || "+1 (978) 845-1521",
             "priceRange": "$$",
             "url": "https://homepulserepair.com",
             "areaServed": service.serviceAreas ? service.serviceAreas.map((a) => ({ "@type": "Place", "name": a })) : []
@@ -362,8 +362,8 @@ export default function ServiceDetail() {
     );
   }
 
-  const phoneDisplay = settings.phone || service.phone || '(571) 571-1664';
-  const phoneHref = `tel:+${(settings.phone_raw || phoneDisplay).replace(/[^0-9]/g, '')}`;
+  const phoneDisplay = settings.phone;
+  const phoneHref = `tel:+${settings.phone_raw || ''}`;
   const otherServices = servicesData.filter((s) => s.slug !== service.slug);
 
   // Toggle DIY checkmark
@@ -1531,8 +1531,9 @@ export default function ServiceDetail() {
                 <div className="d-flex align-items-center gap-3">
                   <AlertIcon size={20} className="text-warning flex-shrink-0" />
                   <p className="mb-0 small">
-                    {service.diagnosticGuide.bottomNote ||
-                      'If these checks do not resolve the fault, do not attempt to disassemble internal mechanical or electrical parts. Call (571) 571-1664 for safe on-site diagnosis.'}
+                    {service.diagnosticGuide.bottomNote
+                      ? service.diagnosticGuide.bottomNote.replace(/\(?571\)?\s*571-1664/g, phoneDisplay)
+                      : `If these checks do not resolve the fault, do not attempt to disassemble internal mechanical or electrical parts. Call ${phoneDisplay} for safe on-site diagnosis.`}
                   </p>
                 </div>
               </motion.div>
@@ -1665,7 +1666,7 @@ export default function ServiceDetail() {
                       Call {phoneDisplay}
                     </motion.a>
                     <motion.a
-                      href={`https://wa.me/${settings.whatsapp_number || '15715711664'}`}
+                      href={settings.whatsapp_link}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="sd-whatsapp-btn"

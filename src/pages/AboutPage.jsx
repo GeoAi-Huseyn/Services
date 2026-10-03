@@ -193,13 +193,13 @@ export default function AboutPage() {
                 <ArrowLeftIcon size={14} />
                 <span>Back to Home</span>
               </Link>
-              <a href={`tel:+${settings.phone_raw || '18005550199'}`} className="ab-phone-pill d-none d-sm-inline-flex">
+              <a href={`tel:+${settings.phone_raw}`} className="ab-phone-pill d-none d-sm-inline-flex">
                 <div className="ab-phone-icon-wrap">
                   <PhoneIcon size={14} />
                 </div>
                 <div className="ab-phone-txt">
                   <small>Dispatch Hotline</small>
-                  <strong>{settings.phone || '(800) 555-0199'}</strong>
+                  <strong>{settings.phone}</strong>
                 </div>
               </a>
             </div>
@@ -461,11 +461,11 @@ export default function AboutPage() {
               </div>
               <div className="col-lg-5">
                 <div className="ab-cta-buttons">
-                  <a href={`tel:+${settings.phone_raw || '18005550199'}`} className="ab-btn-call">
-                    <PhoneIcon size={16} /> {settings.phone || '(800) 555-0199'}
+                  <a href={`tel:+${settings.phone_raw}`} className="ab-btn-call">
+                    <PhoneIcon size={16} /> {settings.phone}
                   </a>
                   <a
-                    href={`https://wa.me/${settings.whatsapp_number || '18005550199'}`}
+                    href={settings.whatsapp_link}
                     target="_blank"
                     rel="noreferrer"
                     className="ab-btn-whatsapp"

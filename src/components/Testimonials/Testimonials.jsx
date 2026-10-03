@@ -398,8 +398,8 @@ export default function Testimonials() {
                     </div>
                     <strong>We Service "{searchQuery}" & All Surrounding Towns!</strong>
                     <p>We provide prompt same-day appliance repair across all 351 cities and towns in Massachusetts.</p>
-                    <a href={`tel:+${settings.phone_raw || '18005550199'}`} className="no-cities-call-btn">
-                      <i className="fa-solid fa-phone-volume"></i> Call Now: {settings.phone || '(800) 555-0199'}
+                    <a href={`tel:+${settings.phone_raw}`} className="no-cities-call-btn">
+                      <i className="fa-solid fa-phone-volume"></i> Call Now: {settings.phone}
                     </a>
                   </div>
                 )}
@@ -478,11 +478,11 @@ export default function Testimonials() {
                   <span>All 351 Cities & Towns Covered</span>
                 </div>
               </div>
-              <a href={`tel:+${settings.phone_raw || '18005550199'}`} className="coverage-banner-cta-btn">
+              <a href={`tel:+${settings.phone_raw}`} className="coverage-banner-cta-btn">
                 <i className="fa-solid fa-phone-volume"></i>
                 <div className="cta-btn-text-wrap">
                   <span className="cta-small-label">BOOK SAME-DAY DISPATCH</span>
-                  <span className="cta-phone-number">{settings.phone || '(800) 555-0199'}</span>
+                  <span className="cta-phone-number">{settings.phone}</span>
                 </div>
               </a>
             </div>

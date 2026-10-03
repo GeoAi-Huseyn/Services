@@ -12,7 +12,7 @@ export const servicesData = [
     "heroTitle": "Refrigerator Repair in Massachusetts",
     "desc": "Not cooling, leaking, or noisy — fixed fast before food spoils.",
     "heroDesc": "Not cooling, leaking, or noisy — fixed fast before food spoils. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
-    "phone": "(571) 571-1664",
+    "phone": "+1 (978) 845-1521",
     "icon": "fa-solid fa-snowflake",
     "iconKey": "refrigerator",
     "image": "/assets/images/service-refrigerator.jpg",
@@ -76,7 +76,7 @@ export const servicesData = [
           "desc": "If the unit is still warm after 24 hours, or you notice ice buildup, water pooling, or abnormal noise, a professional diagnosis protects both the appliance and your food."
         }
       ],
-      "bottomNote": "Problem still there? Call (571) 571-1664 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
+      "bottomNote": "Problem still there? Call +1 (978) 845-1521 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
     },
     "whyChoose": {
       "title": "Why Massachusetts Homeowners Choose HomePulse for Refrigerator Repair",
@@ -195,7 +195,7 @@ export const servicesData = [
     "heroTitle": "Freezer Repair in Massachusetts",
     "desc": "Frost build-up, won't freeze, or failed compressor.",
     "heroDesc": "Frost build-up, won't freeze, or failed compressor. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
-    "phone": "(571) 571-1664",
+    "phone": "+1 (978) 845-1521",
     "icon": "fa-solid fa-icicles",
     "iconKey": "freezer",
     "image": "/assets/images/service-freezer.jpg",
@@ -259,7 +259,7 @@ export const servicesData = [
           "desc": "A continuously running compressor that can't reach temperature points to a refrigerant leak, compressor fault, or defrost failure — all require professional repair."
         }
       ],
-      "bottomNote": "Problem still there? Call (571) 571-1664 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
+      "bottomNote": "Problem still there? Call +1 (978) 845-1521 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
     },
     "whyChoose": {
       "title": "Why Massachusetts Homeowners Choose HomePulse for Freezer Repair",
@@ -377,7 +377,7 @@ export const servicesData = [
     "heroTitle": "Washer Repair in Massachusetts",
     "desc": "Won't drain, spin, or fill — leaks and error codes solved.",
     "heroDesc": "Won't drain, spin, or fill — leaks and error codes solved. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
-    "phone": "(571) 571-1664",
+    "phone": "+1 (978) 845-1521",
     "icon": "fa-solid fa-soap",
     "iconKey": "washer",
     "image": "/assets/images/service-washer.jpg",
@@ -441,7 +441,7 @@ export const servicesData = [
           "desc": "Water leaking from the drum seam or a grinding noise during spin indicates a bearing, seal, or spider-arm failure — DIY repair risks flooding and further damage."
         }
       ],
-      "bottomNote": "Problem still there? Call (571) 571-1664 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
+      "bottomNote": "Problem still there? Call +1 (978) 845-1521 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
     },
     "whyChoose": {
       "title": "Why Massachusetts Homeowners Choose HomePulse for Washer Repair",
@@ -560,7 +560,7 @@ export const servicesData = [
     "heroTitle": "Dryer Repair in Massachusetts",
     "desc": "No heat, won't tumble, or taking too long to dry.",
     "heroDesc": "No heat, won't tumble, or taking too long to dry. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
-    "phone": "(571) 571-1664",
+    "phone": "+1 (978) 845-1521",
     "icon": "fa-solid fa-wind",
     "iconKey": "dryer",
     "image": "/assets/images/service-dryer.jpg",
@@ -624,7 +624,7 @@ export const servicesData = [
           "desc": "A seized drum or persistent electrical fault requires safe professional diagnosis to avoid a fire hazard."
         }
       ],
-      "bottomNote": "Problem still there? Call (571) 571-1664 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
+      "bottomNote": "Problem still there? Call +1 (978) 845-1521 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
     },
     "whyChoose": {
       "title": "Why Massachusetts Homeowners Choose HomePulse for Dryer Repair",
@@ -742,7 +742,7 @@ export const servicesData = [
     "heroTitle": "Dishwasher Repair in Massachusetts",
     "desc": "Not draining, not cleaning, or leaking onto the floor.",
     "heroDesc": "Not draining, not cleaning, or leaking onto the floor. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
-    "phone": "(571) 571-1664",
+    "phone": "+1 (978) 845-1521",
     "icon": "fa-solid fa-utensils",
     "iconKey": "dishwasher",
     "image": "/assets/images/service-dishwasher.jpg",
@@ -806,7 +806,7 @@ export const servicesData = [
           "desc": "Water pooling under the door or on the floor, and error codes that return after resetting, point to pump seals, door gaskets, or a control-board fault — professional repair only."
         }
       ],
-      "bottomNote": "Problem still there? Call (571) 571-1664 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
+      "bottomNote": "Problem still there? Call +1 (978) 845-1521 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
     },
     "whyChoose": {
       "title": "Why Massachusetts Homeowners Choose HomePulse for Dishwasher Repair",
@@ -925,7 +925,7 @@ export const servicesData = [
     "heroTitle": "Oven & Range Repair in Massachusetts",
     "desc": "Won't heat, uneven temps, or faulty igniters and elements.",
     "heroDesc": "Won't heat, uneven temps, or faulty igniters and elements. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
-    "phone": "(571) 571-1664",
+    "phone": "+1 (978) 845-1521",
     "icon": "fa-solid fa-fire-burner",
     "iconKey": "oven",
     "image": "/assets/images/service-oven.jpg",
@@ -989,7 +989,7 @@ export const servicesData = [
           "desc": "Gas supply components require professional technician work for safety and code compliance. Call us if you smell gas, see a yellow flame, or hear a persistent igniter click."
         }
       ],
-      "bottomNote": "Problem still there? Call (571) 571-1664 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
+      "bottomNote": "Problem still there? Call +1 (978) 845-1521 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
     },
     "whyChoose": {
       "title": "Why Massachusetts Homeowners Choose HomePulse for Oven & Range Repair",
@@ -1108,7 +1108,7 @@ export const servicesData = [
     "heroTitle": "Cooktop & Stove Repair in Massachusetts",
     "desc": "Burners won't light or heat — gas and induction.",
     "heroDesc": "Burners won't light or heat — gas and induction. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
-    "phone": "(571) 571-1664",
+    "phone": "+1 (978) 845-1521",
     "icon": "fa-solid fa-burn",
     "iconKey": "cooktop",
     "image": "/assets/images/service-cooktop.jpg",
@@ -1172,7 +1172,7 @@ export const servicesData = [
           "desc": "Yellow or orange flames on a gas burner indicate incomplete combustion — a safety concern requiring a technician. Never ignore a gas smell; open windows and call immediately."
         }
       ],
-      "bottomNote": "Problem still there? Call (571) 571-1664 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
+      "bottomNote": "Problem still there? Call +1 (978) 845-1521 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
     },
     "whyChoose": {
       "title": "Why Massachusetts Homeowners Choose HomePulse for Cooktop & Stove Repair",
@@ -1291,7 +1291,7 @@ export const servicesData = [
     "heroTitle": "Microwave Repair in Massachusetts",
     "desc": "Built-in and over-the-range units repaired on-site.",
     "heroDesc": "Built-in and over-the-range units repaired on-site. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
-    "phone": "(571) 571-1664",
+    "phone": "+1 (978) 845-1521",
     "icon": "fa-solid fa-microchip",
     "iconKey": "microwave",
     "image": "/assets/images/service-microwave.jpg",
@@ -1355,7 +1355,7 @@ export const servicesData = [
           "desc": "Sparking inside the cavity, a burning smell, or a completely dark display all require professional diagnosis. A running microwave with a fault can worsen quickly."
         }
       ],
-      "bottomNote": "Problem still there? Call (571) 571-1664 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
+      "bottomNote": "Problem still there? Call +1 (978) 845-1521 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
     },
     "whyChoose": {
       "title": "Why Massachusetts Homeowners Choose HomePulse for Microwave Repair",
@@ -1473,7 +1473,7 @@ export const servicesData = [
     "heroTitle": "Ice Maker Repair in Massachusetts",
     "desc": "No ice, slow production, or leaks in built-in units.",
     "heroDesc": "No ice, slow production, or leaks in built-in units. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
-    "phone": "(571) 571-1664",
+    "phone": "+1 (978) 845-1521",
     "icon": "fa-solid fa-cube",
     "iconKey": "ice-maker",
     "image": "/assets/images/service-icemaker.jpg",
@@ -1537,7 +1537,7 @@ export const servicesData = [
           "desc": "Water pooling under or inside the refrigerator, or an ice maker that ignores the test button, indicates a failed module, inlet valve, or ice mold heater — all require professional service."
         }
       ],
-      "bottomNote": "Problem still there? Call (571) 571-1664 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
+      "bottomNote": "Problem still there? Call +1 (978) 845-1521 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
     },
     "whyChoose": {
       "title": "Why Massachusetts Homeowners Choose HomePulse for Ice Maker Repair",
@@ -1656,7 +1656,7 @@ export const servicesData = [
     "heroTitle": "Wine Cooler Repair in Massachusetts",
     "desc": "Temperature drift that puts your collection at risk.",
     "heroDesc": "Temperature drift that puts your collection at risk. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
-    "phone": "(571) 571-1664",
+    "phone": "+1 (978) 845-1521",
     "icon": "fa-solid fa-wine-bottle",
     "iconKey": "wine-cooler",
     "image": "/assets/images/service-winecooler.jpg",
@@ -1720,7 +1720,7 @@ export const servicesData = [
           "desc": "A compressor that starts and stops every few minutes (short-cycling) or doesn't run at all points to a refrigerant, relay, or compressor fault — beyond DIY correction."
         }
       ],
-      "bottomNote": "Problem still there? Call (571) 571-1664 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
+      "bottomNote": "Problem still there? Call +1 (978) 845-1521 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
     },
     "whyChoose": {
       "title": "Why Massachusetts Homeowners Choose HomePulse for Wine Cooler Repair",
@@ -1839,7 +1839,7 @@ export const servicesData = [
     "heroTitle": "Range Hood Repair in Massachusetts",
     "desc": "Weak suction, noise, or lighting and fan failures.",
     "heroDesc": "Weak suction, noise, or lighting and fan failures. Our specialist technicians diagnose the issue, give you an upfront price, and back the work with a 90-day warranty.",
-    "phone": "(571) 571-1664",
+    "phone": "+1 (978) 845-1521",
     "icon": "fa-solid fa-fan",
     "iconKey": "range-hood",
     "image": "/assets/images/service-rangehood.jpg",
@@ -1903,7 +1903,7 @@ export const servicesData = [
           "desc": "Intermittent lights or unresponsive touch controls indicate a wiring fault or control-board failure — both require professional diagnosis to avoid an electrical hazard."
         }
       ],
-      "bottomNote": "Problem still there? Call (571) 571-1664 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
+      "bottomNote": "Problem still there? Call +1 (978) 845-1521 — HomePulse provides fast, accurate on-site diagnostics with clear upfront pricing."
     },
     "whyChoose": {
       "title": "Why Massachusetts Homeowners Choose HomePulse for Range Hood Repair",

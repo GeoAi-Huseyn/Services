@@ -134,13 +134,13 @@ export default function ProjectDetailPage() {
                 <ArrowLeftIcon size={14} />
                 <span>All Recent Work</span>
               </Link>
-              <a href={`tel:+${settings.phone_raw || '18005550199'}`} className="pjd-phone-pill d-none d-sm-inline-flex">
+              <a href={`tel:+${settings.phone_raw}`} className="pjd-phone-pill d-none d-sm-inline-flex">
                 <div className="pjd-phone-icon">
                   <PhoneIcon size={14} />
                 </div>
                 <div className="pjd-phone-txt">
                   <small>Direct Dispatch</small>
-                  <strong>{settings.phone || '(800) 555-0199'}</strong>
+                  <strong>{settings.phone}</strong>
                 </div>
               </a>
             </div>
@@ -210,7 +210,7 @@ export default function ProjectDetailPage() {
             <div className="col-lg-4 text-lg-end mt-4 mt-lg-0">
               <div className="pjd-quick-cta">
                 <span className="label">Need a similar repair?</span>
-                <a href={`tel:+${settings.phone_raw || '18005550199'}`} className="pjd-quick-call-btn">
+                <a href={`tel:+${settings.phone_raw}`} className="pjd-quick-call-btn">
                   <PhoneIcon size={16} />
                   <span>Call Master Technician</span>
                 </a>
@@ -466,11 +466,11 @@ export default function ProjectDetailPage() {
                   We have experienced technicians in your neighborhood with mobile vans stocked with 90% of frequently needed OEM parts.
                 </p>
                 <div className="d-grid gap-2">
-                  <a href={`tel:+${settings.phone_raw || '18005550199'}`} className="pjd-btn-primary">
+                  <a href={`tel:+${settings.phone_raw}`} className="pjd-btn-primary">
                     <PhoneIcon size={16} />
-                    <span>Call {settings.phone || '(800) 555-0199'}</span>
+                    <span>Call {settings.phone}</span>
                   </a>
-                  <a href={`https://wa.me/${settings.whatsapp_number || '18005550199'}`} target="_blank" rel="noreferrer" className="pjd-btn-whatsapp">
+                  <a href={settings.whatsapp_link} target="_blank" rel="noreferrer" className="pjd-btn-whatsapp">
                     <WhatsAppIcon size={18} />
                     <span>Message on WhatsApp</span>
                   </a>

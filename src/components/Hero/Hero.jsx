@@ -108,7 +108,7 @@ export default function Hero() {
 
                 {/* CTA Action Buttons */}
                 <div className="hero-cta-group">
-                  <a href={`tel:+${settings.phone_raw || '15715711664'}`} className="hero-btn-call">
+                  <a href={`tel:+${settings.phone_raw}`} className="hero-btn-call">
                     <svg
                       width="18"
                       height="18"
@@ -121,7 +121,7 @@ export default function Hero() {
                     >
                       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
                     </svg>
-                    <span>Call {settings.phone || '(571) 571-1664'}</span>
+                    <span>Call {settings.phone}</span>
                   </a>
 
                   <a href="#contact" className="hero-btn-secondary">
